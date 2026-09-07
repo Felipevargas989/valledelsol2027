@@ -84,7 +84,7 @@ const heroScale = useTransform(
       src="/images/galeria/letrero4.jpg"
       alt="Valle del Sol"
       fill
-      className="object-cover object-[center_35%]"
+      className="object-cover object-[center_5%]"
       priority
     />
   </motion.div>

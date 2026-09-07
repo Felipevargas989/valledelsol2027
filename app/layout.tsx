@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
 import './globals.css';
+import {NextIntlClientProvider} from 'next-intl';
 
 import { AlohaBookingProvider } from './components/AlohaBookingProvider';
 
@@ -26,15 +27,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="es" className={montserrat.variable}>
-      <body
-        className={`${montserrat.variable} ${geistMono.variable} font-sans antialiased`}
-      >
+return (
+  <html lang="es" className={montserrat.variable}>
+    <body
+      className={`${montserrat.variable} ${geistMono.variable} font-sans antialiased`}
+    >
+      <NextIntlClientProvider>
         <AlohaBookingProvider>
           {children}
         </AlohaBookingProvider>
-      </body>
-    </html>
-  );
+      </NextIntlClientProvider>
+    </body>
+  </html>
+);
 }

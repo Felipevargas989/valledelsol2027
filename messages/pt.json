@@ -1,0 +1,31 @@
+{
+  "Header": {
+    "cabins": "Cabanas",
+    "restaurant": "Restaurante",
+    "weddings": "Casamentos",
+    "schools": "Escolas",
+    "companies": "Empresas",
+    "tourOperators": "Operadores Turísticos",
+    "about": "Sobre Nós",
+    "store": "Loja",
+    "book": "Reservar",
+    "quoteEvent": "Solicitar Orçamento",
+    "language": "Idioma"
+  },
+  "Footer": {
+    "tagline": "Volte aos lugares onde você foi feliz, volte ao Valle del Sol.",
+    "contact": "Contato",
+    "menu": "Menu",
+    "followUs": "Siga-nos",
+    "cabins": "Cabanas",
+    "restaurant": "Restaurante",
+    "weddings": "Casamentos",
+    "schools": "Escolas",
+    "companies": "Empresas",
+    "tourOperators": "Operadores Turísticos",
+    "about": "Sobre Nós",
+    "rights": "Todos os direitos reservados 2026.",
+    "madeWith": "Feito com ❤️ por Valle del Sol",
+    "whatsappQuote": "Fale conosco pelo WhatsApp"
+  }
+}

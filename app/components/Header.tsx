@@ -3,23 +3,40 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import {
+  Globe2,
   Menu,
   ShoppingBag,
   X,
 } from 'lucide-react';
+
+import {
+  useLocale,
+  useTranslations,
+} from 'next-intl';
 
 import { useAlohaBooking } from './AlohaBookingProvider';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
+
+  /*
+   * TRADUCCIONES
+   */
+  const t = useTranslations('Header');
+  const locale = useLocale();
 
   /*
    * ALOHA
    */
   const { isReady, openBooking } = useAlohaBooking();
 
+  /*
+   * SCROLL HEADER
+   */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -34,6 +51,9 @@ export default function Header() {
     };
   }, []);
 
+  /*
+   * BLOQUEAR SCROLL CON MENÚ MÓVIL
+   */
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -46,16 +66,69 @@ export default function Header() {
     };
   }, [mobileMenuOpen]);
 
+  /*
+   * MENÚ
+   */
   const menu = [
-    { name: 'Cabañas', href: '/cabanas' },
-    { name: 'Restaurante', href: '/restaurante' },
-    { name: 'Matrimonios', href: '/matrimonios' },
-    { name: 'Colegios', href: '/colegios' },
-    { name: 'Empresas', href: '/empresas' },
-    { name: 'Tour Operadores', href: '/touroperadores' },
-    { name: 'Nosotros', href: '/nosotros' },
+    {
+      name: t('cabins'),
+      href: '/cabanas',
+    },
+    {
+      name: t('restaurant'),
+      href: '/restaurante',
+    },
+    {
+      name: t('weddings'),
+      href: '/matrimonios',
+    },
+    {
+      name: t('schools'),
+      href: '/colegios',
+    },
+    {
+      name: t('companies'),
+      href: '/empresas',
+    },
+    {
+      name: t('tourOperators'),
+      href: '/touroperadores',
+    },
+    {
+      name: t('about'),
+      href: '/nosotros',
+    },
   ];
 
+  /*
+   * IDIOMAS
+   */
+  const languages = [
+    {
+      code: 'es' as const,
+      label: 'Español',
+      short: 'ES',
+    },
+    {
+      code: 'en' as const,
+      label: 'English',
+      short: 'EN',
+    },
+    {
+      code: 'pt' as const,
+      label: 'Português',
+      short: 'PT',
+    },
+  ];
+
+  const currentLanguage =
+    languages.find(
+      (language) => language.code === locale
+    ) ?? languages[0];
+
+  /*
+   * CERRAR MENÚ
+   */
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
   };
@@ -68,6 +141,24 @@ export default function Header() {
     openBooking();
   };
 
+  /*
+   * CAMBIAR IDIOMA
+   *
+   * No modifica la URL.
+   * Guarda el idioma en cookie
+   * y recarga la página actual.
+   */
+  const changeLanguage = (
+    newLocale: 'es' | 'en' | 'pt'
+  ) => {
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+
+    setLanguageOpen(false);
+    closeMobileMenu();
+
+    window.location.reload();
+  };
+
   return (
     <>
       <header
@@ -77,14 +168,27 @@ export default function Header() {
             : 'bg-black/25 backdrop-blur-md'
         }`}
       >
-        <div className="w-full max-w-[1500px] 2xl:max-w-[1600px] mx-auto px-5 sm:px-6 lg:px-8 h-20 lg:h-24 flex items-center justify-between">
+        <div className="
+          w-full
+          max-w-[1500px]
+          2xl:max-w-[1600px]
+          mx-auto
+          px-5
+          sm:px-6
+          lg:px-8
+          h-20
+          lg:h-24
+          flex
+          items-center
+          justify-between
+        ">
 
           {/* LOGO */}
           <Link
             href="/"
             onClick={closeMobileMenu}
             className="relative z-50 flex-shrink-0"
-            aria-label="Ir al inicio"
+            aria-label="Valle del Sol"
           >
             <Image
               src={
@@ -96,55 +200,111 @@ export default function Header() {
               width={100}
               height={70}
               priority
-              className="w-[82px] lg:w-[100px] h-auto object-contain"
+              className="
+                w-[82px]
+                lg:w-[100px]
+                h-auto
+                object-contain
+              "
             />
           </Link>
 
           {/* MENÚ ESCRITORIO */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-5 text-[13px] xl:text-sm font-medium">
+          <nav className="
+            hidden
+            lg:flex
+            items-center
+            gap-4
+            xl:gap-5
+            text-[13px]
+            xl:text-sm
+            font-medium
+          ">
 
             {menu.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
-                className={`group relative whitespace-nowrap transition-colors duration-300 ${
-                  scrolled
-                    ? 'text-gray-800 hover:text-[#FBB03B]'
-                    : 'text-white hover:text-[#FBB03B]'
-                }`}
+                className={`
+                  group
+                  relative
+                  whitespace-nowrap
+                  transition-colors
+                  duration-300
+                  ${
+                    scrolled
+                      ? 'text-gray-800 hover:text-[#FBB03B]'
+                      : 'text-white hover:text-[#FBB03B]'
+                  }
+                `}
               >
                 {item.name}
 
-                <span className="absolute left-0 -bottom-2 w-0 h-[2px] bg-[#FBB03B] transition-all duration-300 group-hover:w-full" />
+                <span
+                  className="
+                    absolute
+                    left-0
+                    -bottom-2
+                    w-0
+                    h-[2px]
+                    bg-[#FBB03B]
+                    transition-all
+                    duration-300
+                    group-hover:w-full
+                  "
+                />
               </Link>
             ))}
 
           </nav>
 
           {/* LADO DERECHO ESCRITORIO */}
-          <div className="hidden lg:flex items-center gap-3 xl:gap-4 ml-4 xl:ml-6">
+          <div className="
+            hidden
+            lg:flex
+            items-center
+            gap-3
+            xl:gap-4
+            ml-4
+            xl:ml-6
+          ">
 
             {/* TIENDA */}
             <Link
               href="https://store.aloha.co/valledelsolquillon"
               target="_blank"
               rel="noopener noreferrer"
-              className={`group inline-flex items-center gap-2 whitespace-nowrap font-semibold transition-all duration-300 ${
-                scrolled
-                  ? 'text-gray-800 hover:text-[#FBB03B]'
-                  : 'text-white hover:text-[#FBB03B]'
-              }`}
+              className={`
+                group
+                inline-flex
+                items-center
+                gap-2
+                whitespace-nowrap
+                font-semibold
+                transition-all
+                duration-300
+                ${
+                  scrolled
+                    ? 'text-gray-800 hover:text-[#FBB03B]'
+                    : 'text-white hover:text-[#FBB03B]'
+                }
+              `}
             >
               <ShoppingBag
                 size={19}
                 strokeWidth={2}
-                className="text-[#FBB03B] transition-transform duration-300 group-hover:scale-110"
+                className="
+                  text-[#FBB03B]
+                  transition-transform
+                  duration-300
+                  group-hover:scale-110
+                "
               />
 
-              <span>Tienda</span>
+              <span>{t('store')}</span>
             </Link>
 
-            {/* RESERVAR - ALOHA */}
+            {/* RESERVAR */}
             <button
               type="button"
               onClick={handleReservation}
@@ -169,7 +329,7 @@ export default function Header() {
                 disabled:cursor-wait
               "
             >
-              Reservar
+              {t('book')}
             </button>
 
             {/* COTIZAR EVENTO */}
@@ -197,15 +357,161 @@ export default function Header() {
                 }
               `}
             >
-              Cotizar evento
+              {t('quoteEvent')}
             </Link>
+
+            {/* SELECTOR DE IDIOMA */}
+            <div className="relative">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setLanguageOpen((prev) => !prev)
+                }
+                className={`
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-full
+                  border
+                  px-4
+                  py-2.5
+                  text-sm
+                  font-semibold
+                  transition-all
+                  duration-300
+                  hover:scale-105
+                  ${
+                    scrolled
+                      ? 'border-gray-300 text-gray-900 hover:border-[#FBB03B]'
+                      : 'border-white/40 text-white hover:border-[#FBB03B]'
+                  }
+                `}
+                aria-label={t('language')}
+                aria-expanded={languageOpen}
+              >
+                <Globe2 size={17} />
+
+                <span>
+                  {currentLanguage.short}
+                </span>
+
+                <span className="text-[9px]">
+                  ▼
+                </span>
+              </button>
+
+              {/* DROPDOWN */}
+              {languageOpen && (
+                <div
+                  className="
+                    absolute
+                    top-[calc(100%+10px)]
+                    right-0
+                    min-w-[180px]
+                    overflow-hidden
+                    rounded-2xl
+                    bg-white
+                    shadow-2xl
+                    border
+                    border-gray-100
+                    py-2
+                  "
+                >
+                  {languages.map((language) => (
+                    <button
+                      key={language.code}
+                      type="button"
+                      onClick={() =>
+                        changeLanguage(language.code)
+                      }
+                      className={`
+                        flex
+                        w-full
+                        items-center
+                        justify-between
+                        px-4
+                        py-3
+                        text-left
+                        text-sm
+                        transition-colors
+                        duration-200
+                        ${
+                          locale === language.code
+                            ? 'bg-[#FBB03B]/10 text-black font-semibold'
+                            : 'text-gray-700 hover:bg-gray-100'
+                        }
+                      `}
+                    >
+                      <span>
+                        {language.label}
+                      </span>
+
+                      <span
+                        className={`
+                          text-xs
+                          font-bold
+                          ${
+                            locale === language.code
+                              ? 'text-[#FBB03B]'
+                              : 'text-gray-400'
+                          }
+                        `}
+                      >
+                        {language.short}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+            </div>
 
           </div>
 
           {/* CONTROLES MÓVILES */}
-          <div className="flex lg:hidden items-center gap-3">
+          <div className="
+            flex
+            lg:hidden
+            items-center
+            gap-3
+          ">
 
-            {/* RESERVAR MÓVIL SUPERIOR */}
+            {/* IDIOMA */}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(true);
+                setLanguageOpen(false);
+              }}
+              className={`
+                inline-flex
+                items-center
+                justify-center
+                gap-1.5
+                rounded-full
+                border
+                px-3
+                py-2
+                text-xs
+                font-semibold
+                transition-all
+                duration-300
+                ${
+                  scrolled
+                    ? 'border-gray-200 bg-white text-gray-900'
+                    : 'border-white/40 bg-black/20 text-white backdrop-blur-md'
+                }
+              `}
+              aria-label={t('language')}
+            >
+              <Globe2 size={16} />
+
+              {currentLanguage.short}
+            </button>
+
+            {/* RESERVAR MÓVIL */}
             <button
               type="button"
               onClick={handleReservation}
@@ -230,14 +536,16 @@ export default function Header() {
                 disabled:cursor-wait
               "
             >
-              Reservar
+              {t('book')}
             </button>
 
-            {/* BOTÓN MENÚ */}
+            {/* HAMBURGUESA */}
             <button
               type="button"
               onClick={() =>
-                setMobileMenuOpen((prev) => !prev)
+                setMobileMenuOpen(
+                  (prev) => !prev
+                )
               }
               aria-label={
                 mobileMenuOpen
@@ -245,11 +553,24 @@ export default function Header() {
                   : 'Abrir menú'
               }
               aria-expanded={mobileMenuOpen}
-              className={`relative z-50 w-11 h-11 rounded-full flex items-center justify-center border transition-all duration-300 ${
-                scrolled || mobileMenuOpen
-                  ? 'border-gray-200 bg-white text-gray-900 shadow-md'
-                  : 'border-white/40 bg-black/20 text-white backdrop-blur-md'
-              }`}
+              className={`
+                relative
+                z-50
+                w-11
+                h-11
+                rounded-full
+                flex
+                items-center
+                justify-center
+                border
+                transition-all
+                duration-300
+                ${
+                  scrolled || mobileMenuOpen
+                    ? 'border-gray-200 bg-white text-gray-900 shadow-md'
+                    : 'border-white/40 bg-black/20 text-white backdrop-blur-md'
+                }
+              `}
             >
               {mobileMenuOpen ? (
                 <X size={24} />
@@ -263,34 +584,68 @@ export default function Header() {
         </div>
       </header>
 
-      {/* FONDO OSCURO MÓVIL */}
+      {/* FONDO MÓVIL */}
       <button
         type="button"
         aria-label="Cerrar menú"
         onClick={closeMobileMenu}
-        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
-          mobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
+        className={`
+          fixed
+          inset-0
+          z-40
+          bg-black/60
+          backdrop-blur-sm
+          transition-opacity
+          duration-300
+          lg:hidden
+          ${
+            mobileMenuOpen
+              ? 'opacity-100 pointer-events-auto'
+              : 'opacity-0 pointer-events-none'
+          }
+        `}
       />
 
       {/* MENÚ LATERAL MÓVIL */}
       <aside
-        className={`fixed top-0 right-0 z-40 h-screen w-[88%] max-w-sm bg-black text-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${
-          mobileMenuOpen
-            ? 'translate-x-0'
-            : 'translate-x-full'
-        }`}
+        className={`
+          fixed
+          top-0
+          right-0
+          z-40
+          h-screen
+          w-[88%]
+          max-w-sm
+          bg-black
+          text-white
+          shadow-2xl
+          transition-transform
+          duration-500
+          ease-[cubic-bezier(0.22,1,0.36,1)]
+          lg:hidden
+          ${
+            mobileMenuOpen
+              ? 'translate-x-0'
+              : 'translate-x-full'
+          }
+        `}
       >
-        <div className="h-full flex flex-col px-7 pt-28 pb-8 overflow-y-auto">
+        <div className="
+          h-full
+          flex
+          flex-col
+          px-7
+          pt-28
+          pb-8
+          overflow-y-auto
+        ">
 
-          {/* MENÚ PRINCIPAL */}
+          {/* MENÚ */}
           <nav className="flex flex-col">
 
             {menu.map((item, index) => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 onClick={closeMobileMenu}
                 className="
@@ -317,7 +672,66 @@ export default function Header() {
 
           </nav>
 
-          {/* TIENDA + RESERVAR + COTIZAR */}
+          {/* IDIOMA MÓVIL */}
+          <div className="mt-8">
+
+            <div className="
+              flex
+              items-center
+              gap-2
+              mb-4
+              text-xs
+              uppercase
+              tracking-[0.18em]
+              text-white/40
+            ">
+              <Globe2 size={15} />
+
+              {t('language')}
+            </div>
+
+            <div className="grid grid-cols-3 gap-2">
+
+              {languages.map((language) => (
+                <button
+                  key={language.code}
+                  type="button"
+                  onClick={() =>
+                    changeLanguage(language.code)
+                  }
+                  className={`
+                    rounded-xl
+                    border
+                    px-3
+                    py-3
+                    text-sm
+                    font-semibold
+                    transition-all
+                    duration-300
+                    ${
+                      locale === language.code
+                        ? 'bg-[#FBB03B] border-[#FBB03B] text-black'
+                        : 'border-white/15 text-white hover:border-[#FBB03B] hover:text-[#FBB03B]'
+                    }
+                  `}
+                >
+                  {language.short}
+                </button>
+              ))}
+
+            </div>
+
+            <div className="
+              mt-3
+              text-sm
+              text-white/50
+            ">
+              {currentLanguage.label}
+            </div>
+
+          </div>
+
+          {/* BOTONES */}
           <div className="mt-8 space-y-3">
 
             {/* TIENDA */}
@@ -347,10 +761,11 @@ export default function Header() {
               "
             >
               <ShoppingBag size={20} />
-              Tienda
+
+              {t('store')}
             </Link>
 
-            {/* RESERVAR ALOHA */}
+            {/* RESERVAR */}
             <button
               type="button"
               onClick={handleReservation}
@@ -374,10 +789,10 @@ export default function Header() {
                 disabled:cursor-wait
               "
             >
-              Reservar
+              {t('book')}
             </button>
 
-            {/* COTIZAR EVENTO */}
+            {/* COTIZAR */}
             <Link
               href="https://www.eventi-app.com/public-quotation/1"
               target="_blank"
@@ -402,7 +817,7 @@ export default function Header() {
                 hover:scale-[1.02]
               "
             >
-              Cotizar evento
+              {t('quoteEvent')}
             </Link>
 
           </div>

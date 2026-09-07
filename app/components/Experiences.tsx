@@ -20,7 +20,7 @@ const experiences = [
   {
     title: 'Empresas',
     subtitle: 'Experiencias corporativas a medida',
-    image: '/images/experiencia/empresa.jpg',
+    image: '/images/empresas/e10.jpg',
     href: '/empresas',
   },
   {

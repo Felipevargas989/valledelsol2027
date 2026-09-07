@@ -1,0 +1,31 @@
+{
+  "Header": {
+    "cabins": "Cabins",
+    "restaurant": "Restaurant",
+    "weddings": "Weddings",
+    "schools": "Schools",
+    "companies": "Companies",
+    "tourOperators": "Tour Operators",
+    "about": "About Us",
+    "store": "Store",
+    "book": "Book",
+    "quoteEvent": "Quote Event",
+    "language": "Language"
+  },
+  "Footer": {
+    "tagline": "Return to the places where you were happy, return to Valle del Sol.",
+    "contact": "Contact",
+    "menu": "Menu",
+    "followUs": "Follow us",
+    "cabins": "Cabins",
+    "restaurant": "Restaurant",
+    "weddings": "Weddings",
+    "schools": "Schools",
+    "companies": "Companies",
+    "tourOperators": "Tour Operators",
+    "about": "About Us",
+    "rights": "All rights reserved 2026.",
+    "madeWith": "Made with ❤️ by Valle del Sol",
+    "whatsappQuote": "Contact us on WhatsApp"
+  }
+}
