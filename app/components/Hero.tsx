@@ -7,12 +7,20 @@ import SecondaryButton from './SecondaryButton';
 interface HeroProps {
   staticText: string;
   animatedWords: string[];
+  magicText: string;
+  subtitle: string;
+  cabinsButton: string;
+  quoteButton: string;
   animationSpeed?: number;
 }
 
 export default function Hero({
   staticText,
   animatedWords,
+  magicText,
+  subtitle,
+  cabinsButton,
+  quoteButton,
   animationSpeed = 3000,
 }: HeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -69,7 +77,7 @@ export default function Hero({
 
           {/* Línea 2 */}
           <span className="block mt-2 font-bold">
-            La magia de la{' '}
+            {magicText}{' '}
             <span
               className={`inline-block transition-all duration-500 ${
                 isVisible
@@ -84,13 +92,13 @@ export default function Hero({
         </h1>
 
         <p className="text-lg md:text-xl mb-8">
-          NATURALEZA, DESCANSO Y EXPERIENCIAS INOLVIDABLES EN QUILLÓN
+          {subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-5 justify-center">
 
           <PrimaryButton href="/cabanas">
-            Ver Cabañas
+            {cabinsButton}
           </PrimaryButton>
 
           <SecondaryButton
@@ -102,7 +110,7 @@ export default function Hero({
     hover:!text-black
   "
 >
-  Cotizar Evento
+  {quoteButton}
 </SecondaryButton>
 
         </div>

@@ -3,37 +3,39 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import PrimaryButton from './PrimaryButton';
 import SecondaryButton from './SecondaryButton';
 
 const slides = [
   {
-    title: 'Convenios con empresas',
-    text: 'Ofrecemos planes especiales para empresas que buscan entregar beneficios reales a sus colaboradores. Accede a tarifas preferenciales, experiencias personalizadas y un entorno ideal para el descanso.',
+    key: 'companies',
     image: '/images/convenios.jpg',
     href: '/empresas',
   },
   {
-    title: 'Programas para Tour Operadores',
-    text: 'Trabajamos junto a tour operadores para crear experiencias únicas en Valle del Sol. Diseñamos programas flexibles, atractivos y con alto valor agregado.',
+    key: 'tourOperators',
     image: '/images/tour-operadores.jpg',
     href: '/touroperadores',
   },
   {
-    title: 'Beneficios para Colegios',
-    text: 'Programas ideales para giras de estudio y actividades educativas en un entorno seguro, natural y enriquecedor.',
+    key: 'schools',
     image: '/images/colegios.jpg',
     href: '/colegios',
   },
 ];
 
 export default function ContactSection() {
+  const t = useTranslations('Contact');
+
   const [current, setCurrent] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
-      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      setCurrent((prev) =>
+        prev === slides.length - 1 ? 0 : prev + 1
+      );
     }, 5000);
 
     return () => {
@@ -51,11 +53,15 @@ export default function ContactSection() {
     const endX = e.changedTouches[0].clientX;
 
     if (startX - endX > 50) {
-      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+      setCurrent((prev) =>
+        prev === slides.length - 1 ? 0 : prev + 1
+      );
     }
 
     if (endX - startX > 50) {
-      setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+      setCurrent((prev) =>
+        prev === 0 ? slides.length - 1 : prev - 1
+      );
     }
   };
 
@@ -73,9 +79,9 @@ export default function ContactSection() {
           }}
         >
           <h2 className="text-4xl md:text-5xl font-light text-gray-700 leading-tight">
-            PROGRAMAS{' '}
+            {t('titleLight')}{' '}
             <span className="font-semibold text-gray-900">
-              EXCLUSIVOS
+              {t('titleBold')}
             </span>
           </h2>
         </motion.div>
@@ -90,7 +96,7 @@ export default function ContactSection() {
             delay: 0.3,
           }}
         >
-          ACCEDE A TARIFAS PREFERENTES
+          {t('subtitle')}
         </motion.p>
 
         <div
@@ -104,9 +110,9 @@ export default function ContactSection() {
               transform: `translateX(-${current * 100}%)`,
             }}
           >
-            {slides.map((slide, index) => (
+            {slides.map((slide) => (
               <div
-                key={index}
+                key={slide.key}
                 className="w-full flex-shrink-0 grid md:grid-cols-2 gap-12 items-center"
               >
 
@@ -114,7 +120,7 @@ export default function ContactSection() {
                   <div className="relative w-full max-w-[420px] aspect-square rounded-full overflow-hidden shadow-2xl ring-4 ring-white">
                     <Image
                       src={slide.image}
-                      alt={slide.title}
+                      alt={t(`slides.${slide.key}.title`)}
                       fill
                       className="object-cover"
                     />
@@ -123,11 +129,11 @@ export default function ContactSection() {
 
                 <div>
                   <h3 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 tracking-tight">
-                    {slide.title}
+                    {t(`slides.${slide.key}.title`)}
                   </h3>
 
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                    {slide.text}
+                    {t(`slides.${slide.key}.text`)}
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4">
@@ -135,7 +141,7 @@ export default function ContactSection() {
                       href={slide.href}
                       className="px-6 py-3 text-base shadow-xl"
                     >
-                      Más información
+                      {t('moreInfo')}
                     </PrimaryButton>
 
                     <SecondaryButton
@@ -159,9 +165,9 @@ export default function ContactSection() {
         </div>
 
         <div className="flex justify-center mt-10 gap-2">
-          {slides.map((_, index) => (
+          {slides.map((slide, index) => (
             <div
-              key={index}
+              key={slide.key}
               onClick={() => setCurrent(index)}
               className={`w-3 h-3 rounded-full cursor-pointer transition ${
                 current === index

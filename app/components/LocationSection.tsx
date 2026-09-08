@@ -1,8 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 export default function LocationSection() {
+  const t = useTranslations('Location');
+
   return (
     <section className="relative py-24 overflow-hidden">
 
@@ -10,7 +13,7 @@ export default function LocationSection() {
       <div className="absolute inset-0 -z-10">
         <img
           src="/images/ubicacion.jpg"
-          alt="Ubicación Valle del Sol"
+          alt={t('imageAlt')}
           className="w-full h-[120%] object-cover parallax-bg"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -23,7 +26,7 @@ export default function LocationSection() {
           {/* LEFT - TEXT */}
           <div className="space-y-6 text-white">
 
-            {/* 🔥 TÍTULO PRINCIPAL (LEFT → RIGHT) */}
+            {/* TÍTULO PRINCIPAL */}
             <motion.h2
               className="text-4xl md:text-5xl font-light text-white leading-tight"
               initial={{ opacity: 0, x: -120 }}
@@ -31,51 +34,55 @@ export default function LocationSection() {
               viewport={{ once: false, margin: '-100px' }}
               transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              NUESTRA <span className="font-semibold">UBICACIÓN</span>
+              {t('titleLight')}{' '}
+              <span className="font-semibold">
+                {t('titleBold')}
+              </span>
             </motion.h2>
 
-            {/* 🔥 SUBTÍTULO (FADE IN DOWN) */}
+            {/* SUBTÍTULO */}
             <motion.p
-  className="text-lg md:text-xl text-white/90"
-  initial={{ opacity: 0, y: -30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: false }}
-  transition={{ duration: 0.8, delay: 0.2 }}
->
-  <span className="font">ES INMEJORABLE</span>
-</motion.p>
+              className="text-lg md:text-xl text-white/90"
+              initial={{ opacity: 0, y: -30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="font">
+                {t('subtitle')}
+              </span>
+            </motion.p>
 
             {/* TEXTO */}
             <div className="space-y-4 text-white/90 text-lg leading-snug max-w-xl">
 
               <p>
-                En el corazón de Quillón, a unos pasos del centro y plaza
-                principal, bares, restaurantes y la laguna Avendaño.
+                {t('description')}
               </p>
 
               <ul className="space-y-2">
-                <li>• Plaza central de Quillón a 2 min en vehículo.</li>
-                <li>• Playa balneario Quillón y Cendyr Náutico a 6 min en vehículo.</li>
-                <li>• Bioparque a 7 min en vehículo.</li>
-                <li>• Parque Acuático a 5 min en vehículo.</li>
-                <li>• Viña Lomas de Quillón a 9 min en vehículo.</li>
-                <li>• Terminal de Buses a 7 min en vehículo.</li>
+                <li>• {t('distances.plaza')}</li>
+                <li>• {t('distances.beach')}</li>
+                <li>• {t('distances.biopark')}</li>
+                <li>• {t('distances.waterPark')}</li>
+                <li>• {t('distances.winery')}</li>
+                <li>• {t('distances.busTerminal')}</li>
               </ul>
 
               <div className="pt-4 border-t border-white/20">
                 <p className="font-semibold">
-                  Km. 1,5 Camino a Cerro Negro, Parcela 51, Quillón
+                  {t('address')}
                 </p>
               </div>
 
-              {/* 🔥 CTA WAZE */}
+              {/* CTA WAZE */}
               <a
                 href="https://waze.com/ul?q=Km.%201,5%20Camino%20a%20Cerro%20Negro%20Parcela%2051%20Quillón"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-4 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold transition hover:scale-105 hover:bg-gray-100"
               >
-                Cómo llegar
+                {t('directions')}
               </a>
 
             </div>
@@ -87,11 +94,15 @@ export default function LocationSection() {
             initial={{ opacity: 0, x: 120 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, margin: '-100px' }}
-            transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 1.4,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <iframe
               src="https://maps.google.com/maps?q=complejo%20turistico%20valle%20del%20sol%20quill%C3%B3n&t=m&z=14&output=embed&iwloc=near"
-              title="complejo turistico valle del sol quillón"
+              title={t('mapTitle')}
               className="w-full h-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

@@ -2,8 +2,11 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 export default function Booking() {
+  const t = useTranslations('Booking');
+
   return (
     <section className="relative w-full h-[70vh] md:h-[80vh] flex items-center">
 
@@ -29,34 +32,40 @@ export default function Booking() {
               Valle del Sol
             </p>
 
-            {/* 🔥 TÍTULO (slide desde izquierda) */}
+            {/* TÍTULO */}
             <motion.h2
               className="text-4xl md:text-6xl font-semibold leading-tight"
               initial={{ opacity: 0, x: -120 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, margin: '-100px' }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 1.2,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
-              Un refugio natural para desconectarte del mundo
+              {t('title')}
             </motion.h2>
 
-            {/* 🔥 TEXTO (fade in down) */}
+            {/* TEXTO */}
             <motion.p
               className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed"
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.3,
+              }}
             >
-              Vive una experiencia única rodeado de naturaleza, tranquilidad y paisajes que invitan a detener el tiempo.
+              {t('description')}
             </motion.p>
 
-            {/* BOTONES */}
+            {/* BOTÓN */}
             <div className="mt-10 flex gap-4 flex-wrap">
 
               <Link href="https://www.instagram.com/valledelsolquillon.cl/">
                 <button className="bg-white text-black hover:bg-gray-200 px-8 py-3 rounded-full text-sm font-semibold transition hover:scale-105">
-                  Síguenos en Instagram
+                  {t('instagram')}
                 </button>
               </Link>
 

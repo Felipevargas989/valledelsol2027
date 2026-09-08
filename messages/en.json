@@ -27,5 +27,134 @@
     "rights": "All rights reserved 2026.",
     "madeWith": "Made with ❤️ by Valle del Sol",
     "whatsappQuote": "Contact us on WhatsApp"
+  },
+  "Home": {
+    "hero": {
+      "staticText": "Discover Valle del Sol",
+      "magicText": "The magic of",
+      "relaxation": "Relaxation",
+      "nature": "Nature",
+      "hospitality": "Hospitality",
+      "subtitle": "NATURE, REST AND UNFORGETTABLE EXPERIENCES IN QUILLÓN",
+      "cabinsButton": "View Cabins",
+      "quoteButton": "Quote Event"
+    }
+  },
+  "Highlights": {
+    "titleLight": "WHAT MAKES US",
+    "titleBold": "STAND OUT",
+    "subtitle": "BENEFITS WITHIN YOUR REACH",
+    "previous": "View previous benefit",
+    "next": "View next benefit",
+    "goToPosition": "Go to position",
+    "items": {
+      "greenAreas": "24,000 m² of space and green areas",
+      "hotTubs": "Hot tubs overlooking the gardens",
+      "pools": "Swimming pools for adults and children",
+      "restaurant": "Traditional Chilean cuisine restaurant",
+      "eventHalls": "Spacious event halls",
+      "volleyball": "Volleyball court",
+      "football": "Football field",
+      "tennis": "Tennis court"
+    }
+  },
+  "Booking": {
+  "title": "A natural retreat to disconnect from the world",
+  "description": "Enjoy a unique experience surrounded by nature, tranquility and landscapes that invite you to slow down and enjoy the moment.",
+  "instagram": "Follow us on Instagram"
+},
+"Experiences": {
+  "titleLight": "DISCOVER",
+  "titleBold": "UNIQUE EXPERIENCES",
+  "subtitle": "IN AN UNMATCHED NATURAL SETTING",
+  "explore": "Explore",
+  "items": {
+    "cabins": {
+      "title": "Cabins",
+      "subtitle": "Escape to serenity"
+    },
+    "restaurant": {
+      "title": "Restaurant",
+      "subtitle": "Flavors you'll fall in love with"
+    },
+    "companies": {
+      "title": "Companies",
+      "subtitle": "Tailor-made corporate experiences"
+    },
+    "schools": {
+      "title": "Schools",
+      "subtitle": "School trips and graduations"
+    },
+    "tourOperators": {
+      "title": "Tour Operators",
+      "subtitle": "Programs designed for travel agencies"
+    }
   }
+},
+"Gallery": {
+  "items": {
+    "greenAreas": {
+      "title": "GREEN AREAS",
+      "description": "DISCOVER MORE THAN 24,000 M² OF GREEN AREAS DESIGNED FOR REST AND CONNECTION WITH NATURE. ENJOY UNIQUE MOMENTS IN A SPACIOUS, PEACEFUL AND VIBRANT ENVIRONMENT."
+    },
+    "pools": {
+      "title": "SWIMMING POOLS",
+      "description": "ENJOY REFRESHING SWIMMING POOLS FOR ADULTS AND CHILDREN, IDEAL FOR RELAXING AND SHARING SPECIAL MOMENTS WITH FAMILY."
+    },
+    "rooms": {
+      "title": "ROOMS",
+      "description": "RELAX IN ROOMS DESIGNED TO PROVIDE WARMTH, COMFORT AND REST."
+    },
+    "traditionalFood": {
+      "title": "TRADITIONAL FOOD",
+      "description": "DISCOVER AUTHENTIC CHILEAN CUISINE THROUGH ITS MOST TRADITIONAL DISHES."
+    },
+    "hotTubs": {
+      "title": "HOT TUBS",
+      "description": "OUR HOT TUBS OFFER A WELLNESS EXPERIENCE INSPIRED BY HYDROTHERAPY, THANKS TO THEIR BOILER AND HYDROMASSAGE SYSTEM."
+    },
+    "sportsCourts": {
+      "title": "SPORTS COURTS",
+      "description": "ENJOY OUR SPORTS COURTS IN A NATURAL SETTING, IDEAL FOR SHARING, COMPETING AND ENJOYING ACTIVE MOMENTS OUTDOORS."
+    }
+  }
+},
+"Contact": {
+  "titleLight": "EXCLUSIVE",
+  "titleBold": "PROGRAMS",
+  "subtitle": "ACCESS PREFERRED RATES",
+  "moreInfo": "More information",
+  "slides": {
+    "companies": {
+      "title": "Corporate Partnerships",
+      "text": "We offer special plans for companies looking to provide real benefits to their employees. Access preferred rates, personalized experiences and an ideal environment for relaxation."
+    },
+    "tourOperators": {
+      "title": "Programs for Tour Operators",
+      "text": "We work with tour operators to create unique experiences at Valle del Sol. We design flexible, attractive programs with high added value."
+    },
+    "schools": {
+      "title": "Benefits for Schools",
+      "text": "Ideal programs for educational trips and school activities in a safe, natural and enriching environment."
+    }
+  }
+},
+"Location": {
+  "imageAlt": "Valle del Sol location",
+  "titleLight": "OUR",
+  "titleBold": "LOCATION",
+  "subtitle": "IS UNBEATABLE",
+  "description": "In the heart of Quillón, just steps from the town center and main square, bars, restaurants and Avendaño Lagoon.",
+  "distances": {
+    "plaza": "Quillón main square: 2 min by car.",
+    "beach": "Quillón beach resort and Cendyr Náutico: 6 min by car.",
+    "biopark": "Biopark: 7 min by car.",
+    "waterPark": "Water Park: 5 min by car.",
+    "winery": "Viña Lomas de Quillón: 9 min by car.",
+    "busTerminal": "Bus Terminal: 7 min by car."
+  },
+  "address": "Km. 1.5 Camino a Cerro Negro, Parcela 51, Quillón",
+  "directions": "Get directions",
+  "mapTitle": "Valle del Sol Quillón Tourist Complex"
+}
 }

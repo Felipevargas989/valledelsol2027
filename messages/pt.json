@@ -27,5 +27,134 @@
     "rights": "Todos os direitos reservados 2026.",
     "madeWith": "Feito com ❤️ por Valle del Sol",
     "whatsappQuote": "Fale conosco pelo WhatsApp"
+  },
+  "Home": {
+    "hero": {
+      "staticText": "Descubra o Valle del Sol",
+      "magicText": "A magia da",
+      "relaxation": "Relaxamento",
+      "nature": "Natureza",
+      "hospitality": "Hospitalidade",
+      "subtitle": "NATUREZA, DESCANSO E EXPERIÊNCIAS INESQUECÍVEIS EM QUILLÓN",
+      "cabinsButton": "Ver Cabanas",
+      "quoteButton": "Solicitar Orçamento"
+    }
+  },
+  "Highlights": {
+    "titleLight": "O QUE NOS",
+    "titleBold": "DESTACA",
+    "subtitle": "BENEFÍCIOS AO SEU ALCANCE",
+    "previous": "Ver benefício anterior",
+    "next": "Ver próximo benefício",
+    "goToPosition": "Ir para a posição",
+    "items": {
+      "greenAreas": "24.000 m² de espaço e áreas verdes",
+      "hotTubs": "Ofurôs com vista para os jardins",
+      "pools": "Piscinas para adultos e crianças",
+      "restaurant": "Restaurante de comida típica chilena",
+      "eventHalls": "Amplos salões de eventos",
+      "volleyball": "Quadra de vôlei",
+      "football": "Campo de futebol",
+      "tennis": "Quadra de tênis"
+    }
+  },
+  "Booking": {
+  "title": "Um refúgio natural para se desconectar do mundo",
+  "description": "Viva uma experiência única cercado pela natureza, tranquilidade e paisagens que convidam você a desacelerar e aproveitar o momento.",
+  "instagram": "Siga-nos no Instagram"
+  },
+  "Experiences": {
+  "titleLight": "DESCUBRA",
+  "titleBold": "EXPERIÊNCIAS ÚNICAS",
+  "subtitle": "EM UM AMBIENTE NATURAL INCOMPARÁVEL",
+  "explore": "Explorar",
+  "items": {
+    "cabins": {
+      "title": "Cabanas",
+      "subtitle": "Refugie-se na tranquilidade"
+    },
+    "restaurant": {
+      "title": "Restaurante",
+      "subtitle": "Sabores que encantam"
+    },
+    "companies": {
+      "title": "Empresas",
+      "subtitle": "Experiências corporativas sob medida"
+    },
+    "schools": {
+      "title": "Escolas",
+      "subtitle": "Passeios escolares e formaturas"
+    },
+    "tourOperators": {
+      "title": "Operadores Turísticos",
+      "subtitle": "Programas desenvolvidos para agências"
+    }
   }
+  },
+"Gallery": {
+  "items": {
+    "greenAreas": {
+      "title": "ÁREAS VERDES",
+      "description": "DESCUBRA MAIS DE 24.000 M² DE ÁREAS VERDES PROJETADAS PARA O DESCANSO E A CONEXÃO COM A NATUREZA. VIVA MOMENTOS ÚNICOS EM UM AMBIENTE AMPLO, TRANQUILO E CHEIO DE VIDA."
+    },
+    "pools": {
+      "title": "PISCINAS",
+      "description": "APROVEITE AS REFRESCANTES PISCINAS PARA ADULTOS E CRIANÇAS, IDEAIS PARA RELAXAR E COMPARTILHAR MOMENTOS ESPECIAIS EM FAMÍLIA."
+    },
+    "rooms": {
+      "title": "QUARTOS",
+      "description": "RELAXE EM QUARTOS PROJETADOS PARA OFERECER ACONCHEGO, CONFORTO E DESCANSO."
+    },
+    "traditionalFood": {
+      "title": "COMIDA TÍPICA",
+      "description": "DESCUBRA A AUTÊNTICA GASTRONOMIA CHILENA ATRAVÉS DE SEUS PRATOS MAIS TRADICIONAIS."
+    },
+    "hotTubs": {
+      "title": "OFURÔS",
+      "description": "NOSSOS OFURÔS OFERECEM UMA EXPERIÊNCIA DE BEM-ESTAR INSPIRADA NA HIDROTERAPIA, GRAÇAS AO SEU SISTEMA DE CALDEIRA E HIDROMASSAGEM."
+    },
+    "sportsCourts": {
+      "title": "QUADRAS",
+      "description": "APROVEITE NOSSAS QUADRAS ESPORTIVAS EM UM AMBIENTE NATURAL IDEAL PARA COMPARTILHAR, COMPETIR E VIVER MOMENTOS ATIVOS AO AR LIVRE."
+    }
+  }
+},
+"Contact": {
+  "titleLight": "PROGRAMAS",
+  "titleBold": "EXCLUSIVOS",
+  "subtitle": "TENHA ACESSO A TARIFAS PREFERENCIAIS",
+  "moreInfo": "Mais informações",
+  "slides": {
+    "companies": {
+      "title": "Convênios com empresas",
+      "text": "Oferecemos planos especiais para empresas que desejam proporcionar benefícios reais aos seus colaboradores. Tenha acesso a tarifas preferenciais, experiências personalizadas e um ambiente ideal para o descanso."
+    },
+    "tourOperators": {
+      "title": "Programas para Operadores Turísticos",
+      "text": "Trabalhamos com operadores turísticos para criar experiências únicas no Valle del Sol. Desenvolvemos programas flexíveis, atrativos e com alto valor agregado."
+    },
+    "schools": {
+      "title": "Benefícios para Escolas",
+      "text": "Programas ideais para viagens de estudo e atividades educativas em um ambiente seguro, natural e enriquecedor."
+    }
+  }
+},
+"Location": {
+  "imageAlt": "Localização do Valle del Sol",
+  "titleLight": "NOSSA",
+  "titleBold": "LOCALIZAÇÃO",
+  "subtitle": "É INCOMPARÁVEL",
+  "description": "No coração de Quillón, a poucos passos do centro e da praça principal, bares, restaurantes e da Lagoa Avendaño.",
+  "distances": {
+    "plaza": "Praça central de Quillón: 2 min de carro.",
+    "beach": "Praia de Quillón e Cendyr Náutico: 6 min de carro.",
+    "biopark": "Bioparque: 7 min de carro.",
+    "waterPark": "Parque Aquático: 5 min de carro.",
+    "winery": "Viña Lomas de Quillón: 9 min de carro.",
+    "busTerminal": "Terminal Rodoviário: 7 min de carro."
+  },
+  "address": "Km. 1,5 Camino a Cerro Negro, Parcela 51, Quillón",
+  "directions": "Como chegar",
+  "mapTitle": "Complexo Turístico Valle del Sol Quillón"
+}
 }

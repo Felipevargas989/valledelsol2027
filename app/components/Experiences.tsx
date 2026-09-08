@@ -3,41 +3,39 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 const experiences = [
   {
-    title: 'Cabañas',
-    subtitle: 'Escápate a la serenidad',
+    key: 'cabins',
     image: '/images/experiencia/cabanas.jpg',
     href: '/cabanas',
   },
   {
-    title: 'Restaurante',
-    subtitle: 'Sabores que enamoran',
+    key: 'restaurant',
     image: '/images/experiencia/restaurante.jpg',
     href: '/restaurante',
   },
   {
-    title: 'Empresas',
-    subtitle: 'Experiencias corporativas a medida',
+    key: 'companies',
     image: '/images/empresas/e10.jpg',
     href: '/empresas',
   },
   {
-    title: 'Colegios',
-    subtitle: 'Paseos de curso y graduaciones',
+    key: 'schools',
     image: '/images/colegios.jpg',
     href: '/colegios',
   },
   {
-    title: 'Tour Operadores',
-    subtitle: 'Programas diseñados para agencias',
+    key: 'tourOperators',
     image: '/images/experiencia/tour-operadores.jpg',
     href: '/touroperadores',
   },
 ];
 
 export default function Experiences() {
+  const t = useTranslations('Experiences');
+
   return (
     <section className="pt-24 pb-24 bg-white">
       <div className="max-w-[1400px] mx-auto px-6">
@@ -50,7 +48,10 @@ export default function Experiences() {
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="text-4xl md:text-5xl font-light text-gray-700 leading-tight">
-            DESCUBRE <span className="font-semibold text-gray-900">EXPERIENCIAS ÚNICAS</span>
+            {t('titleLight')}{' '}
+            <span className="font-semibold text-gray-900">
+              {t('titleBold')}
+            </span>
           </h2>
         </motion.div>
 
@@ -62,19 +63,24 @@ export default function Experiences() {
           viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          EN UN ENTORNO NATURAL INCOMPARABLE
+          {t('subtitle')}
         </motion.p>
 
         {/* CARDS */}
         <div className="flex gap-6 overflow-x-auto md:grid md:grid-cols-5 md:overflow-visible">
 
-          {experiences.map((item, index) => (
+          {experiences.map((item) => (
             <Link
-              key={index}
+              key={item.key}
               href={item.href}
               className="min-w-[260px] md:min-w-0 block"
             >
-              <Card item={item} />
+              <Card
+                image={item.image}
+                title={t(`items.${item.key}.title`)}
+                subtitle={t(`items.${item.key}.subtitle`)}
+                explore={t('explore')}
+              />
             </Link>
           ))}
 
@@ -86,14 +92,24 @@ export default function Experiences() {
 }
 
 /* CARD */
-function Card({ item }: { item: any }) {
+function Card({
+  image,
+  title,
+  subtitle,
+  explore,
+}: {
+  image: string;
+  title: string;
+  subtitle: string;
+  explore: string;
+}) {
   return (
     <div className="relative h-[360px] md:h-[420px] rounded-2xl overflow-hidden group cursor-pointer">
 
       {/* Imagen */}
       <Image
-        src={item.image}
-        alt={item.title}
+        src={image}
+        alt={title}
         fill
         className="object-cover transition duration-700 group-hover:scale-110"
       />
@@ -106,20 +122,20 @@ function Card({ item }: { item: any }) {
 
         <div className="transform transition-all duration-500 group-hover:-translate-y-6 max-w-[220px]">
 
-          {/* 🔥 TÍTULO AJUSTADO */}
+          {/* TÍTULO */}
           <h3 className="text-white text-xl md:text-2xl font-semibold leading-snug break-words">
-            {item.title}
+            {title}
           </h3>
 
           <p className="text-white/80 mt-2 text-sm">
-            {item.subtitle}
+            {subtitle}
           </p>
 
         </div>
 
         <div className="mt-4 opacity-0 translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
           <span className="inline-block bg-white text-gray-900 text-sm px-4 py-2 rounded-full font-medium">
-            Explorar
+            {explore}
           </span>
         </div>
 

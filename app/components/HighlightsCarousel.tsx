@@ -3,43 +3,46 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const highlights = [
   {
-    text: '24.000 m2 de espacio y áreas verdes',
+    key: 'greenAreas',
     icon: '/images/iconos/areas-verdes.png',
   },
   {
-    text: 'Tinajas con vista a los jardines',
+    key: 'hotTubs',
     icon: '/images/iconos/tinajas.png',
   },
   {
-    text: 'Piscinas para adultos y niños',
+    key: 'pools',
     icon: '/images/iconos/piscinas.png',
   },
   {
-    text: 'Restaurant de comida típica chilena',
+    key: 'restaurant',
     icon: '/images/iconos/empanadas.png',
   },
   {
-    text: 'Amplios salones de eventos',
+    key: 'eventHalls',
     icon: '/images/iconos/eventos.png',
   },
   {
-    text: 'Cancha de volleyball',
+    key: 'volleyball',
     icon: '/images/iconos/volleyball.png',
   },
   {
-    text: 'Cancha de fútbol',
+    key: 'football',
     icon: '/images/iconos/futbol.png',
   },
   {
-    text: 'Cancha de tenis',
+    key: 'tennis',
     icon: '/images/iconos/tenis.png',
   },
 ];
 
 export default function HighlightsCarousel() {
+  const t = useTranslations('Highlights');
+
   const [index, setIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(4);
 
@@ -116,11 +119,11 @@ export default function HighlightsCarousel() {
             }}
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-700 leading-tight">
-              LO QUE NOS{' '}
-              <span className="font-semibold text-gray-900">
-                DESTACA
-              </span>
-            </h2>
+  {t('titleLight')}{' '}
+  <span className="font-semibold text-gray-900">
+    {t('titleBold')}
+  </span>
+</h2>
 
             <motion.p
               className="mt-4 text-base sm:text-lg text-gray-600"
@@ -140,7 +143,7 @@ export default function HighlightsCarousel() {
                 delay: 0.3,
               }}
             >
-              BENEFICIOS A SU ALCANCE
+              {t('subtitle')}
             </motion.p>
           </motion.div>
 
@@ -153,7 +156,7 @@ export default function HighlightsCarousel() {
               <button
                 type="button"
                 onClick={prev}
-                aria-label="Ver beneficio anterior"
+                aria-label={t('previous')}
                 className="
                   absolute
                   left-0
@@ -239,7 +242,7 @@ export default function HighlightsCarousel() {
                       >
                         <Image
                           src={item.icon}
-                          alt={item.text}
+                          alt={t(`items.${item.key}`)}
                           width={42}
                           height={42}
                           className="
@@ -257,7 +260,7 @@ export default function HighlightsCarousel() {
 
                       {/* TEXTO */}
                       <p className="text-sm sm:text-base text-gray-700 leading-snug font-medium max-w-[170px]">
-                        {item.text}
+                        {t(`items.${item.key}`)}
                       </p>
 
                     </div>
@@ -270,7 +273,7 @@ export default function HighlightsCarousel() {
               <button
                 type="button"
                 onClick={next}
-                aria-label="Ver beneficio siguiente"
+                aria-label={t('next')}
                 className="
                   absolute
                   right-0
@@ -313,7 +316,7 @@ export default function HighlightsCarousel() {
                   key={dotIndex}
                   type="button"
                   onClick={() => setIndex(dotIndex)}
-                  aria-label={`Ir a la posición ${dotIndex + 1}`}
+                  aria-label={`${t('goToPosition')} ${dotIndex + 1}`}
                   className={`h-2.5 rounded-full transition-all duration-300 ${
                     index === dotIndex
                       ? 'w-8 bg-[#FBB03B]'

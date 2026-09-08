@@ -2,47 +2,38 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 const items = [
   {
-    title: 'ÁREAS VERDES',
+    key: 'greenAreas',
     image: '/images/galeria/areas-verdes.jpg',
-    description:
-      'DESCUBRE MÁS DE 24.000 M² DE ÁREAS VERDES DISEÑADAS PARA EL DESCANSO Y LA CONEXIÓN CON LA NATURALEZA. VIVE MOMENTOS ÚNICOS EN UN ENTORNO AMPLIO, TRANQUILO Y LLENO DE VIDA.',
   },
   {
-    title: 'PISCINAS',
+    key: 'pools',
     image: '/images/galeria/piscinas.jpg',
-    description:
-      'DISFRUTA DE REFRESCANTES PISCINAS PARA ADULTOS Y NIÑOS, IDEALES PARA RELAJARSE Y COMPARTIR EN FAMILIA.',
   },
   {
-    title: 'HABITACIONES',
+    key: 'rooms',
     image: '/images/galeria/habitaciones.jpg',
-    description:
-      'RELÁJATE EN HABITACIONES DISEÑADAS PARA BRINDAR CALIDEZ, COMODIDAD Y DESCANSO.',
   },
   {
-    title: 'COMIDA TÍPICA',
+    key: 'traditionalFood',
     image: '/images/galeria/comida.jpg',
-    description:
-      'DESCUBRE LA AUTÉNTICA GASTRONOMÍA CHILENA A TRAVÉS DE SUS PLATOS MÁS TRADICIONALES.',
   },
   {
-    title: 'TINAJAS',
+    key: 'hotTubs',
     image: '/images/galeria/tinajas.jpg',
-    description:
-      'NUESTRAS TINAJAS OFRECEN UNA EXPERIENCIA DE BIENESTAR INSPIRADA EN LA HIDROTERAPIA, GRACIAS A SU SISTEMA DE CALDERA E HIDROMASAJE.',
   },
   {
-    title: 'CANCHAS',
+    key: 'sportsCourts',
     image: '/images/galeria/canchas.jpg',
-    description:
-      'DISFRUTA DE NUESTRAS CANCHAS DEPORTIVAS EN UN ENTORNO NATURAL IDEAL PARA COMPARTIR, COMPETIR Y VIVIR MOMENTOS ACTIVOS AL AIRE LIBRE',
   },
 ];
 
 export default function GalleryFilter() {
+  const t = useTranslations('Gallery');
+
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -64,7 +55,6 @@ export default function GalleryFilter() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-
       {/* IMAGEN */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -88,7 +78,7 @@ export default function GalleryFilter() {
         <div className="flex flex-wrap gap-4 mb-12">
           {items.map((item, index) => (
             <button
-              key={index}
+              key={item.key}
               onClick={() => setActive(index)}
               className={`px-5 py-2 rounded-full text-sm md:text-base font-medium transition-all backdrop-blur-md border ${
                 active === index
@@ -96,7 +86,7 @@ export default function GalleryFilter() {
                   : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:scale-105'
               }`}
             >
-              {item.title}
+              {t(`items.${item.key}.title`)}
             </button>
           ))}
         </div>
@@ -104,14 +94,14 @@ export default function GalleryFilter() {
         {/* TEXTO */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={current.title}
+            key={current.key}
             className="max-w-xl text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
 
-            {/* 🔥 TÍTULO (ESTILO GLOBAL + SLIDE LEFT) */}
+            {/* TÍTULO */}
             <motion.h2
               className="text-4xl md:text-5xl font-light text-white leading-tight"
               initial={{ opacity: 0, x: -120 }}
@@ -119,13 +109,16 @@ export default function GalleryFilter() {
               exit={{ opacity: 0, x: -60 }}
               transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              {current.title.split(' ')[0]}{' '}
+              {t(`items.${current.key}.title`).split(' ')[0]}{' '}
               <span className="font-semibold">
-                {current.title.split(' ').slice(1).join(' ')}
+                {t(`items.${current.key}.title`)
+                  .split(' ')
+                  .slice(1)
+                  .join(' ')}
               </span>
             </motion.h2>
 
-            {/* 🔥 DESCRIPCIÓN (FADE IN DOWN) */}
+            {/* DESCRIPCIÓN */}
             <motion.p
               className="mt-6 text-lg text-white/90 leading-relaxed"
               initial={{ opacity: 0, y: -25 }}
@@ -133,14 +126,13 @@ export default function GalleryFilter() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              {current.description}
+              {t(`items.${current.key}.description`)}
             </motion.p>
 
           </motion.div>
         </AnimatePresence>
 
       </div>
-
     </section>
   );
 }

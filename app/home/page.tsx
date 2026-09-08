@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Booking from '../components/Booking';
 import Experiences from '../components/Experiences';
 import GalleryFilter from '../components/GalleryFilter';
+import { getTranslations } from 'next-intl/server';
 import { FeatureBlock, SocialLink } from '../components/types';
 
 // Data configuration
@@ -20,12 +21,12 @@ const mainFeatures: FeatureBlock[] = [
   {
     title: 'Nosotros',
     subtitle: 'Espacios que Inspiran',
-    href: '/about',
+    href: '/nosotros',
   },
   {
     title: 'Restaurante',
     subtitle: 'Sabores que Enamoran',
-    href: '/restaurant',
+    href: '/restaurante',
   },
 ];
 
@@ -33,17 +34,17 @@ const eventFeatures: FeatureBlock[] = [
   {
     title: 'Matrimonios',
     subtitle: 'Tu Historia de Amor',
-    href: '/events/matrimonios',
+    href: '/matrimonios',
   },
   {
     title: 'Eventos Corporativos',
     subtitle: 'Eventos que Conectan',
-    href: '/events/corporativos',
+    href: '/empresas',
   },
   {
     title: 'Actividades Escolares',
     subtitle: 'Aventuras Inolvidables',
-    href: '/events/paseos',
+    href: '/colegios',
   },
 ];
 
@@ -65,7 +66,8 @@ const socialLinks: SocialLink[] = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const t = await getTranslations('Home');
   return (
     <div className="min-h-screen">
       <Header />
@@ -74,13 +76,17 @@ export default function Home() {
         
         {/* Hero */}
         <Hero
-          staticText="Descubre en Valle del Sol"
-          animatedWords={[
-            "Relajación",
-            "Naturaleza",
-            "Hospitalidad"
-          ]}
-        />
+  staticText={t('hero.staticText')}
+  animatedWords={[
+    t('hero.relaxation'),
+    t('hero.nature'),
+    t('hero.hospitality'),
+  ]}
+  magicText={t('hero.magicText')}
+  subtitle={t('hero.subtitle')}
+  cabinsButton={t('hero.cabinsButton')}
+  quoteButton={t('hero.quoteButton')}
+/>
         <HighlightsCarousel />
 
         {/* Booking */}
