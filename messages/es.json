@@ -156,5 +156,492 @@
   "address": "Km. 1,5 Camino a Cerro Negro, Parcela 51, Quillón",
   "directions": "Cómo llegar",
   "mapTitle": "Complejo Turístico Valle del Sol Quillón"
+},
+"Cabanas": {
+  "heroTitle": "Nuestras Cabañas",
+  "heroSubtitle": "Naturaleza, descanso y desconexión total",
+  "heroImageAlt": "Cabañas Valle del Sol",
+
+  "intro": "Despierta cada mañana disfrutando los colores verdes de la naturaleza y termina el día con la magia de un atardecer. Nuestras cabañas, diseñadas con un toque rústico y moderno, están rodeadas de paisajes impresionantes que invitan al descanso y la desconexión.",
+  "introHighlight": "Aquí, cada amanecer te regala paz y cada atardecer, un momento para atesorar. Ven y vive la tranquilidad en su máxima expresión.",
+
+  "benefitsTitle": "TODAS LAS CABAÑAS",
+  "benefitsTitleHighlight": "INCLUYEN",
+  "benefitsImageAlt": "Servicios incluidos en las cabañas",
+
+  "breakfastIncluded": "Desayuno incluido",
+  "smartTvWifiIncluded": "Smart TV + WIFI",
+  "bathAmenities": "Amenidades de baño",
+  "poolAccess": "Acceso a piscina y áreas verdes",
+  "picnicAccess": "Acceso zona de picnic",
+  "terraceGrillAccessories": "Terraza, parrilla y accesorios",
+
+  "cabin2Title": "Cabaña para 2 personas",
+  "cabin2Description": "Un rincón perfecto para disfrutar en pareja.",
+  "cabin2Details": "Suite de un ambiente con techo panorámico de 30m2. Se ubica escondida entre arbustos y árboles frente a la piscina principal, cuenta con una terraza de 15m2.",
+
+  "cabin4Title": "Cabaña para 4 personas",
+  "cabin4Description": "Espacio acogedor ideal para experiencias familiares inolvidables.",
+  "cabin4Details": "Cabaña familiar de dos habitaciones más cocina americana de 40m2. Se ubica frente a una zona de juegos infantiles bajo la sombra de pinos, cuenta con una terraza de 20m2.",
+
+  "cabin6Title": "Cabaña para 6 personas",
+  "cabin6Description": "Cabaña acogedora para familias grandes y grupos de amigos.",
+  "cabin6Details": "Cabaña familiar de tres habitaciones más cocina americana de 65m2. Se ubica frente a la fuente con cascada de agua, cuenta con una terraza de 30m2.",
+
+  "bedDouble": "1 cama de 2 plazas",
+  "twoSingleBeds": "2 camas de 1 plaza",
+  "bunkBed": "1 litera",
+  "equippedKitchen": "Cocina equipada",
+  "minibar": "Frigobar",
+  "grill": "Parrilla",
+  "towels": "Toallas",
+  "comfort": "Confort",
+  "woodStove": "Estufa a leña",
+  "terrace": "Terraza",
+  "wifi": "Wifi",
+  "smartTv": "Smart TV",
+  "roomService": "Servicio a la habitación",
+
+  "reserve": "Reservar",
+  "finalCta": "Reserva tu cabaña ideal o cotiza tu evento con nosotros.",
+  "quoteEvent": "Cotiza tu evento",
+  "reserveCabin": "Reservar cabaña",
+  "whatsapp": "WhatsApp",
+
+  "previousImage": "Ver imagen anterior",
+  "nextImage": "Ver imagen siguiente",
+  "previousAmenity": "Ver característica anterior",
+  "nextAmenity": "Ver característica siguiente"
+},
+"Restaurante": {
+  "heroTitle": "Nuestro Restaurant",
+  "heroSubtitle": "Una experiencia gastronómica en medio de la naturaleza",
+  "heroImageAlt": "Restaurant Valle del Sol",
+
+  "viewMenu": "Ver Carta",
+
+  "descriptionBeforeArea": "Espacio de",
+  "descriptionBeforeCapacity": "con capacidad para",
+  "people": "personas",
+  "descriptionAnd": "y una espectacular",
+  "panoramicTerrace": "terraza panorámica",
+  "descriptionEnd": "con vista a la piscina. Un ambiente ideal para disfrutar sabores únicos en un entorno natural y acogedor.",
+
+  "scheduleLabel": "Horario",
+  "schedule": "Todos los días de 12:00 a 19:00 hrs",
+
+  "locationLabel": "Ubicación",
+  "location": "Km. 1,5 Camino a Cerro Negro, Parcela 51, Quillón",
+
+  "flavorsTitle": "SABORES CON",
+  "flavorsTitleHighlight": "IDENTIDAD LOCAL",
+  "flavorsSubtitle": "PLATOS CON RAÍZ CHILENA, PRODUCTOS LOCALES Y EL SABOR AUTÉNTICO DEL CAMPO",
+
+  "galleryImageAlt": "Plato del restaurante",
+
+  "quoteEvent": "Cotiza tu evento",
+  "whatsapp": "WhatsApp"
+},
+"Matrimonios": {
+  "heroTitle": "Sí, acepto",
+  "heroSubtitle": "Cotiza con nuestro formato all inclusive",
+  "heroVideoTitle": "Video Matrimonios Valle del Sol",
+
+  "quoteEvent": "Cotiza tu evento",
+  "whatsapp": "WhatsApp",
+
+  "introTitle": "CELEBRA TU AMOR EN UN",
+  "introTitleHighlight": "LUGAR MÁGICO",
+  "introSubtitle": "RODEADO DE NATURALEZA Y TRANQUILIDAD, DONDE CADA DETALLE SE CONVIERTE EN UN RECUERDO INOLVIDABLE.",
+
+  "benefitsImageAlt": "Matrimonios Valle del Sol",
+  "includesTitle": "Todo lo que incluye tu matrimonio",
+
+  "includeFoodService": "Servicio de alimentación completo",
+  "includeCateringBar": "Banquetería y bar",
+  "includeDecoration": "Decoración y ambientación",
+  "includeMusic": "Música, sonido e iluminación",
+  "includeGardens": "Jardines para ceremonia",
+  "includeCabin": "Cabaña para los novios",
+
+  "cateringTitle": "Banquetería y Menú",
+  "cateringDescription": "Servicio de alimentación completo, con alternativas de menú y opción buffet.",
+  "cateringIconAlt": "Banquetería y Menú",
+
+  "decorationTitle": "Ambientación y Decoración",
+  "decorationDescription": "Espacios preparados para una celebración cálida, personalizada y memorable.",
+  "decorationIconAlt": "Decoración",
+
+  "plannerTitle": "Wedding Planner",
+  "plannerDescription": "Apoyo en la organización del día para que cada momento fluya con tranquilidad.",
+  "plannerIconAlt": "Wedding Planner",
+
+  "musicTitle": "Música y Audiovisuales",
+  "musicDescription": "DJ, animación, sonido e iluminación.",
+  "musicIconAlt": "Audio",
+
+  "experiencesTitle": "Experiencias",
+  "experiencesDescription": "Cabina 360°, tatuajes, artistas, carritos de comida, cotillón y más.",
+  "experiencesIconAlt": "Experiencias",
+
+  "barTitle": "Bar y Barra libre",
+  "barDescription": "Una barra pensada para que tus invitados disfruten la fiesta.",
+  "barIconAlt": "Bar",
+
+  "galleryImageAlt": "Matrimonio Valle del Sol"
+},
+"Colegios": {
+  "heroEyebrow": "Diversión • Piscinas • Juegos • Naturaleza",
+  "heroTitle": "Paseos de Curso",
+  "heroSubtitle": "Un día lleno de piscinas, juegos y momentos inolvidables para compartir junto a compañeros y profesores.",
+  "heroImageAlt": "Paseos de Curso",
+
+  "reserveDate": "Reserva tu fecha",
+  "whatsapp": "WhatsApp",
+  "quoteEvent": "Cotiza tu evento",
+
+  "schoolOutingsLabel": "Paseos entretenidos para colegios",
+  "outingTitle": "EL PASEO QUE TODOS",
+  "outingTitleHighlight": "RECORDARÁN",
+  "outingDescription": "Piscinas, juegos, áreas verdes y actividades pensadas para que estudiantes, profesores y apoderados disfruten un día increíble en Valle del Sol.",
+  "quoteOuting": "Cotizar paseo",
+  "outingImageAlt": "Paseos de curso en Valle del Sol",
+
+  "poolGamesTitle": "Piscinas y juegos",
+  "poolGamesDescription": "Toboganes, piscinas y espacios para disfrutar todo el día.",
+
+  "funTitle": "Diversión asegurada",
+  "funDescription": "Actividades deportivas, áreas verdes y momentos inolvidables.",
+
+  "natureTitle": "Naturaleza y descanso",
+  "natureDescription": "Un entorno seguro y entretenido para estudiantes y profesores.",
+
+  "modalitiesLabel": "Modalidades disponibles",
+  "modalitiesTitle": "ELIGE LA EXPERIENCIA",
+  "modalitiesTitleHighlight": "IDEAL",
+  "modalitiesSubtitle": "OPCIONES FLEXIBLES PARA ADAPTARSE A CADA CURSO Y NECESIDAD.",
+
+  "mostChosen": "Más elegida",
+
+  "withFoodTitle": "Con alimentación",
+  "withFoodDescription": "Una experiencia completa para disfrutar sin preocuparse por nada.",
+  "withFoodBreakfast": "Desayuno, almuerzo y once",
+  "withFoodMenus": "Menús adaptables",
+  "withFoodCoveredAreas": "Espacios techados",
+  "withFoodHydration": "Hidratación durante la jornada",
+
+  "withoutFoodTitle": "Sin alimentación",
+  "withoutFoodDescription": "Organiza la jornada libremente usando nuestras instalaciones.",
+  "withoutFoodPoolAccess": "Acceso a piscinas y áreas verdes",
+  "withoutFoodPicnic": "Zonas picnic y recreación",
+  "withoutFoodSchedule": "Flexibilidad horaria",
+  "withoutFoodLogistics": "Apoyo logístico",
+
+  "outingGalleryTitle": "Revisa todo lo que puedes tener",
+  "outingGalleryImageAlt": "Galería de paseos de curso",
+
+  "graduationLabel": "Graduaciones en Valle del Sol",
+  "graduationTitle": "CELEBRA EL CIERRE DE UNA ETAPA",
+  "graduationTitleHighlight": "INOLVIDABLE",
+  "graduationDescription": "Espacios elegantes, gastronomía y coordinación completa para vivir una noche especial junto a compañeros, familias y profesores.",
+  "quoteGraduation": "Cotizar graduación",
+  "talkWhatsapp": "Hablar por WhatsApp",
+  "graduationImageAlt": "Graduaciones en Valle del Sol",
+
+  "graduationDinner": "Cena especial",
+  "graduationParty": "Fiesta y música",
+  "graduationPhotography": "Fotografía",
+  "graduationCoffeeCocktail": "Coffee & Cóctel",
+  "graduationDecoratedSpaces": "Espacios decorados",
+  "graduationAlcoholFree": "Opciones sin alcohol",
+
+  "graduationGalleryTitle": "MOMENTOS QUE",
+  "graduationGalleryTitleHighlight": "PERDURAN PARA SIEMPRE",
+  "graduationGallerySubtitle": "UNA NOCHE ÚNICA PARA CELEBRAR EL FIN DE UNA GRAN ETAPA",
+  "graduationGalleryImageAlt": "Graduación"
+},
+"Empresas": {
+  "heroImageAlt": "Eventos para empresas en Valle del Sol",
+  "heroTitle": "Servicios Corporativos",
+  "heroSubtitle": "Espacios premium para reuniones, capacitaciones, celebraciones y experiencias inolvidables.",
+
+  "servicesStrip": "Capacitaciones • Seminarios • Congresos • Convenios • Paseos de Fin de Año",
+
+  "infrastructureLabel": "Infraestructura Corporativa",
+  "infrastructureTitle": "TODO LO QUE TU EMPRESA",
+  "infrastructureTitleHighlight": "NECESITA",
+  "infrastructureDescription": "En Valle del Sol Quillón contamos con espacios modernos, amplias áreas verdes y servicios integrales para desarrollar reuniones, jornadas estratégicas, convenciones, celebraciones y encuentros empresariales completamente personalizados.",
+
+  "locationBenefitTitle": "Ubicación privilegiada",
+  "locationBenefitDescription": "La mejor ubicación de Quillón.",
+
+  "capacityBenefitTitle": "Hasta 1.000 personas",
+  "capacityBenefitDescription": "Espacios para eventos de gran convocatoria.",
+
+  "roomsBenefitTitle": "Salones equipados",
+  "roomsBenefitDescription": "Configurables para cada tipo de actividad.",
+
+  "teamBuildingBenefitTitle": "Team Building",
+  "teamBuildingBenefitDescription": "Actividades para fortalecer la integración y motivación de los equipos.",
+
+  "cateringBenefitTitle": "Banquetería",
+  "cateringBenefitDescription": "Coffee break, almuerzos y cenas corporativas.",
+
+  "parkingBenefitTitle": "Estacionamientos",
+  "parkingBenefitDescription": "Amplios espacios para colaboradores y visitantes.",
+
+  "yearEndBackgroundAlt": "Paseos de fin de año para empresas",
+  "yearEndBadge": "Producto destacado para empresas",
+  "yearEndLabel": "Celebraciones Corporativas",
+  "yearEndTitle": "PASEOS DE",
+  "yearEndTitleHighlight": "FIN DE AÑO",
+  "yearEndLead": "Uno de nuestros productos más fuertes: jornadas corporativas pensadas para cerrar el año con entretención, naturaleza, gastronomía y espacios exclusivos para todo el equipo.",
+  "yearEndDescription": "Piscinas, quinchos, amplias áreas verdes, música, banquetería, actividades recreativas y coordinación completa convierten cada jornada en una experiencia memorable para colaboradores, equipos directivos y sus familias.",
+
+  "yearEndPrivateCelebrations": "Celebraciones privadas",
+  "yearEndFullCatering": "Banquetería completa",
+  "yearEndPools": "Piscinas y áreas verdes",
+  "yearEndActivities": "Actividades recreativas",
+
+  "quoteEvent": "Cotizar evento",
+  "whatsapp": "WhatsApp",
+  "yearEndImageAlt": "Celebración corporativa de fin de año",
+
+  "businessEventsLabel": "Eventos Empresariales",
+  "trainingTitle": "CAPACITACIONES, SEMINARIOS",
+  "trainingTitleHighlight": "Y CONGRESOS",
+  "trainingDescription": "Organizamos capacitaciones, seminarios, congresos y jornadas corporativas en un entorno rodeado de naturaleza. Disponemos de programas de uno o varios días, con o sin alojamiento, adaptándonos a las necesidades de cada organización.",
+  "trainingServicesDescription": "Nuestros programas incluyen salones climatizados, equipamiento audiovisual, coffee break, almuerzos, banquetería, alojamiento en cómodas cabañas, amplios estacionamientos y todos los servicios necesarios para garantizar una experiencia profesional de primer nivel.",
+
+  "withStayTitle": "Con estadía",
+  "withStayDescription": "Ideal para programas de integración y jornadas de varios días.",
+
+  "withoutStayTitle": "Sin estadía",
+  "withoutStayDescription": "Perfecto para reuniones, cursos y capacitaciones de una jornada.",
+
+  "coffeeBreakTitle": "Coffee Break",
+  "coffeeBreakDescription": "Opciones gastronómicas adaptadas a cada evento.",
+
+  "teamBuildingTitle": "Team Building",
+  "teamBuildingDescription": "Actividades para fortalecer la integración, liderazgo y trabajo en equipo.",
+
+  "solutionsLabel": "Empresas",
+  "solutionsTitle": "Soluciones para empresas",
+  "solutionsSubtitle": "Del alojamiento en faena a la celebración de fin de año, todo en un solo lugar.",
+
+  "solutionAccommodationTitle": "Alojamiento para faenas",
+  "solutionAccommodationDescription": "Tarifas paquetizadas con pensión completa para personal en terreno.",
+
+  "solutionMeetingsTitle": "Juntas directivas y capacitaciones",
+  "solutionMeetingsDescription": "Jornadas de trabajo con salones equipados y alojamiento incluido.",
+
+  "solutionSeminarsTitle": "Seminarios, foros y congresos",
+  "solutionSeminarsDescription": "Dos salones con capacidad para 100 y 250 personas.",
+
+  "solutionDinnersTitle": "Cenas corporativas",
+  "solutionDinnersDescription": "Restaurante con capacidad para 200 personas, ideal para aniversarios y premiaciones.",
+
+  "solutionYearEndTitle": "Paseos de fin de año",
+  "solutionYearEndDescription": "Alimentación, piscinas y actividades de team building para tu equipo.",
+
+  "solutionToursTitle": "Tours por la región",
+  "solutionToursDescription": "Cierres de jornada con viñas, licorerías y atractivos del Valle del Itata.",
+
+  "agreementsImageAlt": "Convenios corporativos",
+  "agreementsLabel": "Convenios Empresariales",
+  "agreementsTitle": "BENEFICIOS EXCLUSIVOS PARA",
+  "agreementsTitleHighlight": "TUS COLABORADORES",
+  "agreementsDescription": "Desarrollamos convenios corporativos para que todos los colaboradores de las empresas asociadas puedan disfrutar de descuentos exclusivos, promociones permanentes y tarifas preferenciales en alojamiento, restaurante, actividades recreativas y servicios de Valle del Sol Quillón.",
+
+  "discountsTitle": "Descuentos",
+  "discountsDescription": "Tarifas preferenciales durante todo el año.",
+
+  "promotionsTitle": "Promociones",
+  "promotionsDescription": "Beneficios exclusivos para colaboradores y sus familias.",
+
+  "experiencesTitle": "Experiencias",
+  "experiencesDescription": "Acceso preferente a actividades y programas especiales.",
+
+  "galleryLabel": "Conoce Valle del Sol",
+  "galleryTitle": "DESCUBRE",
+  "galleryTitleHighlight": "NUESTROS ESPACIOS",
+  "galleryImageAlt": "Galería corporativa",
+
+  "ctaLabel": "Planifiquemos tu próximo evento",
+  "ctaTitle": "CREAMOS EXPERIENCIAS CORPORATIVAS QUE",
+  "ctaTitleHighlight": "INSPIRAN, CONECTAN Y FORTALECEN EQUIPOS.",
+  "ctaDescription": "Nuestro equipo te acompañará en la planificación de reuniones, capacitaciones, congresos, celebraciones y actividades de integración, adaptándonos completamente a las necesidades de tu organización.",
+  "requestQuote": "Solicitar Cotización"
+},
+"TourOperadores": {
+  "heroImageAlt": "Turismo para grupos en Valle del Sol",
+  "heroLabel": "Turismo Receptivo • Tour Operadores",
+  "heroTitleFirst": "Turismo para",
+  "heroTitleSecond": "Grupos",
+  "heroDescription": "Diseñamos programas turísticos para delegaciones nacionales e internacionales que buscan descubrir el Valle del Itata desde un lugar único, rodeado de naturaleza, gastronomía y experiencias inolvidables.",
+  "requestProgram": "Solicitar Programa",
+  "discoverMore": "Descubrir Más",
+
+  "introLabel": "Tu aliado estratégico",
+  "introTitle": "El punto de partida para",
+  "introTitleHighlight": "descubrir el Valle del Itata",
+  "introDescription": "En Valle del Sol Quillón trabajamos junto a tour operadores, agencias y organizadores de viajes ofreciendo programas completos para grupos, combinando alojamiento, gastronomía, actividades recreativas y circuitos turísticos en un solo destino.",
+  "introDescriptionSecond": "Nuestro equipo coordina cada detalle para que cada viaje sea cómodo, seguro y memorable, adaptándonos a las necesidades de cada delegación y entregando una atención personalizada desde la llegada hasta el regreso.",
+  "introImageAlt": "Tour Operadores en Valle del Sol",
+
+  "nationalTourismLabel": "Turismo Nacional",
+  "nationalTourismTitle": "Programas diseñados para",
+  "nationalTourismTitleHighlight": "recorrer Ñuble en grupo",
+  "nationalTourismDescription": "Desarrollamos programas especialmente pensados para grupos que buscan descubrir Quillón y el Valle del Itata con comodidad, seguridad y una experiencia completamente organizada.",
+
+  "specialProgramsLabel": "Programas Especiales",
+  "seniorTitle": "Turismo para Adulto Mayor",
+  "seniorDescription": "Creamos programas especialmente pensados para agrupaciones de adultos mayores, privilegiando la comodidad, la buena gastronomía, la recreación y una atención cercana durante toda la estadía.",
+  "seniorImageAlt": "Turismo para Adulto Mayor",
+
+  "seniorAllInclusive": "Programas Todo Incluido",
+  "seniorAccommodation": "Alojamiento confortable",
+  "seniorRestaurant": "Restaurante",
+  "seniorActivities": "Actividades recreativas",
+  "seniorPools": "Piscinas y áreas verdes",
+  "seniorPersonalAttention": "Atención personalizada",
+  "seniorParking": "Amplios estacionamientos",
+  "seniorSafeEnvironment": "Entorno seguro y tranquilo",
+
+  "groupTravelLabel": "Viajes Grupales",
+  "delegationsTitle": "Delegaciones y Organizaciones",
+  "delegationsDescription": "Recibimos delegaciones provenientes de todo Chile, coordinando programas turísticos para clubes, asociaciones, centros de adultos mayores, instituciones y organizaciones que buscan vivir una experiencia completa en Quillón.",
+  "delegationsImageAlt": "Delegaciones en Valle del Sol",
+
+  "delegationSeniorClubs": "Clubes de Adulto Mayor",
+  "delegationMunicipal": "Delegaciones Municipales",
+  "delegationSocialOrganizations": "Organizaciones Sociales",
+  "delegationGroupTravel": "Viajes Grupales",
+  "delegationCustomPrograms": "Programas Personalizados",
+  "delegationRestaurant": "Restaurante",
+  "delegationTours": "Recorridos Turísticos",
+  "delegationLocalExperiences": "Experiencias Locales",
+
+  "internationalTourismLabel": "Turismo Internacional",
+  "internationalTourismTitle": "Recibimos grupos de",
+  "internationalTourismTitleHighlight": "todo el mundo",
+  "internationalTourismDescription": "Coordinamos la experiencia completa desde la llegada de los pasajeros a Chile, entregando alojamiento, gastronomía, transporte y recorridos turísticos para que cada viaje se desarrolle de forma cómoda, segura y sin preocupaciones.",
+
+  "airportTransferTitle": "Traslados Aeropuerto",
+  "airportTransferDescription": "Coordinamos traslados privados desde y hacia el aeropuerto para recibir a cada delegación con puntualidad y comodidad.",
+
+  "delegationReceptionTitle": "Recepción de Delegaciones",
+  "delegationReceptionDescription": "Nuestro equipo acompaña la llegada de los grupos y coordina cada detalle del programa turístico.",
+
+  "internationalAccommodationTitle": "Alojamiento",
+  "internationalAccommodationDescription": "Cómodas cabañas y espacios preparados para grupos de distintos tamaños durante toda su estadía.",
+
+  "localGastronomyTitle": "Gastronomía Local",
+  "localGastronomyDescription": "Menús especialmente preparados para grupos, resaltando sabores tradicionales de la zona.",
+
+  "touristTransportTitle": "Transporte Turístico",
+  "touristTransportDescription": "Apoyamos la coordinación logística para excursiones y recorridos por los principales atractivos del destino.",
+
+  "customProgramsTitle": "Programas Personalizados",
+  "customProgramsDescription": "Cada itinerario se adapta al tiempo disponible, intereses del grupo y temporada del año.",
+
+  "integralLabel": "Una experiencia completa",
+  "integralTitle": "Un solo lugar para",
+  "integralTitleHighlight": "coordinar todo el viaje",
+  "integralDescription": "Trabajamos junto a agencias y tour operadores nacionales e internacionales para ofrecer una solución integral, permitiendo centralizar alojamiento, alimentación, actividades y logística en un mismo destino.",
+  "integralImageAlt": "Turismo Internacional en Valle del Sol",
+
+  "integralFlexiblePrograms": "Programas Flexibles",
+  "integralPersonalAttention": "Atención Personalizada",
+  "integralGastronomy": "Gastronomía",
+  "integralLargeSpaces": "Amplios Espacios",
+  "integralLocalExperiences": "Experiencias Locales",
+  "integralCoordination": "Coordinación Integral",
+
+  "journeyLabel": "Así vivimos el viaje",
+  "journeyTitle": "Una experiencia",
+  "journeyTitleHighlight": "organizada de principio a fin",
+  "journeyDescription": "Coordinamos cada etapa del programa para que los pasajeros disfruten del destino sin preocupaciones, mientras el tour operador cuenta con un respaldo confiable durante todo el viaje.",
+
+  "journeyArrivalTitle": "Llegada",
+  "journeyArrivalDescription": "Recepción del grupo en el aeropuerto o punto de encuentro.",
+
+  "journeyTransferTitle": "Traslado",
+  "journeyTransferDescription": "Traslado cómodo y seguro hacia Valle del Sol Quillón.",
+
+  "journeyWelcomeTitle": "Bienvenida",
+  "journeyWelcomeDescription": "Check-in, instalación y recepción del grupo.",
+
+  "journeyGastronomyTitle": "Gastronomía",
+  "journeyGastronomyDescription": "Almuerzos, cenas y cocina local durante la estadía.",
+
+  "journeyExcursionsTitle": "Excursiones",
+  "journeyExcursionsDescription": "Viñas, licorerías, naturaleza y patrimonio del Valle del Itata.",
+
+  "journeyFreeTimeTitle": "Tiempo Libre",
+  "journeyFreeTimeDescription": "Piscinas, áreas verdes y actividades recreativas.",
+
+  "journeyReturnTitle": "Regreso",
+  "journeyReturnDescription": "Coordinación de salida y retorno del grupo.",
+
+  "whyLabel": "¿Por qué Valle del Sol?",
+  "whyTitle": "Un partner confiable para",
+  "whyTitleHighlight": "Tour Operadores",
+
+  "reasonInfrastructureTitle": "Infraestructura",
+  "reasonInfrastructureDescription": "Alojamiento, restaurante, piscinas y amplios espacios en un solo lugar.",
+
+  "reasonGroupProgramsTitle": "Programas Grupales",
+  "reasonGroupProgramsDescription": "Experiencia organizando viajes para delegaciones nacionales e internacionales.",
+
+  "reasonLocationTitle": "Ubicación Estratégica",
+  "reasonLocationDescription": "Excelente punto de partida para recorrer Quillón y el Valle del Itata.",
+
+  "reasonGastronomyTitle": "Gastronomía",
+  "reasonGastronomyDescription": "Menús adaptados para grupos y cocina con identidad local.",
+
+  "reasonAttentionTitle": "Atención Personalizada",
+  "reasonAttentionDescription": "Acompañamiento permanente antes, durante y después de cada programa.",
+
+  "reasonExperiencesTitle": "Experiencias",
+  "reasonExperiencesDescription": "Naturaleza, cultura, viñas y actividades para todas las edades.",
+
+  "ctaImageAlt": "Tour Operadores Valle del Sol",
+  "ctaLabel": "Comencemos a trabajar juntos",
+  "ctaTitle": "Diseñemos el próximo programa turístico",
+  "ctaTitleHighlight": "para tus pasajeros",
+  "ctaDescription": "Nuestro equipo puede ayudarte a crear programas para adultos mayores, delegaciones, viajes grupales y pasajeros internacionales, incorporando alojamiento, gastronomía, excursiones y experiencias adaptadas a cada grupo.",
+  "contactUs": "Contáctanos"
+},
+"Nosotros": {
+  "heroImageAlt": "Valle del Sol Quillón",
+  "heroTitleFirst": "Más que un",
+  "heroTitleSecond": "Complejo Turístico",
+  "heroSubtitle": "Queremos ser una experiencia que permanezca en la memoria de cada visitante.",
+
+  "historyLabel": "Nuestra Historia",
+  "historyTitle": "Una escapada llena de",
+  "historyTitleHighlight": "cultura y naturaleza",
+
+  "historyParagraphOne": "Nuestra historia comenzó en 2023, cuando decidimos dejar atrás la vida de oficina en Santiago para perseguir un sueño compartido: crear una experiencia turística única, que conectara a nuestros visitantes con la naturaleza y la cultura local.",
+
+  "historyParagraphTwo": "Con esta visión clara, nos aventuramos en un proyecto que integra una red de proveedores y productores locales, aportando autenticidad y apoyando el crecimiento económico de nuestra comunidad.",
+
+  "historyImageAlt": "Valle del Sol Quillón",
+
+  "teamTitle": "Nuestro Equipo",
+
+  "felipeRole": "Socio · Estrategia",
+  "felipeDescription": "Encargado de relaciones comerciales y desarrollo estratégico.",
+
+  "camilaRole": "Operaciones",
+  "camilaDescription": "Encargada de que todo funcione perfecto en cada experiencia.",
+
+  "belaRole": "Relaciones Públicas",
+  "belaDescription": "Nuestra encargada de felicidad y bienvenida.",
+
+  "galleryImageAlt": "Galería Valle del Sol",
+
+  "finalQuote": "Somos el tiempo que gastamos en quienes amamos"
 }
 }

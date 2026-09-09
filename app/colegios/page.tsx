@@ -6,30 +6,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
-import { SocialLink } from '../components/types';
 
 import Image from 'next/image';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-
-/* SOCIAL */
-const socialLinks: SocialLink[] = [
-  {
-    name: 'Tripadvisor',
-    href: 'https://www.tripadvisor.cl/',
-    icon: '🌐',
-  },
-  {
-    name: 'Facebook',
-    href: 'https://www.facebook.com/valledelsolquillon',
-    icon: '📘',
-  },
-  {
-    name: 'Instagram',
-    href: 'https://www.instagram.com/valledelsolquillon.cl/',
-    icon: '📷',
-  },
-];
+import { useTranslations } from 'next-intl';
 
 /* GALERÍA PASEOS */
 const outingGallery = [
@@ -63,37 +44,54 @@ const graduationGallery = [
   '/images/colegios/graduaciones/g16.jpg',
 ];
 
-/* FEATURES */
+/* FEATURES PASEOS */
 const paseoFeatures = [
   {
-    title: 'Piscinas y juegos',
-    description:
-      'Toboganes, piscinas y espacios para disfrutar todo el día.',
+    titleKey: 'poolGamesTitle',
+    descriptionKey: 'poolGamesDescription',
     icon: '/images/iconos/piscinas.png',
   },
   {
-    title: 'Diversión asegurada',
-    description:
-      'Actividades deportivas, áreas verdes y momentos inolvidables.',
+    titleKey: 'funTitle',
+    descriptionKey: 'funDescription',
     icon: '/images/iconos/futbol.png',
   },
   {
-    title: 'Naturaleza y descanso',
-    description:
-      'Un entorno seguro y entretenido para estudiantes y profesores.',
+    titleKey: 'natureTitle',
+    descriptionKey: 'natureDescription',
     icon: '/images/iconos/areas-verdes.png',
   },
 ];
 
+/* FEATURES GRADUACIÓN */
 const graduationFeatures = [
-  'Cena especial',
-  'Fiesta y música',
-  'Fotografía',
-  'Coffee & Cóctel',
-  'Espacios decorados',
-  'Opciones sin alcohol',
+  'graduationDinner',
+  'graduationParty',
+  'graduationPhotography',
+  'graduationCoffeeCocktail',
+  'graduationDecoratedSpaces',
+  'graduationAlcoholFree',
 ];
+
+/* MODALIDAD CON ALIMENTACIÓN */
+const withFoodFeatures = [
+  'withFoodBreakfast',
+  'withFoodMenus',
+  'withFoodCoveredAreas',
+  'withFoodHydration',
+];
+
+/* MODALIDAD SIN ALIMENTACIÓN */
+const withoutFoodFeatures = [
+  'withoutFoodPoolAccess',
+  'withoutFoodPicnic',
+  'withoutFoodSchedule',
+  'withoutFoodLogistics',
+];
+
 export default function ClassOutingsPage() {
+  const t = useTranslations('Colegios');
+
   const heroRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -101,8 +99,17 @@ export default function ClassOutingsPage() {
     offset: ['start start', 'end start'],
   });
 
-const heroY = useTransform(scrollYProgress, [0, 1], ['-12%', '28%']);
-const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
+  const heroY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ['-12%', '28%']
+  );
+
+  const heroScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1.15, 1.28]
+  );
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f3fbff] overflow-hidden">
@@ -111,151 +118,152 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
 
       <main>
 
-       {/* HERO */}
-<section
-  ref={heroRef}
-  className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black"
->
-  {/* IMAGEN PARALLAX */}
-  <motion.div
-    className="absolute -inset-y-32 inset-x-0"
-    style={{
-      y: heroY,
-      scale: heroScale,
-    }}
-  >
-    <Image
-      src="/images/colegios/paseos/c10.jpg"
-      alt="Paseos de Curso"
-      fill
-      className="object-cover"
-      priority
-    />
-  </motion.div>
-
-  {/* OVERLAY */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
-
-  {/* CONTENIDO */}
-  <div
-    className="
-      relative
-      z-10
-      h-full
-      flex
-      items-center
-      justify-center
-      px-6
-      pt-36
-      md:pt-40
-      lg:pt-44
-    "
-  >
-    <div className="max-w-6xl mx-auto text-center text-white">
-
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        className="
-          uppercase
-          tracking-[0.3em]
-          sm:tracking-[0.4em]
-          md:tracking-[0.45em]
-          text-[#FBB03B]
-          text-xs
-          sm:text-sm
-          mb-6
-          md:mb-8
-        "
-      >
-        Diversión • Piscinas • Juegos • Naturaleza
-      </motion.p>
-
-      <motion.h1
-        initial={{ opacity: 0, x: -120 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 1.4,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          text-4xl
-          sm:text-5xl
-          md:text-6xl
-          lg:text-7xl
-          xl:text-8xl
-          font-bold
-          leading-[0.95]
-          tracking-tight
-          text-white
-        "
-      >
-        Paseos de Curso
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1,
-          delay: 0.4,
-        }}
-        className="
-          mt-6
-          md:mt-8
-          lg:mt-10
-          text-lg
-          sm:text-xl
-          md:text-2xl
-          text-white/90
-          max-w-5xl
-          mx-auto
-          leading-relaxed
-        "
-      >
-        Un día lleno de piscinas, juegos y momentos inolvidables para compartir
-        junto a compañeros y profesores.
-      </motion.p>
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.9,
-          delay: 0.45,
-        }}
-        className="
-          flex
-          flex-col
-          sm:flex-row
-          gap-5
-          mt-10
-          md:mt-12
-          lg:mt-14
-          justify-center
-        "
-      >
-        <PrimaryButton href="https://www.eventi-app.com/public-quotation/1">
-          Reserva tu fecha
-        </PrimaryButton>
-
-        <SecondaryButton
-          href="https://wa.me/56926035311"
-          className="
-            !border-white/40
-            !text-white
-            hover:!bg-white
-            hover:!text-black
-          "
+        {/* HERO */}
+        <section
+          ref={heroRef}
+          className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black"
         >
-          WhatsApp
-        </SecondaryButton>
-      </motion.div>
 
-    </div>
-  </div>
-</section>
+          {/* IMAGEN PARALLAX */}
+          <motion.div
+            className="absolute -inset-y-32 inset-x-0"
+            style={{
+              y: heroY,
+              scale: heroScale,
+            }}
+          >
+            <Image
+              src="/images/colegios/paseos/c10.jpg"
+              alt={t('heroImageAlt')}
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
+
+          {/* OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
+
+          {/* CONTENIDO */}
+          <div
+            className="
+              relative
+              z-10
+              h-full
+              flex
+              items-center
+              justify-center
+              px-6
+              pt-36
+              md:pt-40
+              lg:pt-44
+            "
+          >
+            <div className="max-w-6xl mx-auto text-center text-white">
+
+              <motion.p
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
+                className="
+                  uppercase
+                  tracking-[0.3em]
+                  sm:tracking-[0.4em]
+                  md:tracking-[0.45em]
+                  text-[#FBB03B]
+                  text-xs
+                  sm:text-sm
+                  mb-6
+                  md:mb-8
+                "
+              >
+                {t('heroEyebrow')}
+              </motion.p>
+
+              <motion.h1
+                initial={{ opacity: 0, x: -120 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 1.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  text-4xl
+                  sm:text-5xl
+                  md:text-6xl
+                  lg:text-7xl
+                  xl:text-8xl
+                  font-bold
+                  leading-[0.95]
+                  tracking-tight
+                  text-white
+                "
+              >
+                {t('heroTitle')}
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.4,
+                }}
+                className="
+                  mt-6
+                  md:mt-8
+                  lg:mt-10
+                  text-lg
+                  sm:text-xl
+                  md:text-2xl
+                  text-white/90
+                  max-w-5xl
+                  mx-auto
+                  leading-relaxed
+                "
+              >
+                {t('heroSubtitle')}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.45,
+                }}
+                className="
+                  flex
+                  flex-col
+                  sm:flex-row
+                  gap-5
+                  mt-10
+                  md:mt-12
+                  lg:mt-14
+                  justify-center
+                "
+              >
+                <PrimaryButton href="https://www.eventi-app.com/public-quotation/1">
+                  {t('reserveDate')}
+                </PrimaryButton>
+
+                <SecondaryButton
+                  href="https://wa.me/56926035311"
+                  className="
+                    !border-white/40
+                    !text-white
+                    hover:!bg-white
+                    hover:!text-black
+                  "
+                >
+                  {t('whatsapp')}
+                </SecondaryButton>
+              </motion.div>
+
+            </div>
+          </div>
+
+        </section>
 
         {/* PASEOS */}
         <section className="relative overflow-hidden bg-[#f3fbff] py-36">
@@ -273,20 +281,29 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
               <div>
 
                 <div className="inline-block bg-[#FBB03B]/15 text-[#D89B2B] px-5 py-2 rounded-full text-[16px] font-bold mb-8">
-                  Paseos entretenidos para colegios
+                  {t('schoolOutingsLabel')}
                 </div>
 
                 <motion.div
                   initial={{ opacity: 0, x: -120 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, margin: '-100px' }}
+                  viewport={{
+                    once: false,
+                    margin: '-100px',
+                  }}
                   transition={{
                     duration: 1.4,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
                   <h2 className="text-4xl md:text-5xl font-light text-[#0d2033] leading-tight uppercase">
-                    EL PASEO QUE TODOS <span className="font-semibold text-[#0d2033]">RECORDARÁN</span>
+
+                    {t('outingTitle')}{' '}
+
+                    <span className="font-semibold text-[#0d2033]">
+                      {t('outingTitleHighlight')}
+                    </span>
+
                   </h2>
                 </motion.div>
 
@@ -295,9 +312,12 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
                   initial={{ opacity: 0, y: -20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.3,
+                  }}
                 >
-                  Piscinas, juegos, áreas verdes y actividades pensadas para que estudiantes, profesores y apoderados disfruten un día increíble en Valle del Sol.
+                  {t('outingDescription')}
                 </motion.p>
 
                 <div className="flex flex-col sm:flex-row gap-5 mt-12">
@@ -307,7 +327,7 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
                     target="_blank"
                     className="px-10 py-5 rounded-full bg-[#FBB03B] text-black text-[20px] font-bold shadow-[0_20px_60px_rgba(251,176,59,0.45)] hover:scale-105 transition-all duration-500"
                   >
-                    Cotizar paseo
+                    {t('quoteOuting')}
                   </a>
 
                   <a
@@ -315,7 +335,7 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
                     target="_blank"
                     className="px-10 py-5 rounded-full border-2 border-[#0d5cab]/20 text-[20px] font-semibold hover:bg-[#0d5cab] hover:text-white transition-all duration-500"
                   >
-                    WhatsApp
+                    {t('whatsapp')}
                   </a>
 
                 </div>
@@ -332,8 +352,8 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
               >
 
                 <Image
-                  src='/images/colegios/paseos/c1.jpg'
-                  alt="Paseos"
+                  src="/images/colegios/paseos/c1.jpg"
+                  alt={t('outingImageAlt')}
                   fill
                   className="object-cover hover:scale-105 transition duration-700"
                 />
@@ -347,29 +367,40 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
 
               {paseoFeatures.map((item, i) => (
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 80 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.12, duration: 1 }}
-                  viewport={{ once: true }}
+                  key={item.titleKey}
+                  initial={{
+                    opacity: 0,
+                    y: 80,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: i * 0.12,
+                    duration: 1,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
                   className="bg-white rounded-[40px] p-10 shadow-[0_15px_50px_rgba(13,92,171,0.12)] border-4 border-[#dff3ff]"
                 >
 
                   <div className="relative w-24 h-24 mb-8">
                     <Image
                       src={item.icon}
-                      alt={item.title}
+                      alt={t(item.titleKey)}
                       fill
                       className="object-contain"
                     />
                   </div>
 
                   <h3 className="text-[30px] font-black text-[#0d2033]">
-                    {item.title}
+                    {t(item.titleKey)}
                   </h3>
 
                   <p className="mt-5 text-[20px] text-gray-600 leading-relaxed">
-                    {item.description}
+                    {t(item.descriptionKey)}
                   </p>
 
                 </motion.div>
@@ -389,72 +420,101 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
             <div className="text-center mb-20">
 
               <div className="inline-block bg-[#eaf6ff] text-[#0d5cab] px-5 py-2 rounded-full text-[16px] font-bold mb-8">
-                Modalidades disponibles
+                {t('modalitiesLabel')}
               </div>
 
               <motion.div
                 initial={{ opacity: 0, x: -120 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, margin: '-100px' }}
+                viewport={{
+                  once: false,
+                  margin: '-100px',
+                }}
                 transition={{
                   duration: 1.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
+
                 <h2 className="text-4xl md:text-5xl font-light text-[#0d2033] leading-tight uppercase">
-                  ELIGE LA EXPERIENCIA <span className="font-semibold text-[#0d2033]">IDEAL</span>
+
+                  {t('modalitiesTitle')}{' '}
+
+                  <span className="font-semibold text-[#0d2033]">
+                    {t('modalitiesTitleHighlight')}
+                  </span>
+
                 </h2>
+
               </motion.div>
 
               <motion.p
                 className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto uppercase"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                initial={{
+                  opacity: 0,
+                  y: -20,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: false,
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.3,
+                }}
               >
-                OPCIONES FLEXIBLES PARA ADAPTARSE A CADA CURSO Y NECESIDAD.
+                {t('modalitiesSubtitle')}
               </motion.p>
 
             </div>
 
             <div className="grid lg:grid-cols-2 gap-10">
 
-              {/* CON ALIMENTACION */}
+              {/* CON ALIMENTACIÓN */}
               <motion.div
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
+                initial={{
+                  opacity: 0,
+                  y: 80,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 1,
+                }}
+                viewport={{
+                  once: true,
+                }}
                 className="relative overflow-hidden rounded-[40px] bg-[#fff8ea] border-4 border-[#FBB03B]/20 p-12 shadow-[0_25px_80px_rgba(251,176,59,0.12)]"
               >
 
                 <div className="absolute top-6 right-6 bg-[#FBB03B] text-white px-5 py-2 rounded-full text-sm font-bold">
-                  ⭐ Más elegida
+                  ⭐ {t('mostChosen')}
                 </div>
 
                 <h3 className="text-4xl font-black text-[#1f1f1f]">
-                 Con alimentación
+                  {t('withFoodTitle')}
                 </h3>
 
                 <p className="mt-6 text-[20px] text-gray-700 leading-relaxed">
-                  Una experiencia completa para disfrutar sin preocuparse por nada.
+                  {t('withFoodDescription')}
                 </p>
 
                 <ul className="mt-10 space-y-5">
 
-                  {[
-                    'Desayuno, almuerzo y once',
-                    'Menús adaptables',
-                    'Espacios techados',
-                    'Hidratación durante la jornada',
-                  ].map((item, i) => (
+                  {withFoodFeatures.map((item) => (
                     <li
-                      key={i}
+                      key={item}
                       className="flex items-center gap-4 text-[20px] text-gray-700"
                     >
                       <span className="w-3 h-3 rounded-full bg-[#FBB03B]" />
-                      {item}
+
+                      {t(item)}
+
                     </li>
                   ))}
 
@@ -462,37 +522,45 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
 
               </motion.div>
 
-              {/* SIN ALIMENTACION */}
+              {/* SIN ALIMENTACIÓN */}
               <motion.div
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.15 }}
-                viewport={{ once: true }}
+                initial={{
+                  opacity: 0,
+                  y: 80,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 1,
+                  delay: 0.15,
+                }}
+                viewport={{
+                  once: true,
+                }}
                 className="rounded-[40px] bg-[#f3fbff] p-12 border-4 border-[#dff3ff]"
               >
 
                 <h3 className="text-4xl font-black text-[#1f1f1f]">
-                  Sin alimentación
+                  {t('withoutFoodTitle')}
                 </h3>
 
                 <p className="mt-6 text-[20px] text-gray-700 leading-relaxed">
-                  Organiza la jornada libremente usando nuestras instalaciones.
+                  {t('withoutFoodDescription')}
                 </p>
 
                 <ul className="mt-10 space-y-5">
 
-                  {[
-                    'Acceso a piscinas y áreas verdes',
-                    'Zonas picnic y recreación',
-                    'Flexibilidad horaria',
-                    'Apoyo logístico',
-                  ].map((item, i) => (
+                  {withoutFoodFeatures.map((item) => (
                     <li
-                      key={i}
+                      key={item}
                       className="flex items-center gap-4 text-[20px] text-gray-700"
                     >
                       <span className="w-3 h-3 rounded-full bg-[#0d5cab]" />
-                      {item}
+
+                      {t(item)}
+
                     </li>
                   ))}
 
@@ -506,7 +574,7 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
 
         </section>
 
-        {/* GALERIA PASEOS */}
+        {/* GALERÍA PASEOS */}
         <section className="py-36 px-6 bg-[#f3fbff]">
 
           <div className="max-w-7xl mx-auto">
@@ -514,7 +582,7 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
             <div className="text-center mb-20">
 
               <h2 className="text-5xl md:text-7xl font-black text-[#0d2033]">
-                Revisa todo lo que puedes tener
+                {t('outingGalleryTitle')}
               </h2>
 
             </div>
@@ -524,10 +592,20 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
               {outingGallery.map((img, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  viewport={{ once: true }}
+                  initial={{
+                    opacity: 0,
+                    y: 60,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: i * 0.1,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
                   className="overflow-hidden rounded-[32px] group"
                 >
 
@@ -535,7 +613,7 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
 
                     <Image
                       src={img}
-                      alt="Galería"
+                      alt={`${t('outingGalleryImageAlt')} ${i + 1}`}
                       fill
                       className="object-cover group-hover:scale-110 transition duration-700"
                     />
@@ -564,67 +642,99 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
               <div>
 
                 <p className="uppercase tracking-[0.35em] text-[#FBB03B] text-sm mb-6">
-                  Graduaciones en Valle del Sol
+                  {t('graduationLabel')}
                 </p>
 
                 <motion.div
                   initial={{ opacity: 0, x: -120 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, margin: '-100px' }}
+                  viewport={{
+                    once: false,
+                    margin: '-100px',
+                  }}
                   transition={{
                     duration: 1.4,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
+
                   <h2 className="text-4xl md:text-5xl font-light text-white leading-tight uppercase">
-                    CELEBRA EL CIERRE DE UNA ETAPA <span className="font-semibold text-white">INOLVIDABLE</span>
+
+                    {t('graduationTitle')}{' '}
+
+                    <span className="font-semibold text-white">
+                      {t('graduationTitleHighlight')}
+                    </span>
+
                   </h2>
+
                 </motion.div>
 
                 <motion.p
                   className="mt-4 text-lg text-white/80 leading-relaxed"
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
+                  initial={{
+                    opacity: 0,
+                    y: -20,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: false,
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.3,
+                  }}
                 >
-                  Espacios elegantes, gastronomía y coordinación completa para vivir una noche especial junto a compañeros, familias y profesores.
+                  {t('graduationDescription')}
                 </motion.p>
 
                 <div className="flex flex-col sm:flex-row gap-5 mt-12">
 
-  <PrimaryButton href="https://www.eventi-app.com/public-quotation/1">
-    Cotizar graduación
-  </PrimaryButton>
+                  <PrimaryButton href="https://www.eventi-app.com/public-quotation/1">
+                    {t('quoteGraduation')}
+                  </PrimaryButton>
 
-<SecondaryButton
-  href="https://wa.me/56926035311"
-  className="
-    !border-white/40
-    !text-white
-    hover:!bg-white
-    hover:!text-black
-  "
->
-  Hablar por WhatsApp
-</SecondaryButton>
+                  <SecondaryButton
+                    href="https://wa.me/56926035311"
+                    className="
+                      !border-white/40
+                      !text-white
+                      hover:!bg-white
+                      hover:!text-black
+                    "
+                  >
+                    {t('talkWhatsapp')}
+                  </SecondaryButton>
 
-</div>
+                </div>
 
               </div>
 
               {/* FOTO */}
               <motion.div
-                initial={{ opacity: 0, x: 120 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.4 }}
-                viewport={{ once: true }}
+                initial={{
+                  opacity: 0,
+                  x: 120,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                transition={{
+                  duration: 1.4,
+                }}
+                viewport={{
+                  once: true,
+                }}
                 className="relative h-[450px] md:h-[650px] rounded-[36px] overflow-hidden"
               >
 
                 <Image
-                  src="https://valledelsolquillon.cl/wp-content/uploads/2024/09/DSC03733.jpg"
-                  alt="Graduaciones"
+                  src='/images/colegios/graduaciones/g18.jpg'
+                  alt={t('graduationImageAlt')}
                   fill
                   className="object-cover hover:scale-105 transition duration-700"
                 />
@@ -634,97 +744,163 @@ const heroScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.28]);
             </div>
 
             {/* FEATURES */}
-           {/* FEATURES */}
-<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-24">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-24">
 
-  {graduationFeatures.map((item, i) => (
-    <motion.div
-      key={i}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: i * 0.08 }}
-      viewport={{ once: true }}
-      className="rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-md p-8"
-    >
-      <p className="text-[22px] font-medium flex items-center gap-4">
-        <span className="text-[#FBB03B] text-2xl">✓</span>
-        {item}
-      </p>
-    </motion.div>
-  ))}
+              {graduationFeatures.map((item, i) => (
+                <motion.div
+                  key={item}
+                  initial={{
+                    opacity: 0,
+                    y: 40,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: i * 0.08,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  className="rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-md p-8"
+                >
 
-</div>
+                  <p className="text-[22px] font-medium flex items-center gap-4">
+
+                    <span className="text-[#FBB03B] text-2xl">
+                      ✓
+                    </span>
+
+                    {t(item)}
+
+                  </p>
+
+                </motion.div>
+              ))}
+
+            </div>
 
           </div>
 
         </section>
 
         {/* GALERÍA DE GRADUACIONES */}
-<section className="py-24 bg-black">
-  <div className="max-w-7xl mx-auto px-6">
+        <section className="py-24 bg-black">
 
-    <motion.div
-      initial={{ opacity: 0, x: -120 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: false, margin: '-100px' }}
-    >
-      <h2 className="text-4xl md:text-5xl font-light text-white leading-tight">
-        MOMENTOS QUE <span className="font-semibold text-white">PERDURAN PARA SIEMPRE</span>
-      </h2>
-    </motion.div>
+          <div className="max-w-7xl mx-auto px-6">
 
-    <motion.p
-      className="mt-4 mb-14 text-lg text-white"
-      initial={{ opacity: 0, y: -20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.8, delay: 0.3 }}
-    >
-      UNA NOCHE ÚNICA PARA CELEBRAR EL FIN DE UNA GRAN ETAPA
-    </motion.p>
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: -120,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 1.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              viewport={{
+                once: false,
+                margin: '-100px',
+              }}
+            >
 
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <h2 className="text-4xl md:text-5xl font-light text-white leading-tight">
 
-      {graduationGallery.map((img, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ delay: i * 0.05 }}
-          className="overflow-hidden rounded-2xl group shadow-lg"
-        >
-          <div className="relative h-[240px] md:h-[270px]">
-            <Image
-              src={img}
-              alt={`Graduación ${i + 1}`}
-              fill
-              className="object-cover transition duration-700 group-hover:scale-110"
-            />
+                {t('graduationGalleryTitle')}{' '}
+
+                <span className="font-semibold text-white">
+                  {t('graduationGalleryTitleHighlight')}
+                </span>
+
+              </h2>
+
+            </motion.div>
+
+            <motion.p
+              className="mt-4 mb-14 text-lg text-white"
+              initial={{
+                opacity: 0,
+                y: -20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: false,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.3,
+              }}
+            >
+              {t('graduationGallerySubtitle')}
+            </motion.p>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+              {graduationGallery.map((img, i) => (
+                <motion.div
+                  key={i}
+                  initial={{
+                    opacity: 0,
+                    y: 40,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: false,
+                  }}
+                  transition={{
+                    delay: i * 0.05,
+                  }}
+                  className="overflow-hidden rounded-2xl group shadow-lg"
+                >
+
+                  <div className="relative h-[240px] md:h-[270px]">
+
+                    <Image
+                      src={img}
+                      alt={`${t('graduationGalleryImageAlt')} ${i + 1}`}
+                      fill
+                      className="object-cover transition duration-700 group-hover:scale-110"
+                    />
+
+                  </div>
+
+                </motion.div>
+              ))}
+
+            </div>
+
           </div>
-        </motion.div>
-      ))}
 
-    </div>
+        </section>
 
-  </div>
-</section>
-
-        {/* CTA */}
+        {/* CTA FINAL */}
         <section className="pt-20 pb-20 text-center bg-[#f3fbff]">
-       <div className="flex flex-col md:flex-row gap-6 justify-center mt-14 mb-10">
 
-  <SecondaryButton href="https://wa.me/56926035311">
-    WhatsApp
-  </SecondaryButton>
+          <div className="flex flex-col md:flex-row gap-6 justify-center mt-14 mb-10">
 
-  <PrimaryButton href="https://www.eventi-app.com/public-quotation/1">
-    Cotiza tu evento
-  </PrimaryButton>
+            <SecondaryButton href="https://wa.me/56926035311">
+              {t('whatsapp')}
+            </SecondaryButton>
 
-</div>
-</section>
+            <PrimaryButton href="https://www.eventi-app.com/public-quotation/1">
+              {t('quoteEvent')}
+            </PrimaryButton>
+
+          </div>
+
+        </section>
+
       </main>
 
       <Footer />

@@ -9,6 +9,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
+import { useTranslations } from 'next-intl';
 
 const backgroundIncludes = '/images/matrimonio/matri.jpg';
 
@@ -38,44 +39,46 @@ const weddingGallery = [
 
 const services = [
   {
-    title: 'Banquetería y Menú',
-    description: 'Servicio de alimentación completo, con alternativas de menú y opción buffet.',
+    titleKey: 'cateringTitle',
+    descriptionKey: 'cateringDescription',
     iconUrl: '/images/matrimonio/sombrero-de-cocinero.webp',
-    iconAlt: 'Banquetería y Menú',
+    iconAltKey: 'cateringIconAlt',
   },
   {
-    title: 'Ambientación y Decoración',
-    description: 'Espacios preparados para una celebración cálida, personalizada y memorable.',
+    titleKey: 'decorationTitle',
+    descriptionKey: 'decorationDescription',
     iconUrl: '/images/matrimonio/pasillo-1.webp',
-    iconAlt: 'Decoración',
+    iconAltKey: 'decorationIconAlt',
   },
   {
-    title: 'Wedding Planner',
-    description: 'Apoyo en la organización del día para que cada momento fluya con tranquilidad.',
+    titleKey: 'plannerTitle',
+    descriptionKey: 'plannerDescription',
     iconUrl: '/images/matrimonio/planificador-de-la-boda.webp',
-    iconAlt: 'Wedding Planner',
+    iconAltKey: 'plannerIconAlt',
   },
   {
-    title: 'Música y Audiovisuales',
-    description: 'DJ, animación, sonido e iluminación.',
+    titleKey: 'musicTitle',
+    descriptionKey: 'musicDescription',
     iconUrl: '/images/matrimonio/sistema-de-sonido.webp',
-    iconAlt: 'Audio',
+    iconAltKey: 'musicIconAlt',
   },
   {
-    title: 'Experiencias',
-    description: 'Cabina 360°, tatuajes, artistas, carritos de comida, cotillón y más.',
+    titleKey: 'experiencesTitle',
+    descriptionKey: 'experiencesDescription',
     iconUrl: '/images/matrimonio/fotografo.webp',
-    iconAlt: 'Experiencias',
+    iconAltKey: 'experiencesIconAlt',
   },
   {
-    title: 'Bar y Barra libre',
-    description: 'Una barra pensada para que tus invitados disfruten la fiesta.',
+    titleKey: 'barTitle',
+    descriptionKey: 'barDescription',
     iconUrl: '/images/matrimonio/copa-de-vino.webp',
-    iconAlt: 'Bar',
+    iconAltKey: 'barIconAlt',
   },
 ];
 
 export default function WeddingsPage() {
+  const t = useTranslations('Matrimonios');
+
   const includesRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -83,298 +86,382 @@ export default function WeddingsPage() {
     offset: ['start end', 'end start'],
   });
 
-  const includesY = useTransform(scrollYProgress, [0, 1], ['-35%', '35%']);
+  const includesY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ['-35%', '35%']
+  );
+
+  const weddingIncludes = [
+    t('includeFoodService'),
+    t('includeCateringBar'),
+    t('includeDecoration'),
+    t('includeMusic'),
+    t('includeGardens'),
+    t('includeCabin'),
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
+
       <Header />
 
       <main>
 
-       {/* HERO VIDEO */}
-<section className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black">
+        {/* HERO VIDEO */}
+        <section className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black">
 
-  {/* VIDEO */}
-  <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* VIDEO */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
 
-    <iframe
-      className="
-        absolute
-        top-1/2
-        left-1/2
-        min-w-full
-        min-h-full
-        w-auto
-        h-auto
-        aspect-video
-        -translate-x-1/2
-        -translate-y-1/2
-        pointer-events-none
-      "
-      src="https://www.youtube.com/embed/br3Qe9JXdVU?autoplay=1&mute=1&controls=0&loop=1&playlist=br3Qe9JXdVU&modestbranding=1&showinfo=0&rel=0"
-      title="Video Matrimonios Valle del Sol"
-      allow="autoplay; fullscreen"
-    />
+            <iframe
+              className="
+                absolute
+                top-1/2
+                left-1/2
+                min-w-full
+                min-h-full
+                w-auto
+                h-auto
+                aspect-video
+                -translate-x-1/2
+                -translate-y-1/2
+                pointer-events-none
+              "
+              src="https://www.youtube.com/embed/br3Qe9JXdVU?autoplay=1&mute=1&controls=0&loop=1&playlist=br3Qe9JXdVU&modestbranding=1&showinfo=0&rel=0"
+              title={t('heroVideoTitle')}
+              allow="autoplay; fullscreen"
+            />
 
-  </div>
+          </div>
 
-  {/* OVERLAY */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
+          {/* OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
 
-  {/* CONTENIDO */}
-  <div
-    className="
-      relative
-      z-10
-      h-full
-      flex
-      items-center
-      justify-center
-      px-6
-      pt-36
-      md:pt-40
-      lg:pt-44
-    "
-  >
+          {/* CONTENIDO */}
+          <div
+            className="
+              relative
+              z-10
+              h-full
+              flex
+              items-center
+              justify-center
+              px-6
+              pt-36
+              md:pt-40
+              lg:pt-44
+            "
+          >
 
-    <div className="max-w-5xl mx-auto text-center text-white">
+            <div className="max-w-5xl mx-auto text-center text-white">
 
-      <motion.h1
-        initial={{ opacity: 0, x: -120 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 1.4,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          text-5xl
-          sm:text-6xl
-          md:text-7xl
-          lg:text-8xl
-          xl:text-9xl
-          text-white
-          leading-none
-        "
-        style={{
-          fontFamily: '"Cormorant Garamond", serif',
-          fontStyle: 'italic',
-          letterSpacing: '1px',
-          fontWeight: 500,
-        }}
-      >
-        Sí, acepto
-      </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, x: -120 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 1.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  text-5xl
+                  sm:text-6xl
+                  md:text-7xl
+                  lg:text-8xl
+                  xl:text-9xl
+                  text-white
+                  leading-none
+                "
+                style={{
+                  fontFamily: '"Cormorant Garamond", serif',
+                  fontStyle: 'italic',
+                  letterSpacing: '1px',
+                  fontWeight: 500,
+                }}
+              >
+                {t('heroTitle')}
+              </motion.h1>
 
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1,
-          delay: 0.4,
-        }}
-        className="
-          mt-6
-          md:mt-8
-          lg:mt-10
-          text-lg
-          sm:text-xl
-          md:text-2xl
-          text-white/90
-          max-w-4xl
-          mx-auto
-          leading-relaxed
-        "
-      >
-        Cotiza con nuestro formato all inclusive
-      </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.4,
+                }}
+                className="
+                  mt-6
+                  md:mt-8
+                  lg:mt-10
+                  text-lg
+                  sm:text-xl
+                  md:text-2xl
+                  text-white/90
+                  max-w-4xl
+                  mx-auto
+                  leading-relaxed
+                "
+              >
+                {t('heroSubtitle')}
+              </motion.p>
 
-    </div>
+            </div>
 
-  </div>
+          </div>
 
-</section>
+        </section>
 
         {/* CTA */}
         <div className="text-center -mt-12 mb-20 relative z-10">
+
           <Link
             href="https://www.eventi-app.com/public-quotation/1"
-            className="inline-block px-12 py-4 rounded-full text-white font-semibold shadow-2xl hover:scale-105 transition"
-            style={{ backgroundColor: 'rgb(251,176,59)' }}
+            className="
+              inline-block
+              px-12
+              py-4
+              rounded-full
+              text-white
+              font-semibold
+              shadow-2xl
+              hover:scale-105
+              transition
+            "
+            style={{
+              backgroundColor: 'rgb(251,176,59)',
+            }}
           >
-            Cotiza tu evento
+            {t('quoteEvent')}
           </Link>
+
         </div>
 
         {/* INTRO */}
         <section className="pt-10 pb-20 text-center overflow-hidden">
-  <div className="max-w-6xl mx-auto px-5 sm:px-6">
 
-    {/* TÍTULO */}
-    <motion.h2
-      className="
-        text-3xl
-        sm:text-4xl
-        md:text-5xl
-        font-light
-        text-gray-700
-        leading-tight
-        max-w-5xl
-        mx-auto
-        break-words
-      "
-      initial={{ opacity: 0, x: -120 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: false, margin: '-100px' }}
-      transition={{
-        duration: 1.4,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      CELEBRA TU AMOR EN UN{' '}
-      <span className="font-semibold text-gray-900">
-        LUGAR MÁGICO
-      </span>
-    </motion.h2>
+          <div className="max-w-6xl mx-auto px-5 sm:px-6">
 
-    {/* SUBTÍTULO */}
-    <motion.p
-      className="
-        mt-6
-        text-lg
-        sm:text-xl
-        md:text-2xl
-        text-gray-600
-        leading-relaxed
-        max-w-5xl
-        mx-auto
-      "
-      initial={{ opacity: 0, y: -20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{
-        duration: 0.8,
-        delay: 0.3,
-      }}
-    >
-      RODEADO DE NATURALEZA Y TRANQUILIDAD, DONDE CADA DETALLE SE CONVIERTE EN
-      UN RECUERDO INOLVIDABLE.
-    </motion.p>
+            {/* TÍTULO */}
+            <motion.h2
+              className="
+                text-3xl
+                sm:text-4xl
+                md:text-5xl
+                font-light
+                text-gray-700
+                leading-tight
+                max-w-5xl
+                mx-auto
+                break-words
+              "
+              initial={{ opacity: 0, x: -120 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{
+                once: false,
+                margin: '-100px',
+              }}
+              transition={{
+                duration: 1.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {t('introTitle')}{' '}
 
-  </div>
-</section>
+              <span className="font-semibold text-gray-900">
+                {t('introTitleHighlight')}
+              </span>
+            </motion.h2>
 
+            {/* SUBTÍTULO */}
+            <motion.p
+              className="
+                mt-6
+                text-lg
+                sm:text-xl
+                md:text-2xl
+                text-gray-600
+                leading-relaxed
+                max-w-5xl
+                mx-auto
+              "
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{
+                duration: 0.8,
+                delay: 0.3,
+              }}
+            >
+              {t('introSubtitle')}
+            </motion.p>
 
-{/* BENEFICIOS MATRIMONIO */}
-<section
-  ref={includesRef}
-  className="relative py-40 md:py-52 overflow-hidden"
->
+          </div>
 
-  {/* PARALLAX BACKGROUND */}
-  <motion.div
-    className="absolute inset-0 -z-10 h-[140%]"
-    style={{ y: includesY }}
-  >
-    <Image
-      src={backgroundIncludes}
-      alt="Matrimonios Valle del Sol"
-      fill
-      className="object-cover"
-      priority
-    />
+        </section>
 
-    <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
-  </motion.div>
+        {/* BENEFICIOS MATRIMONIO */}
+        <section
+          ref={includesRef}
+          className="relative py-40 md:py-52 overflow-hidden"
+        >
 
-  {/* CONTENIDO */}
-  <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
-
-    <motion.div
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, ease: 'easeOut' }}
-      viewport={{ once: true }}
-    >
-
-      <h2 className="text-3xl md:text-5xl font-semibold mb-12">
-        Todo lo que incluye tu matrimonio
-      </h2>
-
-      <div className="grid md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto text-lg md:text-xl">
-
-        {[
-          'Servicio de alimentación completo',
-          'Banquetería y bar',
-          'Decoración y ambientación',
-          'Música, sonido e iluminación',
-          'Jardines para ceremonia',
-          'Cabaña para los novios',
-        ].map((item, i) => (
-          <motion.p
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3"
+          {/* PARALLAX BACKGROUND */}
+          <motion.div
+            className="absolute inset-0 -z-10 h-[140%]"
+            style={{
+              y: includesY,
+            }}
           >
-            <span className="text-[#FBB03B] text-xl">✔</span>
-            {item}
-          </motion.p>
-        ))}
 
-      </div>
+            <Image
+              src={backgroundIncludes}
+              alt={t('benefitsImageAlt')}
+              fill
+              className="object-cover"
+              priority
+            />
 
-    </motion.div>
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
 
-  </div>
+          </motion.div>
 
-</section>
+          {/* CONTENIDO */}
+          <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
+
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.9,
+                ease: 'easeOut',
+              }}
+              viewport={{
+                once: true,
+              }}
+            >
+
+              <h2 className="text-3xl md:text-5xl font-semibold mb-12">
+                {t('includesTitle')}
+              </h2>
+
+              <div className="grid md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto text-lg md:text-xl">
+
+                {weddingIncludes.map((item, i) => (
+                  <motion.p
+                    key={i}
+                    initial={{
+                      opacity: 0,
+                      y: 30,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      delay: i * 0.1,
+                      duration: 0.5,
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
+                    className="flex items-center gap-3"
+                  >
+
+                    <span className="text-[#FBB03B] text-xl">
+                      ✔
+                    </span>
+
+                    {item}
+
+                  </motion.p>
+                ))}
+
+              </div>
+
+            </motion.div>
+
+          </div>
+
+        </section>
 
         {/* FEATURES */}
         <section className="py-24 bg-white">
+
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
 
             {services.map((service, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                key={service.titleKey}
+                initial={{
+                  opacity: 0,
+                  y: 60,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: i * 0.1,
+                }}
               >
-                <EventFeatureCard {...service} />
+
+                <EventFeatureCard
+                  title={t(service.titleKey)}
+                  description={t(service.descriptionKey)}
+                  iconUrl={service.iconUrl}
+                  iconAlt={t(service.iconAltKey)}
+                />
+
               </motion.div>
             ))}
 
           </div>
+
         </section>
 
         {/* GALERÍA */}
         <section className="px-6 pb-24 bg-white">
+
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
 
             {weddingGallery.map((img, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                initial={{
+                  opacity: 0,
+                  y: 40,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  delay: i * 0.1,
+                }}
                 className="overflow-hidden rounded-2xl group"
               >
+
                 <div className="relative h-[300px]">
 
                   <Image
                     src={img}
-                    alt="Matrimonio Valle del Sol"
+                    alt={`${t('galleryImageAlt')} ${i + 1}`}
                     fill
-                    className="object-cover group-hover:scale-110 transition duration-700"
+                    className="
+                      object-cover
+                      group-hover:scale-110
+                      transition
+                      duration-700
+                    "
                   />
 
                 </div>
+
               </motion.div>
             ))}
 
           </div>
+
         </section>
 
         {/* CTA FINAL */}
@@ -384,23 +471,21 @@ export default function WeddingsPage() {
 
             <div className="flex flex-col md:flex-row gap-6 justify-center">
 
-  <PrimaryButton
-    href="https://www.eventi-app.com/public-quotation/1"
-    target="_blank"
-  >
-    Cotiza tu evento
-  </PrimaryButton>
-  
-  <SecondaryButton
-    href="https://wa.me/56926035311"
-    target="_blank"
-  >
-    WhatsApp
-  </SecondaryButton>
+              <PrimaryButton
+                href="https://www.eventi-app.com/public-quotation/1"
+                target="_blank"
+              >
+                {t('quoteEvent')}
+              </PrimaryButton>
 
+              <SecondaryButton
+                href="https://wa.me/56926035311"
+                target="_blank"
+              >
+                {t('whatsapp')}
+              </SecondaryButton>
 
-
-</div>
+            </div>
 
           </div>
 
@@ -409,6 +494,7 @@ export default function WeddingsPage() {
       </main>
 
       <Footer />
+
     </div>
   );
 }

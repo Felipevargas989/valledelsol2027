@@ -9,6 +9,7 @@ import { Clock3, MapPin } from 'lucide-react';
 import { SocialLink } from '../components/types';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
+import { useTranslations } from 'next-intl';
 
 const socialLinks: SocialLink[] = [
   {
@@ -49,6 +50,8 @@ const galleryImages = [
 ];
 
 export default function RestaurantPage() {
+  const t = useTranslations('Restaurante');
+
   /* PARALLAX DEL HERO */
   const { scrollYProgress } = useScroll();
 
@@ -72,121 +75,121 @@ export default function RestaurantPage() {
       <main>
 
         {/* HERO CON PARALLAX */}
-<section className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black">
+        <section className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black">
 
-  {/* IMAGEN PARALLAX */}
-  <motion.div
-    className="absolute -inset-y-32 inset-x-0"
-    style={{
-      y: heroY,
-      scale: heroScale,
-    }}
-  >
-    <Image
-      src="/images/restaurante/resthero.webp"
-      alt="Restaurant Valle del Sol"
-      fill
-      className="object-cover"
-      priority
-    />
-  </motion.div>
+          {/* IMAGEN PARALLAX */}
+          <motion.div
+            className="absolute -inset-y-32 inset-x-0"
+            style={{
+              y: heroY,
+              scale: heroScale,
+            }}
+          >
+            <Image
+              src="/images/restaurante/resthero.webp"
+              alt={t('heroImageAlt')}
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
 
-  {/* OVERLAY */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
+          {/* OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
 
-  {/* CONTENIDO */}
-  <div
-    className="
-      relative
-      z-10
-      h-full
-      flex
-      items-center
-      justify-center
-      px-6
-      pt-36
-      md:pt-40
-      lg:pt-44
-    "
-  >
-    <div className="max-w-6xl mx-auto text-center text-white">
+          {/* CONTENIDO */}
+          <div
+            className="
+              relative
+              z-10
+              h-full
+              flex
+              items-center
+              justify-center
+              px-6
+              pt-36
+              md:pt-40
+              lg:pt-44
+            "
+          >
+            <div className="max-w-6xl mx-auto text-center text-white">
 
-      <motion.h1
-        initial={{ opacity: 0, x: -120 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 1.4,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          text-4xl
-          sm:text-5xl
-          md:text-6xl
-          lg:text-7xl
-          xl:text-8xl
-          font-bold
-          leading-[0.95]
-          tracking-tight
-          text-white
-        "
-      >
-        Nuestro Restaurant
-      </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, x: -120 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 1.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  text-4xl
+                  sm:text-5xl
+                  md:text-6xl
+                  lg:text-7xl
+                  xl:text-8xl
+                  font-bold
+                  leading-[0.95]
+                  tracking-tight
+                  text-white
+                "
+              >
+                {t('heroTitle')}
+              </motion.h1>
 
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1,
-          delay: 0.4,
-        }}
-        className="
-          mt-6
-          md:mt-8
-          lg:mt-10
-          text-lg
-          sm:text-xl
-          md:text-2xl
-          text-white/90
-          max-w-5xl
-          mx-auto
-          leading-relaxed
-        "
-      >
-        Una experiencia gastronómica en medio de la naturaleza
-      </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.4,
+                }}
+                className="
+                  mt-6
+                  md:mt-8
+                  lg:mt-10
+                  text-lg
+                  sm:text-xl
+                  md:text-2xl
+                  text-white/90
+                  max-w-5xl
+                  mx-auto
+                  leading-relaxed
+                "
+              >
+                {t('heroSubtitle')}
+              </motion.p>
 
-    </div>
-  </div>
+            </div>
+          </div>
 
-</section>
+        </section>
 
-{/* CTA HERO */}
-<div className="text-center -mt-10 mb-16 relative z-10">
+        {/* CTA HERO */}
+        <div className="text-center -mt-10 mb-16 relative z-10">
 
-  <Link
-    href="https://menu.fu.do/entrepinosquillon/qr-menu"
-    target="_blank"
-    className="
-      inline-block
-      px-10
-      py-4
-      rounded-full
-      font-semibold
-      text-black
-      shadow-xl
-      transition-all
-      duration-300
-      hover:scale-105
-    "
-    style={{
-      backgroundColor: '#FBB03B',
-    }}
-  >
-    Ver Carta
-  </Link>
+          <Link
+            href="https://menu.fu.do/entrepinosquillon/qr-menu"
+            target="_blank"
+            className="
+              inline-block
+              px-10
+              py-4
+              rounded-full
+              font-semibold
+              text-black
+              shadow-xl
+              transition-all
+              duration-300
+              hover:scale-105
+            "
+            style={{
+              backgroundColor: '#FBB03B',
+            }}
+          >
+            {t('viewMenu')}
+          </Link>
 
-</div>
+        </div>
 
         {/* DESCRIPCIÓN RESTAURANT */}
         <section className="pb-20">
@@ -201,18 +204,21 @@ export default function RestaurantPage() {
                 <div>
 
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    Espacio de <strong>300m²</strong>, capacidad para{' '}
-                    <strong>150 personas</strong> y una espectacular{' '}
-                    <strong>terraza panorámica</strong> con vista a la piscina.
-                    Un ambiente ideal para disfrutar sabores únicos en un
-                    entorno natural y acogedor.
-                  </p>
+  {t('descriptionBeforeArea')}{' '}
+  <strong>300m²</strong>,{' '}
+  {t('descriptionBeforeCapacity')}{' '}
+  <strong>150 {t('people')}</strong>{' '}
+  {t('descriptionAnd')}{' '}
+  <strong>{t('panoramicTerrace')}</strong>{' '}
+  {t('descriptionEnd')}
+</p>
 
                 </div>
 
                 {/* INFORMACIÓN */}
                 <div className="space-y-5">
 
+                  {/* HORARIO */}
                   <div className="flex items-center gap-4">
 
                     <div className="w-14 h-14 rounded-full bg-[#FBB03B]/10 flex items-center justify-center">
@@ -224,17 +230,18 @@ export default function RestaurantPage() {
                     <div>
 
                       <p className="text-sm uppercase tracking-wider text-gray-400">
-                        Horario
+                        {t('scheduleLabel')}
                       </p>
 
                       <p className="text-lg font-semibold text-gray-800">
-                        Todos los días de 12:00 a 19:00 hrs
+                        {t('schedule')}
                       </p>
 
                     </div>
 
                   </div>
 
+                  {/* UBICACIÓN */}
                   <div className="flex items-center gap-4">
 
                     <div className="w-14 h-14 rounded-full bg-[#FBB03B]/10 flex items-center justify-center">
@@ -246,11 +253,11 @@ export default function RestaurantPage() {
                     <div>
 
                       <p className="text-sm uppercase tracking-wider text-gray-400">
-                        Ubicación
+                        {t('locationLabel')}
                       </p>
 
                       <p className="text-lg font-semibold text-gray-800">
-                        Km. 1,5 Camino a Cerro Negro, Parcela 51, Quillón
+                        {t('location')}
                       </p>
 
                     </div>
@@ -287,9 +294,9 @@ export default function RestaurantPage() {
             >
 
               <h2 className="text-4xl md:text-5xl font-light text-gray-700 leading-tight">
-                SABORES CON{' '}
+                {t('flavorsTitle')}{' '}
                 <span className="font-semibold text-gray-900">
-                  IDENTIDAD LOCAL
+                  {t('flavorsTitleHighlight')}
                 </span>
               </h2>
 
@@ -314,8 +321,7 @@ export default function RestaurantPage() {
                 delay: 0.3,
               }}
             >
-              PLATOS CON RAÍZ CHILENA, PRODUCTOS LOCALES Y EL SABOR AUTÉNTICO
-              DEL CAMPO
+              {t('flavorsSubtitle')}
             </motion.p>
 
           </div>
@@ -351,7 +357,7 @@ export default function RestaurantPage() {
 
                   <Image
                     src={img}
-                    alt={`Plato del restaurante ${i + 1}`}
+                    alt={`${t('galleryImageAlt')} ${i + 1}`}
                     fill
                     className="object-cover group-hover:scale-110 transition duration-700"
                   />
@@ -376,14 +382,14 @@ export default function RestaurantPage() {
                 href="https://www.eventi-app.com/public-quotation/1"
                 target="_blank"
               >
-                Cotiza tu evento
+                {t('quoteEvent')}
               </PrimaryButton>
 
               <SecondaryButton
                 href="https://wa.me/56926035311"
                 target="_blank"
               >
-                WhatsApp
+                {t('whatsapp')}
               </SecondaryButton>
 
             </div>

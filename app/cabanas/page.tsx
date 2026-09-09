@@ -8,20 +8,19 @@ import { useAlohaBooking } from '../components/AlohaBookingProvider';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-
+import { useTranslations } from 'next-intl';
 
 /* =========================
    DATA CABAÑAS
 ========================= */
 const cabins = [
   {
-    title: 'Cabaña para 2 personas',
+    titleKey: 'cabin2Title',
 
     unitSlug: 'cabana-para-2-xkbp7',
 
-    description: 'Un rincón perfecto para disfrutar en pareja.',
-    details:
-      'Suite de un ambiente con techo panorámico de 30m2. Se ubica escondida entre arbustos y árboles frente a la piscina principal, cuenta con una terraza de 15m2.',
+    descriptionKey: 'cabin2Description',
+    detailsKey: 'cabin2Details',
 
     images: [
       '/images/cabanas/cabana2/ca1.jpg',
@@ -31,28 +30,60 @@ const cabins = [
     ],
 
     icons: [
-      { icon: '/images/cabanas/iconos/cama2plazas.png', label: '1 cama de 2 plazas' },
-      { icon: '/images/cabanas/iconos/cocina.png', label: 'Cocina equipada' },
-      { icon: '/images/cabanas/iconos/nevera.png', label: 'Frigobar' },
-      { icon: '/images/cabanas/iconos/parrilla.png', label: 'Parrilla' },
-      { icon: '/images/cabanas/iconos/toallas.png', label: 'Toallas' },
-      { icon: '/images/cabanas/iconos/papel-de-bano.png', label: 'Confort' },
-      { icon: '/images/cabanas/iconos/estufa-de-lena.png', label: 'Estufa a leña' },
-      { icon: '/images/cabanas/iconos/terraza.png', label: 'Terraza' },
-      { icon: '/images/cabanas/iconos/wifi.png', label: 'Wifi' },
-      { icon: '/images/cabanas/iconos/smarttv.png', label: 'Smart TV' },
-      { icon: '/images/cabanas/iconos/servicio-de-habitacion.png', label: 'Servicio a la habitación' },
+      {
+        icon: '/images/cabanas/iconos/cama2plazas.png',
+        labelKey: 'bedDouble',
+      },
+      {
+        icon: '/images/cabanas/iconos/cocina.png',
+        labelKey: 'equippedKitchen',
+      },
+      {
+        icon: '/images/cabanas/iconos/nevera.png',
+        labelKey: 'minibar',
+      },
+      {
+        icon: '/images/cabanas/iconos/parrilla.png',
+        labelKey: 'grill',
+      },
+      {
+        icon: '/images/cabanas/iconos/toallas.png',
+        labelKey: 'towels',
+      },
+      {
+        icon: '/images/cabanas/iconos/papel-de-bano.png',
+        labelKey: 'comfort',
+      },
+      {
+        icon: '/images/cabanas/iconos/estufa-de-lena.png',
+        labelKey: 'woodStove',
+      },
+      {
+        icon: '/images/cabanas/iconos/terraza.png',
+        labelKey: 'terrace',
+      },
+      {
+        icon: '/images/cabanas/iconos/wifi.png',
+        labelKey: 'wifi',
+      },
+      {
+        icon: '/images/cabanas/iconos/smarttv.png',
+        labelKey: 'smartTv',
+      },
+      {
+        icon: '/images/cabanas/iconos/servicio-de-habitacion.png',
+        labelKey: 'roomService',
+      },
     ],
   },
 
   {
-    title: 'Cabaña para 4 personas',
+    titleKey: 'cabin4Title',
 
     unitSlug: 'cabana-para-4-personas-fedqr',
 
-    description: 'Espacio acogedor ideal para experiencias familiares inolvidables.',
-    details:
-      'Cabaña familiar de dos habitaciones más cocina americana de 40m2. Se ubica frente a una zona de juegos infantiles bajo la sombra de pinos, cuenta con una terraza de 20m2.',
+    descriptionKey: 'cabin4Description',
+    detailsKey: 'cabin4Details',
 
     images: [
       '/images/cabanas/cabana4/ca1.jpg',
@@ -64,29 +95,64 @@ const cabins = [
     ],
 
     icons: [
-      { icon: '/images/cabanas/iconos/cama2plazas.png', label: '1 cama de 2 plazas' },
-      { icon: '/images/cabanas/iconos/cama1plaza.png', label: '2 camas de 1 plaza' },
-      { icon: '/images/cabanas/iconos/cocina.png', label: 'Cocina equipada' },
-      { icon: '/images/cabanas/iconos/nevera.png', label: 'Frigobar' },
-      { icon: '/images/cabanas/iconos/parrilla.png', label: 'Parrilla' },
-      { icon: '/images/cabanas/iconos/toallas.png', label: 'Toallas' },
-      { icon: '/images/cabanas/iconos/papel-de-bano.png', label: 'Confort' },
-      { icon: '/images/cabanas/iconos/estufa-de-lena.png', label: 'Estufa a leña' },
-      { icon: '/images/cabanas/iconos/terraza.png', label: 'Terraza' },
-      { icon: '/images/cabanas/iconos/wifi.png', label: 'Wifi' },
-      { icon: '/images/cabanas/iconos/smarttv.png', label: 'Smart TV' },
-      { icon: '/images/cabanas/iconos/servicio-de-habitacion.png', label: 'Servicio a la habitación' },
+      {
+        icon: '/images/cabanas/iconos/cama2plazas.png',
+        labelKey: 'bedDouble',
+      },
+      {
+        icon: '/images/cabanas/iconos/cama1plaza.png',
+        labelKey: 'twoSingleBeds',
+      },
+      {
+        icon: '/images/cabanas/iconos/cocina.png',
+        labelKey: 'equippedKitchen',
+      },
+      {
+        icon: '/images/cabanas/iconos/nevera.png',
+        labelKey: 'minibar',
+      },
+      {
+        icon: '/images/cabanas/iconos/parrilla.png',
+        labelKey: 'grill',
+      },
+      {
+        icon: '/images/cabanas/iconos/toallas.png',
+        labelKey: 'towels',
+      },
+      {
+        icon: '/images/cabanas/iconos/papel-de-bano.png',
+        labelKey: 'comfort',
+      },
+      {
+        icon: '/images/cabanas/iconos/estufa-de-lena.png',
+        labelKey: 'woodStove',
+      },
+      {
+        icon: '/images/cabanas/iconos/terraza.png',
+        labelKey: 'terrace',
+      },
+      {
+        icon: '/images/cabanas/iconos/wifi.png',
+        labelKey: 'wifi',
+      },
+      {
+        icon: '/images/cabanas/iconos/smarttv.png',
+        labelKey: 'smartTv',
+      },
+      {
+        icon: '/images/cabanas/iconos/servicio-de-habitacion.png',
+        labelKey: 'roomService',
+      },
     ],
   },
 
   {
-    title: 'Cabaña para 6 personas',
+    titleKey: 'cabin6Title',
 
     unitSlug: 'cabana-para-6-personas-v8ujy',
 
-    description: 'Cabaña acogedora para familias grandes y grupos de amigos.',
-    details:
-      'Cabaña familiar de tres habitaciones más cocina americana de 65m2. Se ubica frente a la fuente con cascada de agua, cuenta con una terraza de 30m2.',
+    descriptionKey: 'cabin6Description',
+    detailsKey: 'cabin6Details',
 
     images: [
       '/images/cabanas/cabana6/ca1.jpg',
@@ -98,19 +164,58 @@ const cabins = [
     ],
 
     icons: [
-      { icon: '/images/cabanas/iconos/cama2plazas.png', label: '1 cama de 2 plazas' },
-      { icon: '/images/cabanas/iconos/cama1plaza.png', label: '2 camas de 1 plaza' },
-      { icon: '/images/cabanas/iconos/literas.png', label: '1 litera' },
-      { icon: '/images/cabanas/iconos/cocina.png', label: 'Cocina equipada' },
-      { icon: '/images/cabanas/iconos/nevera.png', label: 'Frigobar' },
-      { icon: '/images/cabanas/iconos/parrilla.png', label: 'Parrilla' },
-      { icon: '/images/cabanas/iconos/toallas.png', label: 'Toallas' },
-      { icon: '/images/cabanas/iconos/papel-de-bano.png', label: 'Confort' },
-      { icon: '/images/cabanas/iconos/estufa-de-lena.png', label: 'Estufa a leña' },
-      { icon: '/images/cabanas/iconos/terraza.png', label: 'Terraza' },
-      { icon: '/images/cabanas/iconos/wifi.png', label: 'Wifi' },
-      { icon: '/images/cabanas/iconos/smarttv.png', label: 'Smart TV' },
-      { icon: '/images/cabanas/iconos/servicio-de-habitacion.png', label: 'Servicio a la habitación' },
+      {
+        icon: '/images/cabanas/iconos/cama2plazas.png',
+        labelKey: 'bedDouble',
+      },
+      {
+        icon: '/images/cabanas/iconos/cama1plaza.png',
+        labelKey: 'twoSingleBeds',
+      },
+      {
+        icon: '/images/cabanas/iconos/literas.png',
+        labelKey: 'bunkBed',
+      },
+      {
+        icon: '/images/cabanas/iconos/cocina.png',
+        labelKey: 'equippedKitchen',
+      },
+      {
+        icon: '/images/cabanas/iconos/nevera.png',
+        labelKey: 'minibar',
+      },
+      {
+        icon: '/images/cabanas/iconos/parrilla.png',
+        labelKey: 'grill',
+      },
+      {
+        icon: '/images/cabanas/iconos/toallas.png',
+        labelKey: 'towels',
+      },
+      {
+        icon: '/images/cabanas/iconos/papel-de-bano.png',
+        labelKey: 'comfort',
+      },
+      {
+        icon: '/images/cabanas/iconos/estufa-de-lena.png',
+        labelKey: 'woodStove',
+      },
+      {
+        icon: '/images/cabanas/iconos/terraza.png',
+        labelKey: 'terrace',
+      },
+      {
+        icon: '/images/cabanas/iconos/wifi.png',
+        labelKey: 'wifi',
+      },
+      {
+        icon: '/images/cabanas/iconos/smarttv.png',
+        labelKey: 'smartTv',
+      },
+      {
+        icon: '/images/cabanas/iconos/servicio-de-habitacion.png',
+        labelKey: 'roomService',
+      },
     ],
   },
 ];
@@ -118,7 +223,17 @@ const cabins = [
 /* =========================
    CARRUSEL IMÁGENES
 ========================= */
-function Carousel({ images }: { images: string[] }) {
+function Carousel({
+  images,
+  imageAlt,
+  previousLabel,
+  nextLabel,
+}: {
+  images: string[];
+  imageAlt: string;
+  previousLabel: string;
+  nextLabel: string;
+}) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -141,21 +256,21 @@ function Carousel({ images }: { images: string[] }) {
 
   return (
     <div
-  className="
-    relative
-    w-full
-    max-w-full
-    min-w-0
-    h-[260px]
-    sm:h-[320px]
-    md:h-[420px]
-    rounded-2xl
-    overflow-hidden
-  "
->
+      className="
+        relative
+        w-full
+        max-w-full
+        min-w-0
+        h-[260px]
+        sm:h-[320px]
+        md:h-[420px]
+        rounded-2xl
+        overflow-hidden
+      "
+    >
       <Image
         src={images[index]}
-        alt={`Cabaña Valle del Sol ${index + 1}`}
+        alt={`${imageAlt} ${index + 1}`}
         fill
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-cover"
@@ -166,7 +281,7 @@ function Carousel({ images }: { images: string[] }) {
       <button
         type="button"
         onClick={prev}
-        aria-label="Ver imagen anterior"
+        aria-label={previousLabel}
         className="
           absolute
           left-3
@@ -197,7 +312,7 @@ function Carousel({ images }: { images: string[] }) {
       <button
         type="button"
         onClick={next}
-        aria-label="Ver imagen siguiente"
+        aria-label={nextLabel}
         className="
           absolute
           right-3
@@ -233,8 +348,17 @@ function Carousel({ images }: { images: string[] }) {
 ========================= */
 function AmenitiesCarousel({
   amenities,
+  t,
+  previousLabel,
+  nextLabel,
 }: {
-  amenities: { icon: string; label: string }[];
+  amenities: {
+    icon: string;
+    labelKey: string;
+  }[];
+  t: (key: string) => string;
+  previousLabel: string;
+  nextLabel: string;
 }) {
   const [index, setIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(4);
@@ -310,7 +434,7 @@ function AmenitiesCarousel({
       <button
         type="button"
         onClick={prev}
-        aria-label="Ver característica anterior"
+        aria-label={previousLabel}
         className="
           absolute
           left-0
@@ -387,7 +511,7 @@ function AmenitiesCarousel({
               >
                 <Image
                   src={item.icon}
-                  alt={item.label}
+                  alt={t(item.labelKey)}
                   width={42}
                   height={42}
                   className="
@@ -410,7 +534,7 @@ function AmenitiesCarousel({
                   sm:max-w-[150px]
                 "
               >
-                {item.label}
+                {t(item.labelKey)}
               </p>
             </div>
           ))}
@@ -422,7 +546,7 @@ function AmenitiesCarousel({
       <button
         type="button"
         onClick={next}
-        aria-label="Ver característica siguiente"
+        aria-label={nextLabel}
         className="
           absolute
           right-0
@@ -457,21 +581,33 @@ function AmenitiesCarousel({
    PAGE
 ========================= */
 export default function CabanasPage() {
+  const t = useTranslations('Cabanas');
+
   const { isReady, openBooking } = useAlohaBooking();
 
   const { scrollYProgress } = useScroll();
 
-const heroY = useTransform(
-  scrollYProgress,
-  [0, 0.25],
-  ['0%', '28%']
-);
+  const heroY = useTransform(
+    scrollYProgress,
+    [0, 0.25],
+    ['0%', '28%']
+  );
 
-const heroScale = useTransform(
-  scrollYProgress,
-  [0, 0.25],
-  [1.15, 1.25]
-);
+  const heroScale = useTransform(
+    scrollYProgress,
+    [0, 0.25],
+    [1.15, 1.25]
+  );
+
+  const benefits = [
+    t('breakfastIncluded'),
+    t('smartTvWifiIncluded'),
+    t('bathAmenities'),
+    t('poolAccess'),
+    t('picnicAccess'),
+    t('terraceGrillAccessories'),
+  ];
+
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden">
 
@@ -480,110 +616,105 @@ const heroScale = useTransform(
       <main className="w-full max-w-full overflow-x-hidden">
 
         {/* HERO CON PARALLAX */}
-<section className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black">
+        <section className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black">
 
-  {/* IMAGEN PARALLAX */}
-  <motion.div
-    className="absolute -inset-y-32 inset-x-0"
-    style={{
-      y: heroY,
-      scale: heroScale,
-    }}
-  >
-    <Image
-      src="/images/cabanas/hero.jpg"
-      alt="Cabañas Valle del Sol"
-      fill
-      className="object-cover"
-      priority
-    />
-  </motion.div>
+          {/* IMAGEN PARALLAX */}
+          <motion.div
+            className="absolute -inset-y-32 inset-x-0"
+            style={{
+              y: heroY,
+              scale: heroScale,
+            }}
+          >
+            <Image
+              src="/images/cabanas/hero.jpg"
+              alt={t('heroImageAlt')}
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
 
-  {/* OVERLAY */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
+          {/* OVERLAY */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75" />
 
-  {/* CONTENIDO */}
-  <div
-    className="
-      relative
-      z-10
-      h-full
-      flex
-      items-center
-      justify-center
-      px-6
-      pt-36
-      md:pt-40
-      lg:pt-44
-    "
-  >
-    <div className="max-w-6xl mx-auto text-center text-white">
+          {/* CONTENIDO */}
+          <div
+            className="
+              relative
+              z-10
+              h-full
+              flex
+              items-center
+              justify-center
+              px-6
+              pt-36
+              md:pt-40
+              lg:pt-44
+            "
+          >
+            <div className="max-w-6xl mx-auto text-center text-white">
 
-      <motion.h1
-        initial={{ opacity: 0, x: -120 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 1.4,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          text-4xl
-          sm:text-5xl
-          md:text-6xl
-          lg:text-7xl
-          xl:text-8xl
-          font-bold
-          leading-[0.95]
-          tracking-tight
-          text-white
-        "
-      >
-        Nuestras Cabañas
-      </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, x: -120 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 1.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  text-4xl
+                  sm:text-5xl
+                  md:text-6xl
+                  lg:text-7xl
+                  xl:text-8xl
+                  font-bold
+                  leading-[0.95]
+                  tracking-tight
+                  text-white
+                "
+              >
+                {t('heroTitle')}
+              </motion.h1>
 
-      <motion.p
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1,
-          delay: 0.4,
-        }}
-        className="
-          mt-6
-          md:mt-8
-          lg:mt-10
-          text-lg
-          sm:text-xl
-          md:text-2xl
-          text-white/90
-          max-w-5xl
-          mx-auto
-          leading-relaxed
-        "
-      >
-        Naturaleza, descanso y desconexión total
-      </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.4,
+                }}
+                className="
+                  mt-6
+                  md:mt-8
+                  lg:mt-10
+                  text-lg
+                  sm:text-xl
+                  md:text-2xl
+                  text-white/90
+                  max-w-5xl
+                  mx-auto
+                  leading-relaxed
+                "
+              >
+                {t('heroSubtitle')}
+              </motion.p>
 
-    </div>
-  </div>
+            </div>
+          </div>
 
-</section>
+        </section>
 
         {/* INTRO */}
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
 
             <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-              Despierta cada mañana disfrutando los colores verdes de la
-              naturaleza y termina el día con la magia de un atardecer.
-              Nuestras cabañas, diseñadas con un toque rústico y moderno,
-              están rodeadas de paisajes impresionantes que invitan al
-              descanso y la desconexión.
-              <br /><br />
+              {t('intro')}
+              <br />
+              <br />
               <strong>
-                Aquí, cada amanecer te regala paz y cada atardecer,
-                un momento para atesorar. Ven y vive la tranquilidad
-                en su máxima expresión.
+                {t('introHighlight')}
               </strong>
             </p>
 
@@ -595,7 +726,7 @@ const heroScale = useTransform(
 
           <Image
             src="/images/cabanas/bg-beneficios.jpeg"
-            alt="Servicios cabañas"
+            alt={t('benefitsImageAlt')}
             fill
             className="object-cover scale-105"
           />
@@ -612,31 +743,30 @@ const heroScale = useTransform(
             >
 
               <h2 className="text-4xl md:text-5xl font-light leading-tight">
-                TODAS LAS CABAÑAS{' '}
+                {t('benefitsTitle')}{' '}
                 <span className="font-semibold">
-                  INCLUYEN
+                  {t('benefitsTitleHighlight')}
                 </span>
               </h2>
 
               <div className="grid md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto text-lg md:text-xl mt-14">
 
-                {[
-                  'Desayuno incluido',
-                  'Smart TV + WIFI',
-                  'Amenidades de baño',
-                  'Acceso a piscina y áreas verdes',
-                  'Acceso zona de picnic',
-                  'Terraza, parrilla y accesorios',
-                ].map((item, i) => (
+                {benefits.map((item, i) => (
                   <motion.p
                     key={i}
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1, duration: 0.6 }}
+                    transition={{
+                      delay: i * 0.1,
+                      duration: 0.6,
+                    }}
                     viewport={{ once: false }}
                     className="flex items-center gap-3"
                   >
-                    <span className="text-orange-400 text-xl">✔</span>
+                    <span className="text-orange-400 text-xl">
+                      ✔
+                    </span>
+
                     {item}
                   </motion.p>
                 ))}
@@ -650,186 +780,204 @@ const heroScale = useTransform(
         </section>
 
         {/* CABAÑAS */}
-        {/* CABAÑAS */}
-<section className="w-full max-w-full overflow-x-hidden py-16 sm:py-20">
-  <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-20 sm:space-y-24">
+        <section className="w-full max-w-full overflow-x-hidden py-16 sm:py-20">
 
-    {cabins.map((cabin, i) => (
-      <motion.div
-        key={i}
-        className="
-          w-full
-          max-w-full
-          min-w-0
-          grid
-          grid-cols-1
-          md:grid-cols-2
-          gap-10
-          md:gap-12
-          items-start
-        "
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        viewport={{ once: false }}
-      >
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-20 sm:space-y-24">
 
-        {/* IMÁGENES E ÍCONOS */}
-        <div className="w-full max-w-full min-w-0 overflow-hidden">
+            {cabins.map((cabin, i) => (
+              <motion.div
+                key={cabin.unitSlug}
+                className="
+                  w-full
+                  max-w-full
+                  min-w-0
+                  grid
+                  grid-cols-1
+                  md:grid-cols-2
+                  gap-10
+                  md:gap-12
+                  items-start
+                "
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
+                viewport={{ once: false }}
+              >
 
-          <Carousel images={cabin.images} />
+                {/* IMÁGENES E ÍCONOS */}
+                <div className="w-full max-w-full min-w-0 overflow-hidden">
 
-          <AmenitiesCarousel amenities={cabin.icons} />
+                  <Carousel
+                    images={cabin.images}
+                    imageAlt={t(cabin.titleKey)}
+                    previousLabel={t('previousImage')}
+                    nextLabel={t('nextImage')}
+                  />
 
-        </div>
+                  <AmenitiesCarousel
+                    amenities={cabin.icons}
+                    t={t}
+                    previousLabel={t('previousAmenity')}
+                    nextLabel={t('nextAmenity')}
+                  />
 
-        {/* INFORMACIÓN */}
-        <div className="w-full max-w-full min-w-0 pt-0 md:pt-2">
+                </div>
 
-          <h3 className="
-            text-3xl
-            sm:text-4xl
-            font-semibold
-            leading-tight
-            text-gray-950
-            break-words
-          ">
-            {cabin.title}
-          </h3>
+                {/* INFORMACIÓN */}
+                <div className="w-full max-w-full min-w-0 pt-0 md:pt-2">
 
-          <p className="
-            mt-4
-            text-base
-            sm:text-lg
-            text-gray-800
-            font-semibold
-            leading-relaxed
-            break-words
-          ">
-            {cabin.description}
-          </p>
+                  <h3
+                    className="
+                      text-3xl
+                      sm:text-4xl
+                      font-semibold
+                      leading-tight
+                      text-gray-950
+                      break-words
+                    "
+                  >
+                    {t(cabin.titleKey)}
+                  </h3>
 
-          <p className="
-            mt-5
-            text-base
-            sm:text-lg
-            text-gray-500
-            leading-relaxed
-            break-words
-            whitespace-normal
-          ">
-            {cabin.details}
-          </p>
+                  <p
+                    className="
+                      mt-4
+                      text-base
+                      sm:text-lg
+                      text-gray-800
+                      font-semibold
+                      leading-relaxed
+                      break-words
+                    "
+                  >
+                    {t(cabin.descriptionKey)}
+                  </p>
 
-          <div className="mt-8 w-full sm:w-auto">
-  <button
-    type="button"
-    onClick={() =>
-      openBooking({
-        unitSlug: cabin.unitSlug,
-      })
-    }
-    disabled={!isReady}
-    className="
-      w-full
-      sm:w-auto
-      inline-flex
-      items-center
-      justify-center
-      px-8
-      py-4
-      rounded-full
-      bg-[#FBB03B]
-      text-black
-      text-base
-      font-semibold
-      shadow-xl
-      transition-all
-      duration-300
-      hover:scale-105
-      hover:shadow-2xl
-      disabled:opacity-70
-      disabled:cursor-wait
-    "
-  >
-    Reservar
-  </button>
-</div>
+                  <p
+                    className="
+                      mt-5
+                      text-base
+                      sm:text-lg
+                      text-gray-500
+                      leading-relaxed
+                      break-words
+                      whitespace-normal
+                    "
+                  >
+                    {t(cabin.detailsKey)}
+                  </p>
 
-        </div>
+                  <div className="mt-8 w-full sm:w-auto">
 
-      </motion.div>
-    ))}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        openBooking({
+                          unitSlug: cabin.unitSlug,
+                        })
+                      }
+                      disabled={!isReady}
+                      className="
+                        w-full
+                        sm:w-auto
+                        inline-flex
+                        items-center
+                        justify-center
+                        px-8
+                        py-4
+                        rounded-full
+                        bg-[#FBB03B]
+                        text-black
+                        text-base
+                        font-semibold
+                        shadow-xl
+                        transition-all
+                        duration-300
+                        hover:scale-105
+                        hover:shadow-2xl
+                        disabled:opacity-70
+                        disabled:cursor-wait
+                      "
+                    >
+                      {t('reserve')}
+                    </button>
 
-  </div>
-</section>
+                  </div>
+
+                </div>
+
+              </motion.div>
+            ))}
+
+          </div>
+        </section>
 
         {/* CTA FINAL */}
         <section className="py-24 text-center bg-gray-50">
 
-  <div className="max-w-3xl mx-auto px-6">
+          <div className="max-w-3xl mx-auto px-6">
 
-    <p className="text-xl text-gray-700 mb-10">
-      Reserva tu cabaña ideal o cotiza tu evento con nosotros.
-    </p>
+            <p className="text-xl text-gray-700 mb-10">
+              {t('finalCta')}
+            </p>
 
-    <div className="flex flex-col md:flex-row gap-6 justify-center">
+            <div className="flex flex-col md:flex-row gap-6 justify-center">
 
-      {/* COTIZAR EVENTO */}
-      <PrimaryButton
-        href="https://www.eventi-app.com/public-quotation/1"
-        className="px-10 py-4"
-      >
-        Cotiza tu evento
-      </PrimaryButton>
+              {/* COTIZAR EVENTO */}
+              <PrimaryButton
+                href="https://www.eventi-app.com/public-quotation/1"
+                className="px-10 py-4"
+              >
+                {t('quoteEvent')}
+              </PrimaryButton>
 
-      {/* RESERVAR CABAÑA - ALOHA */}
-      <button
-        type="button"
-        onClick={() => openBooking()}
-        disabled={!isReady}
-        className="
-          inline-flex
-          items-center
-          justify-center
-          px-10
-          py-4
-          rounded-full
-          bg-[#FBB03B]
-          text-black
-          font-semibold
-          shadow-xl
-          transition-all
-          duration-300
-          hover:scale-105
-          hover:shadow-2xl
-          disabled:opacity-70
-          disabled:cursor-wait
-        "
-      >
-        Reservar cabaña
-      </button>
+              {/* RESERVAR CABAÑA - ALOHA */}
+              <button
+                type="button"
+                onClick={() => openBooking()}
+                disabled={!isReady}
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  px-10
+                  py-4
+                  rounded-full
+                  bg-[#FBB03B]
+                  text-black
+                  font-semibold
+                  shadow-xl
+                  transition-all
+                  duration-300
+                  hover:scale-105
+                  hover:shadow-2xl
+                  disabled:opacity-70
+                  disabled:cursor-wait
+                "
+              >
+                {t('reserveCabin')}
+              </button>
 
-      {/* WHATSAPP */}
-      <SecondaryButton
-        href="https://wa.me/56926035311"
-        className="
-          px-10
-          py-4
-          border-gray-900
-          text-gray-900
-          hover:bg-gray-900
-          hover:text-white
-        "
-      >
-        WhatsApp
-      </SecondaryButton>
+              {/* WHATSAPP */}
+              <SecondaryButton
+                href="https://wa.me/56926035311"
+                className="
+                  px-10
+                  py-4
+                  border-gray-900
+                  text-gray-900
+                  hover:bg-gray-900
+                  hover:text-white
+                "
+              >
+                {t('whatsapp')}
+              </SecondaryButton>
 
-    </div>
+            </div>
 
-  </div>
+          </div>
 
-</section>
+        </section>
 
       </main>
 

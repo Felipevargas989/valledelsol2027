@@ -162,7 +162,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
+        className={`fixed top-0 left-0 z-[100001] w-full transition-all duration-300 ${
           scrolled
             ? 'bg-white shadow-md'
             : 'bg-black/25 backdrop-blur-md'
@@ -592,7 +592,7 @@ export default function Header() {
         className={`
           fixed
           inset-0
-          z-40
+          z-[99990]
           bg-black/60
           backdrop-blur-sm
           transition-opacity
@@ -608,11 +608,11 @@ export default function Header() {
 
       {/* MENÚ LATERAL MÓVIL */}
       <aside
-        className={`
-          fixed
-          top-0
-          right-0
-          z-40
+  className={`
+    fixed
+    top-0
+    right-0
+    z-[100000]
           h-screen
           w-[88%]
           max-w-sm
@@ -732,7 +732,7 @@ export default function Header() {
           </div>
 
           {/* BOTONES */}
-          <div className="mt-8 space-y-3">
+<div className="relative z-[2] mt-8 space-y-3">
 
             {/* TIENDA */}
             <Link
