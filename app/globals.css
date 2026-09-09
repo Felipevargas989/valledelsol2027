@@ -81,3 +81,49 @@ body {
 .marquee {
   animation: marquee 18s linear infinite;
 }
+/* =====================================================
+   WHATSAPP FLOTANTE
+===================================================== */
+
+.floating-whatsapp {
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Ocultar WhatsApp cuando el menú móvil está abierto */
+body.mobile-menu-open .floating-whatsapp {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(15px) scale(0.9);
+}
+
+
+/* =====================================================
+   ANIMACIÓN WHATSAPP
+===================================================== */
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.08);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.12);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2s infinite;
+}

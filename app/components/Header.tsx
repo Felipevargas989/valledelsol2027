@@ -52,17 +52,24 @@ export default function Header() {
   }, []);
 
   /*
-   * BLOQUEAR SCROLL CON MENÚ MÓVIL
+   * MENÚ MÓVIL
+   *
+   * - Bloquea el scroll de la página
+   * - Agrega una clase al body
+   * - Esa clase nos permitirá ocultar WhatsApp
    */
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('mobile-menu-open');
     } else {
       document.body.style.overflow = '';
+      document.body.classList.remove('mobile-menu-open');
     }
 
     return () => {
       document.body.style.overflow = '';
+      document.body.classList.remove('mobile-menu-open');
     };
   }, [mobileMenuOpen]);
 
@@ -138,15 +145,18 @@ export default function Header() {
    */
   const handleReservation = () => {
     closeMobileMenu();
-    openBooking();
+
+    /*
+     * Esperamos un instante a que el menú
+     * empiece a cerrarse antes de abrir Aloha.
+     */
+    window.setTimeout(() => {
+      openBooking();
+    }, 50);
   };
 
   /*
    * CAMBIAR IDIOMA
-   *
-   * No modifica la URL.
-   * Guarda el idioma en cookie
-   * y recarga la página actual.
    */
   const changeLanguage = (
     newLocale: 'es' | 'en' | 'pt'
@@ -162,26 +172,28 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 z-[100001] w-full transition-all duration-300 ${
+        className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
           scrolled
             ? 'bg-white shadow-md'
             : 'bg-black/25 backdrop-blur-md'
         }`}
       >
-        <div className="
-          w-full
-          max-w-[1500px]
-          2xl:max-w-[1600px]
-          mx-auto
-          px-5
-          sm:px-6
-          lg:px-8
-          h-20
-          lg:h-24
-          flex
-          items-center
-          justify-between
-        ">
+        <div
+          className="
+            w-full
+            max-w-[1500px]
+            2xl:max-w-[1600px]
+            mx-auto
+            px-5
+            sm:px-6
+            lg:px-8
+            h-20
+            lg:h-24
+            flex
+            items-center
+            justify-between
+          "
+        >
 
           {/* LOGO */}
           <Link
@@ -210,16 +222,18 @@ export default function Header() {
           </Link>
 
           {/* MENÚ ESCRITORIO */}
-          <nav className="
-            hidden
-            lg:flex
-            items-center
-            gap-4
-            xl:gap-5
-            text-[13px]
-            xl:text-sm
-            font-medium
-          ">
+          <nav
+            className="
+              hidden
+              lg:flex
+              items-center
+              gap-4
+              xl:gap-5
+              text-[13px]
+              xl:text-sm
+              font-medium
+            "
+          >
 
             {menu.map((item) => (
               <Link
@@ -259,15 +273,17 @@ export default function Header() {
           </nav>
 
           {/* LADO DERECHO ESCRITORIO */}
-          <div className="
-            hidden
-            lg:flex
-            items-center
-            gap-3
-            xl:gap-4
-            ml-4
-            xl:ml-6
-          ">
+          <div
+            className="
+              hidden
+              lg:flex
+              items-center
+              gap-3
+              xl:gap-4
+              ml-4
+              xl:ml-6
+            "
+          >
 
             {/* TIENDA */}
             <Link
@@ -471,12 +487,14 @@ export default function Header() {
           </div>
 
           {/* CONTROLES MÓVILES */}
-          <div className="
-            flex
-            lg:hidden
-            items-center
-            gap-3
-          ">
+          <div
+            className="
+              flex
+              lg:hidden
+              items-center
+              gap-3
+            "
+          >
 
             {/* IDIOMA */}
             <button
@@ -592,7 +610,7 @@ export default function Header() {
         className={`
           fixed
           inset-0
-          z-[99990]
+          z-40
           bg-black/60
           backdrop-blur-sm
           transition-opacity
@@ -608,12 +626,12 @@ export default function Header() {
 
       {/* MENÚ LATERAL MÓVIL */}
       <aside
-  className={`
-    fixed
-    top-0
-    right-0
-    z-[100000]
-          h-screen
+        className={`
+          fixed
+          top-0
+          right-0
+          z-40
+          h-[100dvh]
           w-[88%]
           max-w-sm
           bg-black
@@ -630,18 +648,22 @@ export default function Header() {
           }
         `}
       >
-        <div className="
-          h-full
-          flex
-          flex-col
-          px-7
-          pt-28
-          pb-8
-          overflow-y-auto
-        ">
+
+        <div
+          className="
+            h-full
+            flex
+            flex-col
+            px-5
+            sm:px-6
+            pt-[88px]
+            pb-4
+            overflow-hidden
+          "
+        >
 
           {/* MENÚ */}
-          <nav className="flex flex-col">
+          <nav className="flex flex-col shrink-0">
 
             {menu.map((item, index) => (
               <Link
@@ -649,10 +671,12 @@ export default function Header() {
                 href={item.href}
                 onClick={closeMobileMenu}
                 className="
-                  py-4
+                  py-2.5
                   border-b
                   border-white/10
-                  text-lg
+                  text-[16px]
+                  sm:text-[17px]
+                  leading-tight
                   font-medium
                   text-white/90
                   transition-all
@@ -673,19 +697,21 @@ export default function Header() {
           </nav>
 
           {/* IDIOMA MÓVIL */}
-          <div className="mt-8">
+          <div className="mt-4 shrink-0">
 
-            <div className="
-              flex
-              items-center
-              gap-2
-              mb-4
-              text-xs
-              uppercase
-              tracking-[0.18em]
-              text-white/40
-            ">
-              <Globe2 size={15} />
+            <div
+              className="
+                flex
+                items-center
+                gap-2
+                mb-2.5
+                text-[11px]
+                uppercase
+                tracking-[0.18em]
+                text-white/40
+              "
+            >
+              <Globe2 size={14} />
 
               {t('language')}
             </div>
@@ -702,9 +728,9 @@ export default function Header() {
                   className={`
                     rounded-xl
                     border
-                    px-3
-                    py-3
-                    text-sm
+                    px-2
+                    py-2.5
+                    text-xs
                     font-semibold
                     transition-all
                     duration-300
@@ -721,18 +747,14 @@ export default function Header() {
 
             </div>
 
-            <div className="
-              mt-3
-              text-sm
-              text-white/50
-            ">
+            <div className="mt-2 text-xs text-white/50">
               {currentLanguage.label}
             </div>
 
           </div>
 
           {/* BOTONES */}
-<div className="relative z-[2] mt-8 space-y-3">
+          <div className="mt-4 space-y-2.5 shrink-0">
 
             {/* TIENDA */}
             <Link
@@ -745,13 +767,14 @@ export default function Header() {
                 w-full
                 items-center
                 justify-center
-                gap-3
+                gap-2.5
                 rounded-full
                 border
                 border-[#FBB03B]/50
-                px-6
-                py-4
+                px-5
+                py-3
                 text-[#FBB03B]
+                text-sm
                 font-semibold
                 transition-all
                 duration-300
@@ -760,7 +783,7 @@ export default function Header() {
                 hover:scale-[1.02]
               "
             >
-              <ShoppingBag size={20} />
+              <ShoppingBag size={18} />
 
               {t('store')}
             </Link>
@@ -777,9 +800,10 @@ export default function Header() {
                 justify-center
                 rounded-full
                 bg-[#FBB03B]
-                px-6
-                py-4
+                px-5
+                py-3
                 text-black
+                text-sm
                 font-semibold
                 shadow-xl
                 transition-all
@@ -806,9 +830,10 @@ export default function Header() {
                 rounded-full
                 border
                 border-white/40
-                px-6
-                py-4
+                px-5
+                py-3
                 text-white
+                text-sm
                 font-semibold
                 transition-all
                 duration-300
@@ -823,6 +848,7 @@ export default function Header() {
           </div>
 
         </div>
+
       </aside>
     </>
   );
