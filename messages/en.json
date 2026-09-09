@@ -643,5 +643,39 @@
   "galleryImageAlt": "Valle del Sol Gallery",
 
   "finalQuote": "We are the time we spend with those we love"
-}
+},
+  "Meta": {
+    "home": {
+      "title": "Valle del Sol Quillón — Cabins, events and restaurant in Ñuble, Chile",
+      "description": "Tourist complex in Quillón: cabins surrounded by nature, a restaurant and venues for weddings, school trips and corporate events. Book online."
+    },
+    "cabanas": {
+      "title": "Cabins in Quillón for 2, 4 and 6 guests | Valle del Sol",
+      "description": "Cabins with wood stove, breakfast and a natural setting in Quillón, Ñuble. Check availability and book online instantly."
+    },
+    "matrimonios": {
+      "title": "Weddings in Quillón: your wedding at Valle del Sol",
+      "description": "Celebrate your wedding in a natural setting in Quillón: ceremony, banquet and lodging in one place. Request a quote for your date."
+    },
+    "colegios": {
+      "title": "School trips in Quillón | Valle del Sol",
+      "description": "School trips and student days in a safe, natural setting in Quillón: wide open spaces, lunch and activities. Request a quote for your school."
+    },
+    "empresas": {
+      "title": "Corporate events and company outings in Quillón | Valle del Sol",
+      "description": "Company outings, training sessions and corporate celebrations in Quillón: halls, outdoor spaces and food. Request a quote for your event."
+    },
+    "touroperadores": {
+      "title": "Group tourism and tour operators | Valle del Sol Quillón",
+      "description": "Programs for groups, agencies and tour operators in Quillón: lunch, tours and cabin lodging. Request your program."
+    },
+    "restaurante": {
+      "title": "Restaurant in Quillón | Valle del Sol",
+      "description": "Home-style cooking and local flavors at the Valle del Sol Quillón restaurant, in a natural setting. Book your table."
+    },
+    "nosotros": {
+      "title": "About us | Valle del Sol, tourist complex in Quillón",
+      "description": "Meet Valle del Sol: a family-run tourist complex in Quillón, Ñuble, devoted to hospitality, nature and unforgettable experiences."
+    }
+  }
 }

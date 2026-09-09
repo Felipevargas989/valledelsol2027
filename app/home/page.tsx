@@ -8,6 +8,13 @@ import Booking from '../components/Booking';
 import Experiences from '../components/Experiences';
 import GalleryFilter from '../components/GalleryFilter';
 import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
+
+// Título y descripción propios de la portada (lo que Google muestra).
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Meta.home');
+  return { title: t('title'), description: t('description') };
+}
 import { FeatureBlock, SocialLink } from '../components/types';
 
 // Data configuration

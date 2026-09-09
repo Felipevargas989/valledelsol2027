@@ -643,5 +643,39 @@
   "galleryImageAlt": "Galería Valle del Sol",
 
   "finalQuote": "Somos el tiempo que gastamos en quienes amamos"
-}
+},
+  "Meta": {
+    "home": {
+      "title": "Valle del Sol Quillón — Cabañas, eventos y restaurante en Ñuble",
+      "description": "Complejo turístico en Quillón: cabañas entre la naturaleza, restaurante y espacios para matrimonios, paseos y eventos de empresa. Reserva en línea."
+    },
+    "cabanas": {
+      "title": "Cabañas en Quillón para 2, 4 y 6 personas | Valle del Sol",
+      "description": "Cabañas equipadas con estufa a leña, desayuno y entorno natural en Quillón, Ñuble. Disponibilidad y reserva en línea al instante."
+    },
+    "matrimonios": {
+      "title": "Matrimonios en Quillón: tu boda en Valle del Sol",
+      "description": "Celebra tu matrimonio en un entorno natural en Quillón: ceremonia, banquete y alojamiento en un solo lugar. Cotiza tu fecha."
+    },
+    "colegios": {
+      "title": "Paseos de curso en Quillón | Valle del Sol",
+      "description": "Paseos de curso y jornadas escolares en un entorno natural y seguro en Quillón: espacios amplios, almuerzo y actividades. Cotiza para tu colegio."
+    },
+    "empresas": {
+      "title": "Eventos corporativos y paseos de empresa en Quillón | Valle del Sol",
+      "description": "Paseos de empresa, capacitaciones y celebraciones corporativas en Quillón: salones, aire libre y gastronomía. Cotiza tu evento."
+    },
+    "touroperadores": {
+      "title": "Turismo para grupos y tour operadores | Valle del Sol Quillón",
+      "description": "Programas para grupos, agencias y tour operadores en Quillón: almuerzo, recorridos y alojamiento en cabañas. Solicita tu programa."
+    },
+    "restaurante": {
+      "title": "Restaurante en Quillón | Valle del Sol",
+      "description": "Cocina casera y sabores de la zona en el restaurante de Valle del Sol Quillón, en un entorno natural. Reserva tu mesa."
+    },
+    "nosotros": {
+      "title": "Nosotros | Valle del Sol, complejo turístico en Quillón",
+      "description": "Conoce Valle del Sol: un complejo turístico familiar en Quillón, Ñuble, dedicado a la hospitalidad, la naturaleza y las experiencias inolvidables."
+    }
+  }
 }

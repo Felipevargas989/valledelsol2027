@@ -1121,7 +1121,9 @@ export default function TourOperadoresPage() {
                 </a>
 
                 <a
-                  href="/contacto"
+                  href="https://wa.me/56940588585"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-12 py-5 rounded-full border border-white/40 hover:bg-white hover:text-black transition duration-300 text-lg"
                 >
                   {t('contactUs')}
