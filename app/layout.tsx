@@ -4,6 +4,8 @@ import './globals.css';
 import {NextIntlClientProvider} from 'next-intl';
 
 import { AlohaBookingProvider } from './components/AlohaBookingProvider';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -37,7 +39,10 @@ return (
           {children}
         </AlohaBookingProvider>
       </NextIntlClientProvider>
-    </body>
+            {/* Visitas y velocidad real de los visitantes, en el panel de Vercel (gratis). */}
+        <Analytics />
+        <SpeedInsights />
+      </body>
   </html>
 );
 }
