@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
 import './globals.css';
 import {NextIntlClientProvider} from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { pickMessages } from '../i18n/pickMessages';
 
 import { AlohaBookingProvider } from './components/AlohaBookingProvider';
 import { Analytics } from '@vercel/analytics/next';
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     'Descubre en Valle del Sol la magia de la naturaleza, la relajación y la hospitalidad. Cabañas, restaurante, eventos y más en Quillón.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -34,7 +36,7 @@ return (
     <body
       className={`${montserrat.variable} ${geistMono.variable} font-sans antialiased`}
     >
-      <NextIntlClientProvider>
+      <NextIntlClientProvider messages={pickMessages(await getMessages(), ['Header', 'Footer'])}>
         <AlohaBookingProvider>
           {children}
         </AlohaBookingProvider>

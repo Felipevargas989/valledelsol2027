@@ -6,12 +6,12 @@ import { pickMessages } from '../../i18n/pickMessages';
 
 // Título y descripción propios de esta página (lo que Google muestra).
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('Meta.colegios');
+  const t = await getTranslations('Meta.home');
   return { title: t('title'), description: t('description') };
 }
 
 // Solo las secciones de texto que esta página usa (ver i18n/pickMessages).
-const SECCIONES = ['Header', 'Footer', 'Colegios'] as const;
+const SECCIONES = ['Header', 'Footer', 'Home', 'Highlights', 'Booking', 'Experiences', 'Gallery', 'Contact', 'Location'] as const;
 
 export default async function Layout({ children }: { children: ReactNode }) {
   const messages = pickMessages(await getMessages(), SECCIONES);
