@@ -24,6 +24,12 @@ export default function Hero({
   animationSpeed = 3000,
 }: HeroProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    const chica = window.matchMedia('(max-width: 768px)').matches;
+    setVideoSrc(chica ? '/videos/hero-480.mp4' : '/videos/hero-720.mp4');
+  }, []);
   const [isVisible, setIsVisible] = useState(true);
 
   // Animación de palabras
@@ -43,23 +49,32 @@ export default function Hero({
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
 
-      {/* 🎥 VIDEO BACKGROUND */}
+      {/* 🎥 VIDEO BACKGROUND — propio, servido por Vercel (09-09-2026).
+          Antes era un iframe de YouTube: el celular tenía que bajar el
+          reproductor completo (y sus cookies) antes de pintar la portada,
+          y Google lo cobraba 2,4 s en el LCP. Ahora la imagen de portada
+          se pinta al instante y el video entra después, sin bloquear.
+          En pantallas chicas va la versión de 480p (5,9 MB), en el resto
+          la de 720p (24,7 MB); el navegador baja solo lo que reproduce. */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-
-        <iframe
+        <video
           className="
             absolute top-1/2 left-1/2
             min-w-full min-h-full
             w-auto h-auto
-            aspect-video
             -translate-x-1/2 -translate-y-1/2
+            object-cover
             pointer-events-none
           "
-          src="https://www.youtube.com/embed/ly7mtnfeCFA?autoplay=1&mute=1&controls=0&loop=1&playlist=ly7mtnfeCFA&modestbranding=1&showinfo=0&rel=0"
-          title="Video Valle del Sol"
-          allow="autoplay; fullscreen"
+          src={videoSrc ?? undefined}
+          poster="/images/hero/hero-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
         />
-
       </div>
 
       {/* Overlay oscuro elegante */}
