@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -11,10 +13,17 @@ export default function Booking() {
     <section className="relative w-full h-[70vh] md:h-[80vh] flex items-center">
 
       {/* IMAGEN DE FONDO */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/relajacion.jpg')" }}
-      />
+      <div className="absolute inset-0">
+        {/* Por el optimizador de Next (09-09): como fondo CSS iba cruda. */}
+        <Image
+          src="/images/relajacion.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          aria-hidden="true"
+        />
+      </div>
 
       {/* OVERLAY */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />

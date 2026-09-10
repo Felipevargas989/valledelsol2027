@@ -31,9 +31,17 @@ export default function Hero({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
+  // El video arranca DESPUÉS de que la página terminó de cargar (Felipe,
+  // 09-09): así no compite con lo que el visitante necesita ver primero.
+  // Mientras tanto se ve la portada. Teléfonos: 480p; el resto: 720p.
   useEffect(() => {
     const chica = window.matchMedia('(max-width: 768px)').matches;
-    setVideoSrc(chica ? '/videos/hero-480.mp4' : '/videos/hero-720.mp4');
+    const fuente = chica ? '/videos/hero-480.mp4' : '/videos/hero-720.mp4';
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const arrancar = () => { timer = setTimeout(() => setVideoSrc(fuente), 800); };
+    if (document.readyState === 'complete') arrancar();
+    else window.addEventListener('load', arrancar, { once: true });
+    return () => { if (timer) clearTimeout(timer); window.removeEventListener('load', arrancar); };
   }, []);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -77,7 +85,7 @@ export default function Hero({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           aria-hidden="true"
         />
       </div>

@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
@@ -11,11 +13,17 @@ export default function LocationSection() {
 
       {/* BACKGROUND PARALLAX */}
       <div className="absolute inset-0 -z-10">
-        <img
-          src="/images/ubicacion.jpg"
-          alt={t('imageAlt')}
-          className="w-full h-[120%] object-cover parallax-bg"
-        />
+        {/* Por el optimizador de Next (09-09): antes iba cruda, 339 KB a
+            cualquier pantalla. */}
+        <div className="relative w-full h-[120%] parallax-bg">
+          <Image
+            src="/images/ubicacion.jpg"
+            alt={t('imageAlt')}
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
         <div className="absolute inset-0 bg-black/60" />
       </div>
 

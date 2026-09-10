@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -59,13 +61,23 @@ export default function GalleryFilter() {
       <AnimatePresence mode="wait">
         <motion.div
           key={current.image}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${current.image})` }}
+          className="absolute inset-0"
           initial={{ opacity: 0, scale: 1.08 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.03 }}
           transition={{ duration: 1.2, ease: 'easeInOut' }}
-        />
+        >
+          {/* Por el optimizador de Next (09-09): como fondo CSS cada foto
+              iba cruda (250-740 KB) a cualquier pantalla. */}
+          <Image
+            src={current.image}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            aria-hidden="true"
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* OVERLAY */}
