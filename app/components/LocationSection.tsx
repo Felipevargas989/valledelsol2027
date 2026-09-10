@@ -88,7 +88,7 @@ export default function LocationSection() {
               {/* Coordenadas exactas (Felipe, 09-09): por texto, Waze elegía
                   otro local vecino ("Don Ginito"). */}
               <a
-                href="https://waze.com/ul?ll=-36.75850226273671%2C-72.47594841494393&navigate=yes"
+                href="https://ul.waze.com/ul?ll=-36.75861410%2C-72.47577527&navigate=yes&zoom=16"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-4 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold transition hover:scale-105 hover:bg-gray-100"
@@ -112,7 +112,7 @@ export default function LocationSection() {
             }}
           >
             <iframe
-              src="https://maps.google.com/maps?q=-36.75850226273671,-72.47594841494393&t=m&z=15&output=embed"
+              src="https://maps.google.com/maps?q=-36.75861410,-72.47577527&t=m&z=15&output=embed"
               title={t('mapTitle')}
               className="w-full h-full border-0"
               loading="lazy"
