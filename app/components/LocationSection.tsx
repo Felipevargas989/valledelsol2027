@@ -85,9 +85,9 @@ export default function LocationSection() {
               </div>
 
               {/* CTA WAZE */}
+              {/* Coordenadas exactas (Felipe, 09-09): por texto, Waze elegía
+                  otro local vecino ("Don Ginito"). */}
               <a
-                {/* Coordenadas exactas (Felipe, 09-09): por texto, Waze elegía otro
-                   local vecino ("Don Ginito"). */}
                 href="https://waze.com/ul?ll=-36.75850226273671%2C-72.47594841494393&navigate=yes"
                 target="_blank"
                 rel="noopener noreferrer"
