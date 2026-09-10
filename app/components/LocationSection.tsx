@@ -86,7 +86,9 @@ export default function LocationSection() {
 
               {/* CTA WAZE */}
               <a
-                href="https://waze.com/ul?q=Km.%201,5%20Camino%20a%20Cerro%20Negro%20Parcela%2051%20Quillón"
+                {/* Coordenadas exactas (Felipe, 09-09): por texto, Waze elegía otro
+                   local vecino ("Don Ginito"). */}
+                href="https://waze.com/ul?ll=-36.75850226273671%2C-72.47594841494393&navigate=yes"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-4 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold transition hover:scale-105 hover:bg-gray-100"
@@ -110,7 +112,7 @@ export default function LocationSection() {
             }}
           >
             <iframe
-              src="https://maps.google.com/maps?q=complejo%20turistico%20valle%20del%20sol%20quill%C3%B3n&t=m&z=14&output=embed&iwloc=near"
+              src="https://maps.google.com/maps?q=-36.75850226273671,-72.47594841494393&t=m&z=15&output=embed"
               title={t('mapTitle')}
               className="w-full h-full border-0"
               loading="lazy"
