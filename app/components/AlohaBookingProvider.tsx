@@ -136,7 +136,11 @@ export function AlohaBookingProvider({
               height: 100%;
               margin: 0;
               padding: 0;
-              overflow: hidden;
+              /* Se puede desplazar: en iPhone el widget no cabía entero y
+                 quedaban cortados el selector de niños y el botón de
+                 continuar (Felipe, 10-09-2026). */
+              overflow-y: auto;
+              -webkit-overflow-scrolling: touch;
               background: transparent !important;
             }
 
@@ -300,8 +304,8 @@ export function AlohaBookingProvider({
             className="
               fixed
               inset-0
-              w-screen
-              h-screen
+              w-full
+              h-[100dvh]
               border-0
               bg-transparent
             "
