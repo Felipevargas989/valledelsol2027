@@ -316,7 +316,7 @@ export default function CorporateEventPage() {
         {/* PASEOS FIN DE AÑO */}
         <section className="relative py-36 bg-[#071827] overflow-hidden text-white">
 
-          <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
             src="/images/empresas/e9.jpg"
             alt={t('yearEndBackgroundAlt')}
             fill
@@ -489,7 +489,7 @@ export default function CorporateEventPage() {
               className="relative h-[520px] md:h-[680px] rounded-[42px] overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.45)] border border-white/10"
             >
 
-              <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                 src="/images/empresas/e10.jpg"
                 alt={t('yearEndImageAlt')}
                 fill
@@ -832,7 +832,7 @@ export default function CorporateEventPage() {
         {/* CONVENIOS */}
         <section className="relative py-36 overflow-hidden">
 
-          <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
             src="/images/empresas/e1.jpg"
             alt={t('agreementsImageAlt')}
             fill
@@ -1007,7 +1007,7 @@ export default function CorporateEventPage() {
 
                   <div className="relative h-[340px]">
 
-                    <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                       src={img}
                       alt={`${t('galleryImageAlt')} ${i + 1}`}
                       fill

@@ -18,7 +18,12 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // El CSS (11,8 KB) va incrustado en el HTML: le ahorra un viaje al
+  // celular antes de pintar (PageSpeed: 'solicitud que bloquea', 09-09).
+  experimental: { inlineCss: true },
   images: {
+    // Fondos con capa oscura a 60, portadas a 70, el resto 75.
+    qualities: [60, 70, 75],
     remotePatterns: [
       {
         protocol: 'https',

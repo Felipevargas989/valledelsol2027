@@ -107,7 +107,7 @@ function Card({
     <div className="relative h-[360px] md:h-[420px] rounded-2xl overflow-hidden group cursor-pointer">
 
       {/* Imagen */}
-      <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+      <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
         src={image}
         alt={title}
         fill

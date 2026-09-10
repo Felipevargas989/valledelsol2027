@@ -74,6 +74,7 @@ export default function GalleryFilter() {
             alt=""
             fill
             sizes="100vw"
+            quality={60}
             className="object-cover object-center"
             aria-hidden="true"
           />

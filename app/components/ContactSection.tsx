@@ -118,7 +118,7 @@ export default function ContactSection() {
 
                 <div className="flex justify-center">
                   <div className="relative w-full max-w-[420px] aspect-square rounded-full overflow-hidden shadow-2xl ring-4 ring-white">
-                    <Image sizes="(max-width: 768px) 100vw, 50vw"
+                    <Image sizes="(max-width: 768px) 90vw, 50vw"
                       src={slide.image}
                       alt={t(`slides.${slide.key}.title`)}
                       fill

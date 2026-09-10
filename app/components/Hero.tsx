@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
+
 import { useEffect, useState } from 'react';
-import { preload } from 'react-dom';
 import PrimaryButton from './PrimaryButton';
 import SecondaryButton from './SecondaryButton';
 
@@ -14,10 +15,6 @@ interface HeroProps {
   quoteButton: string;
   animationSpeed?: number;
 }
-
-// La portada del video es lo primero que ve el visitante: se pide antes
-// que todo lo demás.
-preload('/images/hero/hero-poster.jpg', { as: 'image' });
 
 export default function Hero({
   staticText,
@@ -70,6 +67,19 @@ export default function Hero({
           En pantallas chicas va la versión de 480p (5,9 MB), en el resto
           la de 720p (24,7 MB); el navegador baja solo lo que reproduce. */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* La portada como imagen optimizada (AVIF/WebP al tamaño justo) DEBAJO
+            del video: como atributo poster no pasaba por el optimizador (140 KB
+            planos). Cuando el video arranca, la tapa. */}
+        <Image
+          src="/images/hero/hero-poster.jpg"
+          alt=""
+          fill
+          priority
+          quality={70}
+          sizes="100vw"
+          className="object-cover object-center"
+          aria-hidden="true"
+          />
         <video
           className="
             absolute top-1/2 left-1/2
@@ -80,7 +90,6 @@ export default function Hero({
             pointer-events-none
           "
           src={videoSrc ?? undefined}
-          poster="/images/hero/hero-poster.jpg"
           autoPlay
           muted
           loop

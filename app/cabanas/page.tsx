@@ -272,7 +272,7 @@ function Carousel({
         src={images[index]}
         alt={`${imageAlt} ${index + 1}`}
         fill
-        sizes="(max-width: 768px) 100vw, 50vw"
+        sizes="(max-width: 768px) 90vw, 50vw"
         className="object-cover"
       />
 
@@ -724,7 +724,7 @@ export default function CabanasPage() {
         {/* BENEFICIOS */}
         <section className="relative py-28 md:py-36 overflow-hidden">
 
-          <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
             src="/images/cabanas/bg-beneficios.jpeg"
             alt={t('benefitsImageAlt')}
             fill

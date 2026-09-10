@@ -132,6 +132,19 @@ export default function WeddingsPage() {
               entero antes de pintar. Portada al instante; 480p en pantallas
               chicas, 720p en el resto. */}
 
+            {/* La portada como imagen optimizada (AVIF/WebP al tamaño justo) DEBAJO
+                del video: como atributo poster no pasaba por el optimizador (140 KB
+                planos). Cuando el video arranca, la tapa. */}
+            <Image
+              src="/images/matrimonio/bodas-poster.jpg"
+              alt=""
+              fill
+              priority
+              quality={70}
+              sizes="100vw"
+              className="object-cover object-center"
+              aria-hidden="true"
+              />
             <video
               className="
                 absolute
@@ -147,7 +160,6 @@ export default function WeddingsPage() {
                 pointer-events-none
               "
               src={videoSrc ?? undefined}
-              poster="/images/matrimonio/bodas-poster.jpg"
               autoPlay
               muted
               loop
@@ -466,7 +478,7 @@ export default function WeddingsPage() {
 
                 <div className="relative h-[300px]">
 
-                  <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                     src={img}
                     alt={`${t('galleryImageAlt')} ${i + 1}`}
                     fill

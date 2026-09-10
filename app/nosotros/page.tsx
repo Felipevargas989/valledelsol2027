@@ -232,7 +232,7 @@ export default function AboutPage() {
                 "
               >
 
-                <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                   src="/images/galeria/letrero2.jpg"
                   alt={t('historyImageAlt')}
                   fill
@@ -314,7 +314,7 @@ export default function AboutPage() {
 
                 <div className="relative h-[260px] md:h-[300px]">
 
-                  <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                     src={img}
                     alt={`${t('galleryImageAlt')} ${i + 1}`}
                     fill

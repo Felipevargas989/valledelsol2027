@@ -351,7 +351,7 @@ export default function ClassOutingsPage() {
                 className="relative h-[450px] md:h-[650px] rounded-[40px] overflow-hidden shadow-[0_40px_120px_rgba(13,92,171,0.25)]"
               >
 
-                <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                   src="/images/colegios/paseos/c1.jpg"
                   alt={t('outingImageAlt')}
                   fill
@@ -611,7 +611,7 @@ export default function ClassOutingsPage() {
 
                   <div className="relative h-[360px]">
 
-                    <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                       src={img}
                       alt={`${t('outingGalleryImageAlt')} ${i + 1}`}
                       fill
@@ -732,7 +732,7 @@ export default function ClassOutingsPage() {
                 className="relative h-[450px] md:h-[650px] rounded-[36px] overflow-hidden"
               >
 
-                <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                   src='/images/colegios/graduaciones/g18.jpg'
                   alt={t('graduationImageAlt')}
                   fill
@@ -866,7 +866,7 @@ export default function ClassOutingsPage() {
 
                   <div className="relative h-[240px] md:h-[270px]">
 
-                    <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    <Image sizes="(max-width: 768px) 70vw, (max-width: 1280px) 50vw, 33vw"
                       src={img}
                       alt={`${t('graduationGalleryImageAlt')} ${i + 1}`}
                       fill

@@ -21,6 +21,7 @@ export default function LocationSection() {
             alt={t('imageAlt')}
             fill
             sizes="100vw"
+          quality={60}
             className="object-cover"
           />
         </div>
