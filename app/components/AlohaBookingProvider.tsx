@@ -22,8 +22,18 @@ type AlohaBookingContextValue = {
 const AlohaBookingContext =
   createContext<AlohaBookingContextValue | null>(null);
 
+/*
+ * La llave de la propiedad en Aloha. NO es un secreto: viaja dentro de la
+ * página y cualquiera que abra el sitio puede leerla (así se verificó la
+ * configuración del widget el 09-09-2026). La variable de entorno manda si
+ * está; el valor de acá es el respaldo, para que el widget funcione en
+ * TODOS los ambientes sin depender de que la variable esté declarada en
+ * cada uno — el 10-09 la vista previa salió sin ella y el botón de
+ * reservas quedaba desactivado.
+ */
 const ALOHA_PROPERTY_KEY =
-  process.env.NEXT_PUBLIC_ALOHA_PROPERTY_KEY || '';
+  process.env.NEXT_PUBLIC_ALOHA_PROPERTY_KEY ||
+  'a0e3417e-1b4e-4088-9f65-6a86e8c47c3f';
 
 export function AlohaBookingProvider({
   children,
