@@ -127,17 +127,17 @@
   "slides": {
     "companies": {
       "title": "Convênios com empresas",
-      "cta": "Ver convênios para empresas",
+      "cta": "Empresas",
       "text": "Oferecemos planos especiais para empresas que desejam proporcionar benefícios reais aos seus colaboradores. Tenha acesso a tarifas preferenciais, experiências personalizadas e um ambiente ideal para o descanso."
     },
     "tourOperators": {
       "title": "Programas para Operadores Turísticos",
-      "cta": "Ver programas para operadoras de turismo",
+      "cta": "Operadoras de turismo",
       "text": "Trabalhamos com operadores turísticos para criar experiências únicas no Valle del Sol. Desenvolvemos programas flexíveis, atrativos e com alto valor agregado."
     },
     "schools": {
       "title": "Benefícios para Escolas",
-      "cta": "Ver programas para escolas",
+      "cta": "Escolas",
       "text": "Programas ideais para viagens de estudo e atividades educativas em um ambiente seguro, natural e enriquecedor."
     }
   }
