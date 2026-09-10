@@ -127,14 +127,17 @@
   "slides": {
     "companies": {
       "title": "Corporate Partnerships",
+      "cta": "See company partnership plans",
       "text": "We offer special plans for companies looking to provide real benefits to their employees. Access preferred rates, personalized experiences and an ideal environment for relaxation."
     },
     "tourOperators": {
       "title": "Programs for Tour Operators",
+      "cta": "See tour operator programs",
       "text": "We work with tour operators to create unique experiences at Valle del Sol. We design flexible, attractive programs with high added value."
     },
     "schools": {
       "title": "Benefits for Schools",
+      "cta": "See school programs",
       "text": "Ideal programs for educational trips and school activities in a safe, natural and enriching environment."
     }
   }

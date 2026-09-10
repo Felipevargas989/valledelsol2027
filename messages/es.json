@@ -127,14 +127,17 @@
   "slides": {
     "companies": {
       "title": "Convenios con empresas",
+      "cta": "Ver convenios para empresas",
       "text": "Ofrecemos planes especiales para empresas que buscan entregar beneficios reales a sus colaboradores. Accede a tarifas preferenciales, experiencias personalizadas y un entorno ideal para el descanso."
     },
     "tourOperators": {
       "title": "Programas para Tour Operadores",
+      "cta": "Ver programas para tour operadores",
       "text": "Trabajamos junto a tour operadores para crear experiencias únicas en Valle del Sol. Diseñamos programas flexibles, atractivos y con alto valor agregado."
     },
     "schools": {
       "title": "Beneficios para Colegios",
+      "cta": "Ver programas para colegios",
       "text": "Programas ideales para giras de estudio y actividades educativas en un entorno seguro, natural y enriquecedor."
     }
   }

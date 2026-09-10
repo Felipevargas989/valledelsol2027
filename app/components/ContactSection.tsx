@@ -141,7 +141,7 @@ export default function ContactSection() {
                       href={slide.href}
                       className="px-6 py-3 text-base shadow-xl"
                     >
-                      {t('moreInfo')}
+                      {t(`slides.${slide.key}.cta`)}
                     </PrimaryButton>
 
                     <SecondaryButton
