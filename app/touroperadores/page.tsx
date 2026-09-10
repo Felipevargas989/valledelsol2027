@@ -222,7 +222,7 @@ export default function TourOperadoresPage() {
               scale: heroScale,
             }}
           >
-            <Image
+            <Image sizes="100vw"
               src="/images/tour/t3.jpg"
               alt={t('heroImageAlt')}
               fill
@@ -446,7 +446,7 @@ export default function TourOperadoresPage() {
               className="relative h-[650px] rounded-[36px] overflow-hidden shadow-2xl"
             >
 
-              <Image
+              <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 src="/images/tour/t2.jpg"
                 alt={t('introImageAlt')}
                 fill
@@ -521,7 +521,7 @@ export default function TourOperadoresPage() {
                 className="relative h-[650px] rounded-[36px] overflow-hidden shadow-2xl"
               >
 
-                <Image
+                <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   src="/images/tour/t4.jpg"
                   alt={t('seniorImageAlt')}
                   fill
@@ -661,7 +661,7 @@ export default function TourOperadoresPage() {
                 className="relative h-[650px] rounded-[36px] overflow-hidden shadow-2xl"
               >
 
-                <Image
+                <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   src="/images/tour/t5.jpg"
                   alt={t('delegationsImageAlt')}
                   fill
@@ -850,7 +850,7 @@ export default function TourOperadoresPage() {
               className="relative h-[650px] rounded-[36px] overflow-hidden shadow-2xl"
             >
 
-              <Image
+              <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 src="/images/tour/t6.jpg"
                 alt={t('integralImageAlt')}
                 fill
@@ -1050,7 +1050,7 @@ export default function TourOperadoresPage() {
 
         <section className="relative py-40 overflow-hidden">
 
-          <Image
+          <Image sizes="100vw"
             src="/images/tour/t1.jpg"
             alt={t('ctaImageAlt')}
             fill

@@ -313,7 +313,7 @@ export default function WeddingsPage() {
             }}
           >
 
-            <Image
+            <Image sizes="100vw"
               src={backgroundIncludes}
               alt={t('benefitsImageAlt')}
               fill
@@ -443,7 +443,7 @@ export default function WeddingsPage() {
 
                 <div className="relative h-[300px]">
 
-                  <Image
+                  <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     src={img}
                     alt={`${t('galleryImageAlt')} ${i + 1}`}
                     fill

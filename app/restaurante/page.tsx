@@ -85,7 +85,7 @@ export default function RestaurantPage() {
               scale: heroScale,
             }}
           >
-            <Image
+            <Image sizes="100vw"
               src="/images/restaurante/resthero.webp"
               alt={t('heroImageAlt')}
               fill
@@ -355,7 +355,7 @@ export default function RestaurantPage() {
 
                 <div className="relative h-[300px]">
 
-                  <Image
+                  <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     src={img}
                     alt={`${t('galleryImageAlt')} ${i + 1}`}
                     fill

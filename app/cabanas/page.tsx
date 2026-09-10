@@ -626,7 +626,7 @@ export default function CabanasPage() {
               scale: heroScale,
             }}
           >
-            <Image
+            <Image sizes="100vw"
               src="/images/cabanas/hero.jpg"
               alt={t('heroImageAlt')}
               fill
@@ -724,7 +724,7 @@ export default function CabanasPage() {
         {/* BENEFICIOS */}
         <section className="relative py-28 md:py-36 overflow-hidden">
 
-          <Image
+          <Image sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             src="/images/cabanas/bg-beneficios.jpeg"
             alt={t('benefitsImageAlt')}
             fill

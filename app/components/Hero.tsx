@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { preload } from 'react-dom';
 import PrimaryButton from './PrimaryButton';
 import SecondaryButton from './SecondaryButton';
 
@@ -13,6 +14,10 @@ interface HeroProps {
   quoteButton: string;
   animationSpeed?: number;
 }
+
+// La portada del video es lo primero que ve el visitante: se pide antes
+// que todo lo demás.
+preload('/images/hero/hero-poster.jpg', { as: 'image' });
 
 export default function Hero({
   staticText,
