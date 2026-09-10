@@ -21,11 +21,12 @@ export default function Footer() {
           {/* COLUMNA 1 - LOGO */}
           <div>
             <Image
-              src="/images/logo/logo-blanco.png"
+              src="/images/logo/circular-blanco.png"
               alt="Valle del Sol"
-              width={120}
-              height={120}
-              className="mb-4"
+              width={512}
+              height={512}
+              sizes="120px"
+              className="mb-4 w-[120px] h-auto"
             />
 
             <p className="text-gray-400 leading-relaxed">
