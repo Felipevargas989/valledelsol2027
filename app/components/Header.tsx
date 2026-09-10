@@ -202,23 +202,22 @@ export default function Header() {
             className="relative z-50 flex-shrink-0"
             aria-label="Valle del Sol"
           >
-            {/* Logo circular de la marca (Felipe, 10-09-2026). Es cuadrado,
-                así que se mide por ALTO para que calce en la barra de 80 px:
-                el anterior era horizontal. Blanco sobre el video, naranjo al
-                bajar, igual que antes. */}
+            {/* El logo horizontal, como estaba (Felipe, 10-09-2026): el sello
+                circular quedó solo en el pie — en la barra el nombre se lee
+                mejor así. */}
             <Image
               src={
                 scrolled
-                  ? '/images/logo/circular-naranjo.png'
-                  : '/images/logo/circular-blanco.png'
+                  ? '/images/logo/logo-naranjo.png'
+                  : '/images/logo/logo-blanco.png'
               }
               alt="Valle del Sol"
-              width={512}
-              height={512}
+              width={100}
+              height={70}
               priority
               className="
-                w-[58px]
-                lg:w-[68px]
+                w-[82px]
+                lg:w-[100px]
                 h-auto
                 object-contain
               "
