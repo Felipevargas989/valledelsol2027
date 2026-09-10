@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import SeguimientoDeClics from './SeguimientoDeClics';
 
 /**
  * Google Analytics (propiedad "Valle del Sol", 10-09-2026).
@@ -22,5 +23,12 @@ export default function Analitica() {
     );
   }, []);
 
-  return enElSitioReal ? <GoogleAnalytics gaId={ID} /> : null;
+  if (!enElSitioReal) return null;
+
+  return (
+    <>
+      <GoogleAnalytics gaId={ID} />
+      <SeguimientoDeClics />
+    </>
+  );
 }
