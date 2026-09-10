@@ -6,7 +6,7 @@ import EventFeatureCard from '../components/EventFeatureCard';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
 import { useTranslations } from 'next-intl';
@@ -78,6 +78,11 @@ const services = [
 
 export default function WeddingsPage() {
   const t = useTranslations('Matrimonios');
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  useEffect(() => {
+    const chica = window.matchMedia('(max-width: 768px)').matches;
+    setVideoSrc(chica ? '/videos/bodas-480.mp4' : '/videos/bodas-720.mp4');
+  }, []);
 
   const includesRef = useRef(null);
 
@@ -114,7 +119,12 @@ export default function WeddingsPage() {
           {/* VIDEO */}
           <div className="absolute inset-0 w-full h-full overflow-hidden">
 
-            <iframe
+            {/* Video propio servido por Vercel (09-09-2026), igual que el hero de
+              la portada: antes era YouTube y el celular bajaba el reproductor
+              entero antes de pintar. Portada al instante; 480p en pantallas
+              chicas, 720p en el resto. */}
+
+            <video
               className="
                 absolute
                 top-1/2
@@ -123,14 +133,19 @@ export default function WeddingsPage() {
                 min-h-full
                 w-auto
                 h-auto
-                aspect-video
                 -translate-x-1/2
                 -translate-y-1/2
+                object-cover
                 pointer-events-none
               "
-              src="https://www.youtube.com/embed/br3Qe9JXdVU?autoplay=1&mute=1&controls=0&loop=1&playlist=br3Qe9JXdVU&modestbranding=1&showinfo=0&rel=0"
-              title={t('heroVideoTitle')}
-              allow="autoplay; fullscreen"
+              src={videoSrc ?? undefined}
+              poster="/images/matrimonio/bodas-poster.jpg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
             />
 
           </div>
