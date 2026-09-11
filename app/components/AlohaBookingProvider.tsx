@@ -73,6 +73,21 @@ export function AlohaBookingProvider({
         return;
       }
 
+      /*
+       * Aviso para Tag Manager: conversión "Cabañas · Reservar" (11-09-2026).
+       * Reservar es un botón y no un enlace, así que Tag Manager no lo ve
+       * solo. Si Tag Manager no está cargado (vista previa, local), el aviso
+       * queda en una lista que nadie lee: no rompe nada.
+       */
+      const pagina = window as unknown as {
+        dataLayer?: Record<string, unknown>[];
+      };
+      pagina.dataLayer = pagina.dataLayer || [];
+      pagina.dataLayer.push({
+        event: 'abrir_reservas',
+        unidad: options?.unitSlug ?? 'general',
+      });
+
       setBookingId(null);
       setPaymentStatus(null);
       setUnitSlug(options?.unitSlug);
