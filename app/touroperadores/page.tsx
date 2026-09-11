@@ -351,7 +351,7 @@ export default function TourOperadoresPage() {
                 "
               >
 
-                <PrimaryButton href="https://wa.me/56926035311">
+                <PrimaryButton href="https://wa.me/56950955947">
                   {t('requestProgram')}
                 </PrimaryButton>
 
@@ -1108,7 +1108,7 @@ export default function TourOperadoresPage() {
               >
 
                 <a
-                  href="https://wa.me/56926035311"
+                  href="https://wa.me/56950955947"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-12 py-5 rounded-full font-semibold text-lg shadow-2xl hover:scale-105 transition duration-300"
@@ -1121,7 +1121,7 @@ export default function TourOperadoresPage() {
                 </a>
 
                 <a
-                  href="https://wa.me/56926035311"
+                  href="https://wa.me/56950955947"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-12 py-5 rounded-full border border-white/40 hover:bg-white hover:text-black transition duration-300 text-lg"
