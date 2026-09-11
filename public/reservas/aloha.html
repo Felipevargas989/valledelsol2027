@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Reservas · Valle del Sol</title>
+    <!--
+      VENTANA DE RESERVAS DE ALOHA CON DIRECCIÓN PROPIA (11-09-2026)
+
+      Antes el widget se armaba dentro de la página con srcdoc. Aloha construye
+      la dirección de regreso del pago con la dirección del marco, y un srcdoc
+      no tiene dirección real: en una reserva con pago real (la 2458) el
+      cliente terminó en una hoja en blanco en prod.alojate.pro. Con esta
+      página, WebPay devuelve al cliente a nuestro dominio.
+
+      Tres casos:
+      1. La abre la página, dentro de la ventana de reservas: muestra el widget.
+         Si el cliente cierra con la X de Aloha, avisa a la página para que
+         cierre también el fondo oscuro.
+      2. Se abre como pestaña completa al volver de WebPay: manda al cliente a
+         /cabanas con la reserva y el estado. Ahí la página muestra la
+         confirmación de Aloha y cuenta la conversión.
+      3. El pago vuelve dentro de la ventana: avisa a la página para contar la
+         conversión, y Aloha muestra la confirmación solo.
+
+      La llave de Aloha llega en la dirección (key). No es secreta: viaja en la
+      página publicada. Mantener junto con app/components/AlohaBookingProvider.tsx.
+    -->
+    <link rel="stylesheet" href="https://booking-widget.aloha.co/aloha-booking-widget.css" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        /* Se puede desplazar: en iPhone el widget no cabía entero (10-09-2026). */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        background: transparent !important;
+      }
+
+      #aloha-widget {
+        width: 100%;
+        height: 100%;
+        background: transparent !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="aloha-widget"></div>
+
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var reserva = params.get('booking_id') || '';
+        var estado = params.get('payment_status') || params.get('status') || '';
+        if (params.has('TBK_TOKEN')) {
+          estado = 'failed';
+        }
+        var reservaValida = /^[A-Za-z0-9_-]{1,40}$/.test(reserva);
+        var estadoValido = /^[a-z_]{1,20}$/.test(estado);
+        var enVentana = window.top !== window.self;
+
+        // CASO 2: volvió de WebPay como pestaña completa.
+        if (!enVentana) {
+          var destino = new URLSearchParams();
+          if (reservaValida && estadoValido) {
+            destino.set('booking_id', reserva);
+            destino.set('status', estado);
+          }
+          var consulta = destino.toString();
+          window.location.replace('/cabanas' + (consulta ? '?' + consulta : ''));
+          return;
+        }
+
+        var estadoVentana = { saliendo: false };
+        var marcarSalida = function () {
+          estadoVentana.saliendo = true;
+        };
+        // Se registra ANTES de cargar Aloha: Aloha también cierra su widget al
+        // salir hacia WebPay, y eso no debe cerrar la ventana de reservas.
+        window.addEventListener('beforeunload', marcarSalida);
+        window.addEventListener('pagehide', marcarSalida);
+
+        estadoVentana.avisar = function (aviso) {
+          aviso.fuente = 'vds-reservas';
+          try {
+            window.parent.postMessage(aviso, window.location.origin);
+          } catch (error) {
+            console.error('Reservas: no se pudo avisar a la página.', error);
+          }
+        };
+
+        // CASO 3: el pago volvió dentro de la ventana.
+        if (params.get('request-type') === 'embed' && reservaValida && estadoValido) {
+          estadoVentana.avisar({ tipo: 'pago', booking_id: reserva, status: estado });
+        }
+
+        window.__vdsReservas = estadoVentana;
+      })();
+    </script>
+
+    <script src="https://booking-widget.aloha.co/aloha-booking-widget.umd.js"></script>
+
+    <script>
+      (function () {
+        var estadoVentana = window.__vdsReservas;
+        if (!estadoVentana) {
+          return;
+        }
+
+        var params = new URLSearchParams(window.location.search);
+        var llave = params.get('key') || '';
+        if (!/^[A-Za-z0-9-]{10,80}$/.test(llave)) {
+          console.error('Reservas: falta la llave de Aloha.');
+          return;
+        }
+
+        var config = { key: llave, currency: 'CLP' };
+        var unidad = params.get('unit_slug');
+        if (unidad && /^[A-Za-z0-9_-]{1,80}$/.test(unidad)) {
+          config.unit_slug = unidad;
+        }
+
+        var arrancar = function () {
+          try {
+            // Si la dirección trae request-type=embed, booking_id y status,
+            // Aloha abre solo la confirmación del pago.
+            var widget = new AlohaBookingWidget(config);
+            widget.open();
+
+            // CASO 1: la X de Aloha saca su elemento <aloha-widget> de la página
+            // y no avisa a nadie. Se espera un momento para no confundirlo con
+            // la salida hacia WebPay.
+            var observador = new MutationObserver(function () {
+              if (document.querySelector('aloha-widget')) {
+                return;
+              }
+              setTimeout(function () {
+                if (estadoVentana.saliendo || document.querySelector('aloha-widget')) {
+                  return;
+                }
+                estadoVentana.avisar({ tipo: 'cerrado' });
+              }, 400);
+            });
+            observador.observe(document.body, { childList: true });
+          } catch (error) {
+            console.error('No fue posible abrir el widget de Aloha:', error);
+          }
+        };
+
+        if (document.readyState === 'complete') {
+          arrancar();
+        } else {
+          window.addEventListener('load', arrancar);
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -7,6 +7,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 
@@ -35,6 +36,63 @@ const ALOHA_PROPERTY_KEY =
   process.env.NEXT_PUBLIC_ALOHA_PROPERTY_KEY ||
   'a0e3417e-1b4e-4088-9f65-6a86e8c47c3f';
 
+/*
+ * PÁGINA PROPIA DE LA VENTANA DE RESERVAS (public/reservas/aloha.html)
+ *
+ * Antes el widget se armaba con srcdoc. Aloha arma la dirección de regreso
+ * del pago con la dirección del marco, y un srcdoc no tiene dirección real:
+ * el 11-09-2026, en una reserva con pago real (la 2458), el cliente terminó
+ * en una hoja en blanco en prod.alojate.pro. Con una página de nuestro
+ * dominio, WebPay devuelve al cliente acá.
+ */
+const PAGINA_DE_RESERVAS = '/reservas/aloha.html';
+
+/*
+ * Aviso para Tag Manager. Si Tag Manager no está cargado (vista previa,
+ * local), el aviso queda en una lista que nadie lee: no rompe nada.
+ */
+function avisarATagManager(datos: Record<string, unknown>) {
+  const pagina = window as unknown as {
+    dataLayer?: Record<string, unknown>[];
+  };
+  pagina.dataLayer = pagina.dataLayer || [];
+  pagina.dataLayer.push(datos);
+}
+
+/*
+ * Conversión "Cabañas · Reserva pagada" (11-09-2026). Solo pagos exitosos,
+ * y una sola vez por reserva en esta pestaña aunque el cliente recargue.
+ */
+function contarReservaPagada(reserva: string, estado: string) {
+  if (estado !== 'success') {
+    return;
+  }
+
+  const clave = `vds_reserva_pagada_${reserva}`;
+
+  try {
+    if (window.sessionStorage.getItem(clave)) {
+      return;
+    }
+    window.sessionStorage.setItem(clave, '1');
+  } catch {
+    // Modo privado o almacenamiento bloqueado: se cuenta igual.
+  }
+
+  avisarATagManager({
+    event: 'reserva_pagada',
+    booking_id: reserva,
+    estado_pago: estado,
+  });
+}
+
+type AvisoDeLaVentana = {
+  fuente?: string;
+  tipo?: string;
+  booking_id?: string;
+  status?: string;
+};
+
 export function AlohaBookingProvider({
   children,
 }: {
@@ -44,9 +102,15 @@ export function AlohaBookingProvider({
   const [unitSlug, setUnitSlug] = useState<string | undefined>();
   const [bookingId, setBookingId] = useState<string | null>(null);
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   /*
    * RECUPERAR RESERVA AL VOLVER DEL PAGO
+   *
+   * WebPay devuelve al cliente a la página de reservas, y esa página lo
+   * manda acá con booking_id y status. Se abre la ventana en modo
+   * confirmación, se cuenta la conversión y se limpia la dirección para que
+   * al recargar no se repita.
    */
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -58,6 +122,17 @@ export function AlohaBookingProvider({
       setBookingId(returnedBookingId);
       setPaymentStatus(returnedStatus);
       setIsOpen(true);
+
+      contarReservaPagada(returnedBookingId, returnedStatus);
+
+      params.delete('booking_id');
+      params.delete('status');
+      const consulta = params.toString();
+      window.history.replaceState(
+        window.history.state,
+        '',
+        `${window.location.pathname}${consulta ? `?${consulta}` : ''}${window.location.hash}`
+      );
     }
   }, []);
 
@@ -79,11 +154,7 @@ export function AlohaBookingProvider({
        * solo. Si Tag Manager no está cargado (vista previa, local), el aviso
        * queda en una lista que nadie lee: no rompe nada.
        */
-      const pagina = window as unknown as {
-        dataLayer?: Record<string, unknown>[];
-      };
-      pagina.dataLayer = pagina.dataLayer || [];
-      pagina.dataLayer.push({
+      avisarATagManager({
         event: 'abrir_reservas',
         unidad: options?.unitSlug ?? 'general',
       });
@@ -110,113 +181,28 @@ export function AlohaBookingProvider({
   }, []);
 
   /*
-   * HTML AISLADO DEL WIDGET
+   * DIRECCIÓN DE LA VENTANA DE RESERVAS
    */
-  const iframeDocument = useMemo(() => {
+  const iframeSrc = useMemo(() => {
     if (!isOpen || !ALOHA_PROPERTY_KEY) {
       return '';
     }
 
-    const widgetConfig: Record<string, string> = {
-      key: ALOHA_PROPERTY_KEY,
-      currency: 'CLP',
-    };
+    const params = new URLSearchParams({ key: ALOHA_PROPERTY_KEY });
 
     if (unitSlug) {
-      widgetConfig.unit_slug = unitSlug;
+      params.set('unit_slug', unitSlug);
     }
 
+    // Modo confirmación: Aloha reconoce solo esta combinación de parámetros.
     if (bookingId && paymentStatus) {
-      widgetConfig.booking_id = bookingId;
-      widgetConfig.payment_status = paymentStatus;
+      params.set('request-type', 'embed');
+      params.set('booking_id', bookingId);
+      params.set('status', paymentStatus);
     }
 
-    const serializedConfig = JSON.stringify(widgetConfig).replace(
-      /</g,
-      '\\u003c'
-    );
-
-    return `
-      <!DOCTYPE html>
-      <html lang="es">
-
-        <head>
-
-          <meta charset="UTF-8" />
-
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-          />
-
-          <link
-            rel="stylesheet"
-            href="https://booking-widget.aloha.co/aloha-booking-widget.css"
-          />
-
-          <style>
-            html,
-            body {
-              width: 100%;
-              height: 100%;
-              margin: 0;
-              padding: 0;
-              /* Se puede desplazar: en iPhone el widget no cabía entero y
-                 quedaban cortados el selector de niños y el botón de
-                 continuar (Felipe, 10-09-2026). */
-              overflow-y: auto;
-              -webkit-overflow-scrolling: touch;
-              background: transparent !important;
-            }
-
-            #aloha-widget {
-              width: 100%;
-              height: 100%;
-              background: transparent !important;
-            }
-          </style>
-
-        </head>
-
-        <body>
-
-          <div id="aloha-widget"></div>
-
-          <script
-            src="https://booking-widget.aloha.co/aloha-booking-widget.umd.js"
-          ></script>
-
-          <script>
-            window.addEventListener(
-              'load',
-              function () {
-                try {
-                  var widget =
-                    new AlohaBookingWidget(
-                      ${serializedConfig}
-                    );
-
-                  widget.open();
-                } catch (error) {
-                  console.error(
-                    'No fue posible abrir el widget de Aloha:',
-                    error
-                  );
-                }
-              }
-            );
-          </script>
-
-        </body>
-
-      </html>
-    `;
-  }, [
-    isOpen,
-    unitSlug,
-    bookingId,
-    paymentStatus,
-  ]);
+    return `${PAGINA_DE_RESERVAS}?${params.toString()}`;
+  }, [isOpen, unitSlug, bookingId, paymentStatus]);
 
   /*
    * BLOQUEAR SCROLL MIENTRAS EL MODAL ESTÁ ABIERTO
@@ -261,6 +247,53 @@ export function AlohaBookingProvider({
         'keydown',
         handleEscape
       );
+    };
+  }, [isOpen, closeBooking]);
+
+  /*
+   * AVISOS DESDE LA PÁGINA DE RESERVAS
+   *
+   * - 'cerrado': el cliente cerró con la X de Aloha. Aloha no le avisa a la
+   *   página, y quedaba el fondo oscuro con la página bloqueada; el botón
+   *   naranjo era la única salida (probado el 11-09-2026).
+   * - 'pago': el pago volvió dentro de la ventana en vez de la pestaña
+   *   completa; se cuenta igual la conversión.
+   *
+   * Solo se aceptan avisos del mismo dominio y de nuestra propia ventana.
+   */
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) {
+        return;
+      }
+
+      if (event.source !== iframeRef.current?.contentWindow) {
+        return;
+      }
+
+      const aviso = event.data as AvisoDeLaVentana | null;
+
+      if (!aviso || aviso.fuente !== 'vds-reservas') {
+        return;
+      }
+
+      if (aviso.tipo === 'cerrado') {
+        closeBooking();
+      }
+
+      if (aviso.tipo === 'pago' && aviso.booking_id && aviso.status) {
+        contarReservaPagada(aviso.booking_id, aviso.status);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
     };
   }, [isOpen, closeBooking]);
 
@@ -324,8 +357,9 @@ export function AlohaBookingProvider({
 
           {/* IFRAME ALOHA */}
           <iframe
+            ref={iframeRef}
             title="Reservas Aloha"
-            srcDoc={iframeDocument}
+            src={iframeSrc}
             className="
               fixed
               inset-0
