@@ -48,6 +48,20 @@ const ALOHA_PROPERTY_KEY =
 const PAGINA_DE_RESERVAS = '/reservas/aloha.html';
 
 /*
+ * Formatos aceptados al volver del pago, los mismos que usa la página de
+ * reservas. Lo que no calce se ignora: la dirección la puede escribir
+ * cualquiera.
+ */
+const FORMATO_RESERVA = /^[A-Za-z0-9_-]{1,40}$/;
+const FORMATO_ESTADO = /^[a-z_]{1,20}$/;
+
+/*
+ * Reservas ya contadas en esta pestaña. Segundo candado junto al
+ * sessionStorage, por si el navegador bloquea el almacenamiento.
+ */
+const reservasContadas = new Set<string>();
+
+/*
  * Aviso para Tag Manager. Si Tag Manager no está cargado (vista previa,
  * local), el aviso queda en una lista que nadie lee: no rompe nada.
  */
@@ -67,6 +81,11 @@ function contarReservaPagada(reserva: string, estado: string) {
   if (estado !== 'success') {
     return;
   }
+
+  if (reservasContadas.has(reserva)) {
+    return;
+  }
+  reservasContadas.add(reserva);
 
   const clave = `vds_reserva_pagada_${reserva}`;
 
@@ -118,12 +137,22 @@ export function AlohaBookingProvider({
     const returnedBookingId = params.get('booking_id');
     const returnedStatus = params.get('status');
 
-    if (returnedBookingId && returnedStatus) {
+    // El estado es opcional: Aloha trata un regreso sin estado como pago
+    // exitoso y muestra la confirmación. La conversión se cuenta solo si el
+    // estado dice literalmente "success".
+    if (returnedBookingId && FORMATO_RESERVA.test(returnedBookingId)) {
+      const estado =
+        returnedStatus && FORMATO_ESTADO.test(returnedStatus)
+          ? returnedStatus
+          : null;
+
       setBookingId(returnedBookingId);
-      setPaymentStatus(returnedStatus);
+      setPaymentStatus(estado);
       setIsOpen(true);
 
-      contarReservaPagada(returnedBookingId, returnedStatus);
+      if (estado) {
+        contarReservaPagada(returnedBookingId, estado);
+      }
 
       params.delete('booking_id');
       params.delete('status');
@@ -188,20 +217,29 @@ export function AlohaBookingProvider({
       return '';
     }
 
-    const params = new URLSearchParams({ key: ALOHA_PROPERTY_KEY });
+    // Dirección corta a propósito: Aloha la usa como dirección de regreso del
+    // pago. La llave va fija dentro de la página de reservas.
+    const params = new URLSearchParams();
 
     if (unitSlug) {
-      params.set('unit_slug', unitSlug);
+      params.set('u', unitSlug);
     }
 
-    // Modo confirmación: Aloha reconoce solo esta combinación de parámetros.
-    if (bookingId && paymentStatus) {
+    // Modo confirmación: Aloha lo reconoce con request-type y booking_id.
+    if (bookingId) {
       params.set('request-type', 'embed');
       params.set('booking_id', bookingId);
-      params.set('status', paymentStatus);
+
+      if (paymentStatus) {
+        params.set('status', paymentStatus);
+      }
     }
 
-    return `${PAGINA_DE_RESERVAS}?${params.toString()}`;
+    const consulta = params.toString();
+
+    return consulta
+      ? `${PAGINA_DE_RESERVAS}?${consulta}`
+      : PAGINA_DE_RESERVAS;
   }, [isOpen, unitSlug, bookingId, paymentStatus]);
 
   /*
@@ -285,7 +323,13 @@ export function AlohaBookingProvider({
         closeBooking();
       }
 
-      if (aviso.tipo === 'pago' && aviso.booking_id && aviso.status) {
+      if (
+        aviso.tipo === 'pago' &&
+        aviso.booking_id &&
+        aviso.status &&
+        FORMATO_RESERVA.test(aviso.booking_id) &&
+        FORMATO_ESTADO.test(aviso.status)
+      ) {
         contarReservaPagada(aviso.booking_id, aviso.status);
       }
     };
