@@ -145,7 +145,7 @@ export default function ContactSection() {
                     </PrimaryButton>
 
                     <SecondaryButton
-                      href="https://wa.me/56940588585"
+                      href="https://wa.me/56926035311"
                       className="
                         px-6 py-3 text-base
                         border-gray-900
