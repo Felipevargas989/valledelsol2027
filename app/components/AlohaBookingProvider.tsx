@@ -56,6 +56,16 @@ const FORMATO_RESERVA = /^[A-Za-z0-9_-]{1,40}$/;
 const FORMATO_ESTADO = /^[a-z_]{1,20}$/;
 
 /*
+ * BOTÓN "CERRAR RESERVAS" (11-09-2026, opción B elegida por Felipe)
+ *
+ * No aparece mientras el cliente elige, porque Aloha tiene su X, ni mientras
+ * paga, porque ahí debe verse solo WebPay. Aparece donde no hay otra salida:
+ * en la pantalla final del pago, que Aloha muestra sin X, y si Aloha no carga
+ * en este tiempo.
+ */
+const ESPERA_MAXIMA_ALOHA_MS = 10000;
+
+/*
  * Reservas ya contadas en esta pestaña. Segundo candado junto al
  * sessionStorage, por si el navegador bloquea el almacenamiento.
  */
@@ -122,6 +132,10 @@ export function AlohaBookingProvider({
   const [bookingId, setBookingId] = useState<string | null>(null);
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [alohaCargo, setAlohaCargo] = useState(false);
+  const [esperaVencida, setEsperaVencida] = useState(false);
+  const [pantallaFinal, setPantallaFinal] = useState(false);
+  const [ventanaFueraDelSitio, setVentanaFueraDelSitio] = useState(false);
 
   /*
    * RECUPERAR RESERVA AL VOLVER DEL PAGO
@@ -191,6 +205,10 @@ export function AlohaBookingProvider({
       setBookingId(null);
       setPaymentStatus(null);
       setUnitSlug(options?.unitSlug);
+      setAlohaCargo(false);
+      setEsperaVencida(false);
+      setPantallaFinal(false);
+      setVentanaFueraDelSitio(false);
       setIsOpen(true);
     },
     []
@@ -204,6 +222,10 @@ export function AlohaBookingProvider({
     setUnitSlug(undefined);
     setBookingId(null);
     setPaymentStatus(null);
+    setAlohaCargo(false);
+    setEsperaVencida(false);
+    setPantallaFinal(false);
+    setVentanaFueraDelSitio(false);
 
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
@@ -289,6 +311,44 @@ export function AlohaBookingProvider({
   }, [isOpen, closeBooking]);
 
   /*
+   * SALIDA DE EMERGENCIA: si Aloha no avisa que cargó en 10 segundos (caído,
+   * internet lento o bloqueado), aparece el botón de cerrar.
+   */
+  useEffect(() => {
+    if (!isOpen || alohaCargo) {
+      return;
+    }
+
+    const temporizador = window.setTimeout(() => {
+      setEsperaVencida(true);
+    }, ESPERA_MAXIMA_ALOHA_MS);
+
+    return () => {
+      window.clearTimeout(temporizador);
+    };
+  }, [isOpen, alohaCargo]);
+
+  /*
+   * ¿LA VENTANA ESTÁ EN NUESTRO SITIO O EN WEBPAY?
+   *
+   * Cada vez que el marco termina de cargar se revisa su dirección. Si el
+   * navegador no deja leerla, es otro dominio: WebPay o el banco.
+   */
+  const revisarDondeEstaLaVentana = useCallback(() => {
+    let enNuestroSitio = false;
+
+    try {
+      enNuestroSitio =
+        iframeRef.current?.contentWindow?.location.origin ===
+        window.location.origin;
+    } catch {
+      enNuestroSitio = false;
+    }
+
+    setVentanaFueraDelSitio(!enNuestroSitio);
+  }, []);
+
+  /*
    * AVISOS DESDE LA PÁGINA DE RESERVAS
    *
    * - 'cerrado': el cliente cerró con la X de Aloha. Aloha no le avisa a la
@@ -296,6 +356,8 @@ export function AlohaBookingProvider({
    *   naranjo era la única salida (probado el 11-09-2026).
    * - 'pago': el pago volvió dentro de la ventana en vez de la pestaña
    *   completa; se cuenta igual la conversión.
+   * - 'listo': Aloha abrió; ya no hace falta la salida de emergencia.
+   * - 'final': Aloha muestra la pantalla final del pago, que no tiene X.
    *
    * Solo se aceptan avisos del mismo dominio y de nuestra propia ventana.
    */
@@ -317,6 +379,17 @@ export function AlohaBookingProvider({
 
       if (!aviso || aviso.fuente !== 'vds-reservas') {
         return;
+      }
+
+      // Solo nuestra página manda avisos: la ventana está en el sitio.
+      setVentanaFueraDelSitio(false);
+
+      if (aviso.tipo === 'listo') {
+        setAlohaCargo(true);
+      }
+
+      if (aviso.tipo === 'final') {
+        setPantallaFinal(true);
       }
 
       if (aviso.tipo === 'cerrado') {
@@ -341,6 +414,17 @@ export function AlohaBookingProvider({
     };
   }, [isOpen, closeBooking]);
 
+  /*
+   * CUÁNDO SE VE EL BOTÓN "CERRAR RESERVAS"
+   *
+   * Nunca mientras el marco está en WebPay o el banco, después de que Aloha
+   * cargó. Sí en la pantalla final del pago (al volver con la página
+   * recargada llega con booking_id) y si Aloha no cargó a tiempo.
+   */
+  const mostrarBotonCerrar =
+    !(ventanaFueraDelSitio && alohaCargo) &&
+    (pantallaFinal || bookingId !== null || (esperaVencida && !alohaCargo));
+
   return (
     <AlohaBookingContext.Provider
       value={{
@@ -364,7 +448,8 @@ export function AlohaBookingProvider({
           aria-label="Sistema de reservas"
         >
 
-          {/* BOTÓN DE CIERRE PROPIO */}
+          {/* BOTÓN DE CIERRE PROPIO: solo donde no hay otra salida */}
+          {mostrarBotonCerrar && (
 <button
   type="button"
   onClick={closeBooking}
@@ -398,12 +483,14 @@ export function AlohaBookingProvider({
     ×
   </span>
 </button>
+          )}
 
           {/* IFRAME ALOHA */}
           <iframe
             ref={iframeRef}
             title="Reservas Aloha"
             src={iframeSrc}
+            onLoad={revisarDondeEstaLaVentana}
             className="
               fixed
               inset-0

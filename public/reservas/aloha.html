@@ -24,6 +24,10 @@
       3. El pago vuelve dentro de la ventana: avisa a la página para contar la
          conversión, y Aloha muestra la confirmación solo.
 
+      Avisos para el botón "Cerrar reservas" de la página (11-09-2026): "listo"
+      cuando Aloha abrió, y "final" cuando Aloha muestra la pantalla final del
+      pago, que no tiene X.
+
       La llave de Aloha va fija en esta página, no en la dirección, para que la
       dirección de regreso del pago sea corta (el 11-09-2026 un intento en el
       laboratorio falló antes de WebPay con una dirección de 214 caracteres).
@@ -104,6 +108,13 @@
           estadoVentana.avisar({ tipo: 'pago', booking_id: reserva, status: estado });
         }
 
+        // Pantalla final del pago, pagado o fallido. Aloha la muestra con
+        // request-type=embed y booking_id, aunque no venga el estado, y no le
+        // pone X: la página muestra su botón de cerrar.
+        if (params.get('request-type') === 'embed' && reservaValida) {
+          estadoVentana.avisar({ tipo: 'final' });
+        }
+
         window.__vdsReservas = estadoVentana;
       })();
     </script>
@@ -138,11 +149,24 @@
             var widget = new AlohaBookingWidget(config);
             widget.open();
 
+            // Aloha abrió cuando agrega su elemento <aloha-widget> a la página.
+            // Con este aviso la página deja de esperar para mostrar su botón de
+            // emergencia.
+            var avisoListoEnviado = false;
+            var avisarListo = function () {
+              if (avisoListoEnviado || !document.querySelector('aloha-widget')) {
+                return;
+              }
+              avisoListoEnviado = true;
+              estadoVentana.avisar({ tipo: 'listo' });
+            };
+
             // CASO 1: la X de Aloha saca su elemento <aloha-widget> de la página
             // y no avisa a nadie. Se espera un momento para no confundirlo con
             // la salida hacia WebPay.
             var observador = new MutationObserver(function () {
               if (document.querySelector('aloha-widget')) {
+                avisarListo();
                 return;
               }
               setTimeout(function () {
@@ -153,6 +177,7 @@
               }, 400);
             });
             observador.observe(document.body, { childList: true });
+            avisarListo();
           } catch (error) {
             console.error('No fue posible abrir el widget de Aloha:', error);
           }
