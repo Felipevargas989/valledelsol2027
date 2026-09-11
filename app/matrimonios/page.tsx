@@ -514,7 +514,7 @@ export default function WeddingsPage() {
               </PrimaryButton>
 
               <SecondaryButton
-                href="https://wa.me/56926035311"
+                href="https://wa.me/56940588585"
                 target="_blank"
               >
                 {t('whatsapp')}

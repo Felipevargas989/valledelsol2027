@@ -29,7 +29,7 @@ const socialLinks: SocialLink[] = [
   },
   {
     name: 'Whatsapp',
-    href: 'https://api.whatsapp.com/send?phone=%2B56976705424',
+    href: 'https://wa.me/56940588585',
     icon: 'whatsapp',
   },
 ];
@@ -386,7 +386,7 @@ export default function RestaurantPage() {
               </PrimaryButton>
 
               <SecondaryButton
-                href="https://wa.me/56926035311"
+                href="https://wa.me/56940588585"
                 target="_blank"
               >
                 {t('whatsapp')}

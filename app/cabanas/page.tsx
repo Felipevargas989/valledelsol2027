@@ -960,7 +960,7 @@ export default function CabanasPage() {
 
               {/* WHATSAPP */}
               <SecondaryButton
-                href="https://wa.me/56926035311"
+                href="https://wa.me/56940588585"
                 className="
                   px-10
                   py-4

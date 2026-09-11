@@ -458,7 +458,7 @@ export default function CorporateEventPage() {
                 </a>
 
                 <a
-                  href="https://wa.link/vjoaea"
+                  href="https://wa.me/56926035311"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-10 py-5 rounded-full border border-white/30 text-white text-lg font-semibold backdrop-blur-md hover:bg-white hover:text-black transition-all duration-500"
@@ -1068,7 +1068,7 @@ export default function CorporateEventPage() {
             </p>
 
             <a
-              href="https://wa.link/vjoaea"
+              href="https://wa.me/56926035311"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center mt-12 px-12 py-5 rounded-full text-black font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-2xl"
