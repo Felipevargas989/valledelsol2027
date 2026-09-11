@@ -609,11 +609,11 @@ export default function CabanasPage() {
   ];
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip">
 
       <Header />
 
-      <main className="w-full max-w-full overflow-x-hidden">
+      <main className="w-full max-w-full overflow-x-clip">
 
         {/* HERO CON PARALLAX */}
         <section className="relative min-h-[78vh] h-[85vh] -mt-24 overflow-hidden bg-black">
@@ -779,8 +779,11 @@ export default function CabanasPage() {
 
         </section>
 
-        {/* CABAÑAS */}
-        <section className="w-full max-w-full overflow-x-hidden py-16 sm:py-20">
+        {/* CABAÑAS
+            Recorte lateral con clip y no con hidden: hidden la volvía una caja
+            con scroll propio y en el celular el scroll se pegaba. Las tarjetas
+            se animan una sola vez (11-09-2026). */}
+        <section className="w-full max-w-full overflow-x-clip py-16 sm:py-20">
 
           <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-20 sm:space-y-24">
 
@@ -801,7 +804,7 @@ export default function CabanasPage() {
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
               >
 
                 {/* IMÁGENES E ÍCONOS */}
